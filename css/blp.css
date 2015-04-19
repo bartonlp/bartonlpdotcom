@@ -1,0 +1,36 @@
+/* Barton Phillips CSS */
+html {
+        font-size: 16px;
+}
+body {
+        background-color: white;
+        font-family: Times, "Times New Roman", serif;
+        background-origin:content-box; /* default is padding-box. This puts the background
+        image inside the content area. other options are
+        1)border-box, 2) padding-box,
+        3) content-box, 4) initial */
+/* Christmas or New Years
+Xmas
+  background-image: url('http://www.granbyrotary.org/images/xmassnow.jpg');
+New Years
+  background: url('http://www.granbyrotary.org/images/happy6.gif'); 
+  background-position:top; 
+  background-size: 100%;
+*/
+        
+}
+footer {
+        text-align: center;
+}
+.center {
+        text-align: center;
+}
+ul {
+        line-height: 150%;
+}
+/* 64em == 1024px */
+@media (min-width: 64em) {
+        body {
+                font-size: 2em;
+        }
+}

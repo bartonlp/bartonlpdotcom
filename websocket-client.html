@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <script>
+var ws = new WebSocket("ws://bartonphillips.dyndns.org:8080?BLP=8653",
+                                  "weather");
+
+ws.onopen = function (event) {
+  console.log("protocol: ", ws.protocol );
+}
+
+ws.onmessage = function (event) {
+  var ev = JSON.parse(event.data);
+  console.log("message: ", ev);
+  var div = document.querySelector("div");
+  var p = document.createElement('p');
+  if(ev.event == 'weather') {
+    p.innerHTML = ev.time+", Inside: "+ ev.inTemp+", Outside: "+ev.outTemp;
+  }
+  div.appendChild(p);
+}
+  </script>
+</head>
+<body>
+<h1>Hello World</h1>
+<div></div>
+</body>
+</html>

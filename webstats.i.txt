@@ -1,0 +1,152 @@
+<hr/>
+<div id="table1">
+<h2>Table One from <i>blpip</i></h2>
+<p>These are the IP Addresses used by the Webmaster. When these addresses appear in the other tables they are in
+<span style="color: red">RED</span>. Some of these are from the Granby Library (63.238.70.*)</p>
+<table border='1'>
+<thead>
+<tr><th>BLP IP</th><th>Since</th></tr>
+</thead>
+<tbody>
+<tr><td>bartonphillips.dyndn</td><td>2014-05-09 10:25:31</td></tr>
+<tr><td>50.134.162.215</td><td>2013-05-09 12:40:02</td></tr>
+</tbody>
+</table>
+
+</div><div id="table2">
+<a href="#table3">Goto Table3</a>
+<h2>Table Two: from table <i>logip</i></h2>
+<table id='blpmembers' border='1'>
+<thead>
+<tr><th>IP</th><th>Count</th><th>LastTime</th></tr>
+</thead>
+<tbody>
+<tr><td>66.249.67.80</td><td>17</td><td>2015-04-18 23:02:54</td></tr>
+<tr><td>66.249.67.72</td><td>18</td><td>2015-04-18 22:22:51</td></tr>
+<tr><td>100.43.85.9</td><td>7</td><td>2015-04-18 21:43:19</td></tr>
+<tr><td>157.55.39.131</td><td>6</td><td>2015-04-18 19:33:06</td></tr>
+<tr><td><span style='color: red'>50.134.162.215</span></td><td>886</td><td>2015-04-18 17:18:15</td></tr>
+<tr><td>77.75.79.32</td><td>1</td><td>2015-04-18 15:35:47</td></tr>
+<tr><td>188.165.15.108</td><td>3</td><td>2015-04-18 08:18:24</td></tr>
+<tr><td>77.75.77.11</td><td>7</td><td>2015-04-17 19:57:59</td></tr>
+<tr><td>130.185.104.121</td><td>1</td><td>2015-04-17 12:16:35</td></tr>
+<tr><td>5.9.145.132</td><td>1</td><td>2015-04-17 03:11:54</td></tr>
+<tr><td>185.10.104.195</td><td>5</td><td>2015-04-16 18:10:39</td></tr>
+<tr><td>64.246.165.160</td><td>2</td><td>2015-04-16 16:25:07</td></tr>
+<tr><td>204.124.183.98</td><td>11</td><td>2015-04-16 08:40:15</td></tr>
+<tr><td>66.249.67.64</td><td>24</td><td>2015-04-16 04:42:31</td></tr>
+<tr><td>185.10.104.130</td><td>5</td><td>2015-04-16 02:47:01</td></tr>
+<tr><td>178.255.215.67</td><td>3</td><td>2015-04-15 20:19:25</td></tr>
+<tr><td>64.79.100.42</td><td>16</td><td>2015-04-15 19:00:41</td></tr>
+<tr><td>209.249.5.251</td><td>4</td><td>2015-04-15 07:16:50</td></tr>
+<tr><td>137.117.203.144</td><td>2</td><td>2015-04-15 05:50:19</td></tr>
+<tr><td>157.55.39.132</td><td>3</td><td>2015-04-15 05:31:59</td></tr>
+<tfoot>
+<tr><th colspan='3'>Total Records: 1172, Total Visits: 5596</th></tr>
+
+</tfoot>
+</tbody>
+</table>
+
+</div>
+<div id="table3">
+<a href="#table4">Goto Table4</a>
+<h2>Table Three from table <i>logagent</i>. Data for today only.</h2>
+
+</div>
+<div id="table4">
+<a href="#table5">Goto Table5</a>
+<h2>Table Four: from table <i>counter</i></h2>
+<table border='1' id='counter'>
+<thead>
+<tr><th>Page</th><th>Count</th><th>LastTime</th></tr>
+</thead>
+<tbody>
+<tr><td>/index.php</td><td>3520</td><td>2015-04-18 23:02:54</td></tr>
+<tr><td>/blp-blog.php</td><td>1116</td><td>2015-04-18 21:43:19</td></tr>
+<tr><td>/aboutwebsite.php</td><td>376</td><td>2015-04-15 07:16:43</td></tr>
+<tr><td>/webstats-new.php</td><td>221</td><td>2015-04-12 00:30:59</td></tr>
+<tr><td>/webstats.php</td><td>52</td><td>2015-02-27 15:04:58</td></tr>
+<tr><td>/namespace-test.php</td><td>5</td><td>2015-02-23 16:54:18</td></tr>
+<tr><td>/html/multmail.php</td><td>2</td><td>2015-02-22 11:23:27</td></tr>
+<tr><td>/html/aboutwebsite.php</td><td>33</td><td>2015-02-21 13:08:03</td></tr>
+<tr><td>/blp-blog.php/wp-login.php</td><td>3</td><td>2015-01-19 12:06:52</td></tr>
+<tr><td>/bartonphillipsdotcom/featurescheck.php</td><td>1</td><td>2015-01-16 12:04:31</td></tr>
+<tr><td>/bartonphillipsdotcom/linuxmint-from-iso.php</td><td>1</td><td>2015-01-16 12:04:16</td></tr>
+<tr><td>/bartonphillipsdotcom/index.php</td><td>8</td><td>2015-01-16 12:03:50</td></tr>
+<tr><td>/purecss.php</td><td>1</td><td>2014-12-17 15:39:04</td></tr>
+<tr><td>/underline.php</td><td>52</td><td>2014-12-07 11:21:58</td></tr>
+<tr><td>/ipdb.php</td><td>57</td><td>2014-11-29 15:28:50</td></tr>
+<tr><td>/disques-test.php</td><td>15</td><td>2014-11-24 15:04:34</td></tr>
+<tr><td>/blp-blog.php/trackback/</td><td>13</td><td>2014-11-17 17:30:02</td></tr>
+<tr><td>/checkwebp.php</td><td>37</td><td>2014-11-08 14:47:19</td></tr>
+<tr><td>/html/webstats-new.php</td><td>21</td><td>2014-11-07 13:40:15</td></tr>
+<tr><td>/digitalocean.php</td><td>15</td><td>2014-11-03 16:02:04</td></tr>
+</tbody>
+</table>
+
+</div>
+<div id="table5">
+<a href="#table6">Goto Table6</a>
+<h2>Table Five: from table <i>counter2</i> for last 7 days</h2>
+<table border='1' id='counter2'>
+<thead>
+<tr><th>Date</th><th>Page</th><th>Count</th><th>LastTime</th></tr>
+</thead>
+<tbody>
+<tr><td>2015-04-18</td><td>/blp-blog.php</td><td>3</td><td>2015-04-18 21:43:19</td></tr>
+<tr><td>2015-04-18</td><td>/index.php</td><td>7</td><td>2015-04-18 23:02:54</td></tr>
+<tr><td>2015-04-17</td><td>/blp-blog.php</td><td>1</td><td>2015-04-17 19:57:59</td></tr>
+<tr><td>2015-04-17</td><td>/index.php</td><td>4</td><td>2015-04-17 17:19:46</td></tr>
+<tr><td>2015-04-16</td><td>/blp-blog.php</td><td>1</td><td>2015-04-16 16:23:46</td></tr>
+<tr><td>2015-04-16</td><td>/index.php</td><td>8</td><td>2015-04-16 18:10:39</td></tr>
+<tr><td>2015-04-15</td><td>/aboutwebsite.php</td><td>2</td><td>2015-04-15 07:16:43</td></tr>
+<tr><td>2015-04-15</td><td>/index.php</td><td>10</td><td>2015-04-15 20:19:25</td></tr>
+<tr><td>2015-04-15</td><td>/blp-blog.php</td><td>18</td><td>2015-04-15 19:00:41</td></tr>
+<tr><td>2015-04-14</td><td>/aboutwebsite.php</td><td>1</td><td>2015-04-14 05:42:16</td></tr>
+<tr><td>2015-04-14</td><td>/blp-blog.php</td><td>5</td><td>2015-04-14 05:52:51</td></tr>
+<tr><td>2015-04-14</td><td>/index.php</td><td>6</td><td>2015-04-14 23:07:24</td></tr>
+<tr><td>2015-04-13</td><td>/blp-blog.php</td><td>4</td><td>2015-04-13 21:49:18</td></tr>
+<tr><td>2015-04-13</td><td>/index.php</td><td>4</td><td>2015-04-13 13:53:25</td></tr>
+<tr><td>2015-04-12</td><td>/blp-blog.php</td><td>11</td><td>2015-04-12 21:27:27</td></tr>
+<tr><td>2015-04-12</td><td>/index.php</td><td>5</td><td>2015-04-12 08:27:44</td></tr>
+</tbody>
+</table>
+
+</div>
+<div id="table6">
+<a href="#table7">Goto Table7</a>
+<h2>Table Six from table <i>daycount</i></h2>
+<p>Day Counts are for 'index.php" and do NOT include webmaster visits.<br>
+<table border='1' id='daycount'>
+<thead>
+<tr><th>Date</th><th>Visitors</th><th>Count</th><th>Visits</th></tr>
+</thead>
+<tbody>
+<tr><td>2015-04-18</td><td>4</td><td>7</td><td>7</td></tr>
+<tr><td>2015-04-17</td><td>3</td><td>4</td><td>4</td></tr>
+<tr><td>2015-04-16</td><td>8</td><td>8</td><td>8</td></tr>
+<tr><td>2015-04-15</td><td>8</td><td>10</td><td>10</td></tr>
+<tr><td>2015-04-14</td><td>4</td><td>6</td><td>6</td></tr>
+<tr><td>2015-04-13</td><td>2</td><td>4</td><td>4</td></tr>
+<tr><td>2015-04-12</td><td>4</td><td>5</td><td>5</td></tr>
+<tr><td>2015-04-11</td><td>4</td><td>5</td><td>5</td></tr>
+<tr><td>2015-04-10</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td>2015-04-09</td><td>6</td><td>7</td><td>7</td></tr>
+<tr><td>2015-04-08</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><td>2015-04-07</td><td>8</td><td>10</td><td>10</td></tr>
+<tr><td>2015-04-06</td><td>4</td><td>8</td><td>8</td></tr>
+<tr><td>2015-04-05</td><td>5</td><td>8</td><td>8</td></tr>
+<tr><td>2015-04-04</td><td>2</td><td>2</td><td>2</td></tr>
+<tr><td>2015-04-03</td><td>7</td><td>8</td><td>8</td></tr>
+<tr><td>2015-04-02</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>2015-04-01</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>2015-03-31</td><td>5</td><td>5</td><td>5</td></tr>
+<tr><td>2015-03-30</td><td>5</td><td>5</td><td>5</td></tr>
+<tfoot>
+<tr><th>Totals</th><th>2265</th><th>3542</th><th>3297</th></tr>
+</tfoot>
+</tbody>
+</table>
+
+</div>
