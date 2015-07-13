@@ -47,6 +47,7 @@ h1 {
 #blog {
   width: 50%;
   background-color: #FCF6CF;
+  text-align: center;
   padding: 20px;
   margin: auto;
   border: 1px solid #696969;
@@ -128,7 +129,6 @@ if($S->isBlp() || ($_GET['blp'] == "7098")) {
 <ul>
 <li><a target="_blank" class="uptest" href="http://192.168.0.6/weewx/">WEEWX home</a></li>
 <li><a target="_blank" class="uptest" href="http://192.168.0.6/apc.php">APC Status home</a></li>
-<li><a target="_blank" href="http://mpc.bartonlp.com">MPC Test</a></li>
 </ul>
 EOF;
 }
@@ -177,8 +177,7 @@ $top
 </section>
 
 <section id="blog">
-<a target="_blank" href="blp-blog.php">My BLOG with tips and tricks</a>.
-Leave a comment or feedback about this site.
+<a target="_blank" href="http://myblog.bartonphillips.com">My BLOG with tips and tricks</a>.
 </section>
 
 <section id="links">
