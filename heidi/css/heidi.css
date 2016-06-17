@@ -1,0 +1,30 @@
+* {
+        box-sizing: border-box !important;
+}
+html {
+        font-size: 16px;
+}
+body {
+        background-color: white;
+        font-family: Times, "Times New Roman", serif;
+        background-origin:content-box; /* default is padding-box. This puts the background
+        image inside the content area. other options are
+        1)border-box, 2) padding-box,
+        3) content-box, 4) initial */
+        padding: .5rem;
+}
+footer {
+        text-align: center;
+}
+.center {
+        text-align: center;
+}
+ul {
+        line-height: 150%;
+}
+/* 64em == 1024px */
+@media (min-width: 64em) {
+        body {
+                font-size: 2em;
+        }
+}

@@ -16,4 +16,3 @@ echo <<<EOF
 This site or product includes IP2Location LITE data available from
 <a href="http://www.ip2location.com">http://www.ip2location.com</a>.  
 EOF;
-?>

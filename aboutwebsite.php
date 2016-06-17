@@ -1,34 +1,27 @@
 <?php
 // All sites that have an "About Web Site" link should have a symlink
-// to /var/www/html/aboutwebsite.php and should have a modified .sitemap.php that has
-// these items in the $siteinfo array: 1) 'copyright', 2 'className'.
+// to /var/www/html/aboutwebsite.php and should have a modified MySitemap.php that has
+// these items in the $_site array: 1) 'copyright', 2 'className' 3 'siteName' etc.
 // The className is the name of the class for the site. For example: /var/www/endpolio uses
 // the file /var/www/endpolio/includes/Endpolio.clas.php which has Endpolio as the class.
 // Therefore 'className' should be 'Endpolio' which is then instantiated by
-// $S = new $siteinfo['className']; which becomes '$S = new Endpolio;
-// If the 'copyright' is missing from the $siteinfo array then the copyrite becomes:
-// date("Y") . " " . get_class($S) which in the case of Endpolio would not really be a very
-// good copyright but then again there SHOULD be an entry in $siteinfo!!!
-  
-// BLP 2015-02-22 -- added $S->s to SiteClass.class.php which has the constructor's $s which
-// has the $siteinfo and database class.
-// BLP 2015-02-20 -- make this universal for all sites. See header above.
+// $S = new $_site['className']; which becomes '$S = new Endpolio;
+//$AutoLoadDEBUG = true;
+$_site = require_once(getenv("HOME")."/includes/siteautoload.class.php");
 
-require_once("/var/www/includes/siteautoload.class.php");
-
-$S = new $siteinfo['className'];
+$S = new $_site['className']($_site);
 
 // check for subdomain. This doesn't need to be rigorous as we will Never have a multiple
 // subdomain like en.test.domain.com. At most we might have www. or mpc.
 
-$webdomain = $S->s['siteDomain'];
+$webdomain = $S->siteDomain;
 
 if(($n = count(explode(".", $webdomain))) == 2) {
   $webdomain = "www." . $webdomain;
 }
 
-$copyright = isset($S->s['copyright']) ? $S->s['copyright'] :
-             date("Y") . " " . get_class($S);
+$copyright = isset($S->copyright) ? $S->copyright : (isset($S->siteName) ? date("Y") . " " . $S->siteName :
+             date("Y") . " " . get_class($S));
 
 $h->title = "About This Web Site and Server";
 $h->banner = "<h2>About This Web Site and Server</h2>";
@@ -95,7 +88,7 @@ $top
 <div id="aboutWebSite">
 <div id="runWith">
   <p>This site's designer is Barton L. Phillips<br/>
-     <a href="http://www.bartonphillips.com">www.bartonphillips.com</a><br>
+     at <a href="http://www.bartonphillips.com">www.bartonphillips.com</a><br>
      Copyright &copy; $copyright
   </p>
   
@@ -133,12 +126,12 @@ $top
         alt="jQuery logo">
     </a>
   </p>
-	<p>
+<!--	<p>
     <a href="http://www.mozilla.org">
       <img src="http://bartonlp.com/html/images/aboutsite/bestviewedwithmozillabig.gif"
         alt="Best viewed with Mozilla or any other browser">
     </a>
-  </p>
+  </p> -->
 	<p>
     <img src="http://bartonlp.com/html/images/aboutsite/msfree.png"
       alt="100% Microsoft Free">

@@ -1,0 +1,150 @@
+<style>
+.pure-table-striped tr:nth-child(2n-1) td {
+  background-color: inherit;
+}
+.pure-table-striped tbody {
+  background-color: #e0e0e0;
+}
+.pure-table-striped tbody tr:nth-child(2n+2) td {
+  background-color: pink;
+}
+.pure-table thead {
+  background-color: yellow;
+}
+#os1, #os2, #browser1, #browser2 {
+  font-size: 1rem;
+}
+#os1 td:nth-child(2), #browser1 td:nth-child(2),
+#os2 td:nth-child(2), #browser2 td:nth-child(2),
+#os1 td:nth-child(3), #browser1 td:nth-child(3),
+#os2 td:nth-child(3), #browser2 td:nth-child(3),
+#os1 td:nth-child(4), #browser1 td:nth-child(4),
+#os2 td:nth-child(4), #browser2 td:nth-child(4) {
+  text-align: right;
+}
+.AlignTop {
+  vertical-align: top;
+}
+.pure-table thead {
+  vertical-align: middle;
+}
+.HeaderRow th {
+  padding: 20px 10px;
+}
+table.tablesorter thead tr .header {
+ background-size: 1.5rem;
+}
+</style>
+<h2 id="analysis-info">Analysis Information for Conejoskiclub</h2>
+<p class="h-update">Last updated 2016-06-16 23:50:21 PDT.</p>
+
+<p>The following websites are used to accumulate data</p>
+<ul>
+<li>www.bartonphillips.com</li>
+<li>www.bartonlp.com</li>
+<li>www.granbyrotary.org</li>
+<li>www.endpolio.com</li>
+<li>www.mountainmessiah.com</li>
+<li>www.applitec.com</li>
+<li>www.conejoskiclub.org</li>
+</ul>
+
+<div id="siteanalysis">
+  <form method="post" action="analysis.php">
+    <p>Showing Conejoskiclub</p>
+    Get Site: 
+    <select name='site'>
+      <option>Applitec</option>
+      <option>Bartonlp</option>
+      <option>Bartonphillips</option>
+      <option>Conejoskiclub</option>
+      <option>Endpolio</option>
+      <option>GranbyRotary</option>
+      <option>Messiah</option>
+      <option>Puppiesnmore</option>
+      <option>Weewx</option>
+      <option>ALL</option>
+    </select>
+
+    <button id="mysite" type="submit">Submit</button>
+  </form>
+</div>
+
+<p>These tables show the number and percentage of Operating Systems and Browsers.<br>
+The Totals show the number of Records and Counts for the entire table and the last N days.<br>
+The OS and Browser totals should be the same. <br>
+The two sets of tables give you an idea
+of how the market is trending.</p>
+
+<table id="CompareTbl">
+<thead>
+  <tr>
+    <th>
+      Total Records: 4,157<br>
+      From: 2016-04-12 18:11:00<br>
+      Total Count: 37,239
+    </th>
+    <th>
+      Total Records: 3,792<br>
+      First Record: 2016-04-17 00:00:30<br>
+      Total Count: 32,558
+    </th>
+  </tr>
+</thead>
+<tbody>
+  <!-- OS rows -->
+  <tr class="HeaderRow"><th>OS All</th><th>OS Last 60 Days</th></tr>
+  <tr>
+    <td class="AlignTop">
+      <div class="pure-g">
+        <div class="pure-u-1 pure-u-md-1-2">
+<table id='os1' class='pure-table pure-table-bordered pure-table-striped'>
+<thead>
+<tr><th>Os</th><th>Count</th><th>%</th><th>% less Bots</th></tr>  
+</thead>  
+<tbody>  <tr><td>Macintosh</td><td>855</td><td>2.30</td><td>6.15</td></tr><tr><td>Windows</td><td>8,243</td><td>22.14</td><td>59.34</td></tr><tr><td>Other</td><td>1,375</td><td>3.69</td><td>9.90</td></tr><tr><td>ROBOT</td><td>23,347</td><td>62.70</td><td></td></tr><tr><td>Android</td><td>373</td><td>1.00</td><td>2.68</td></tr><tr><td>Unix/Linux/BSD</td><td>1,129</td><td>3.03</td><td>8.13</td></tr><tr><td>iPhone</td><td>1,275</td><td>3.42</td><td>9.18</td></tr><tr><td>Darwin</td><td>332</td><td>0.89</td><td>2.39</td></tr><tr><td>iPad</td><td>279</td><td>0.75</td><td>2.01</td></tr><tr><td>CrOS</td><td>30</td><td>0.08</td><td>0.22</td></tr><tr><td>BlackBerry</td><td>1</td><td>0.00</td><td>0.01</td></tr></tbody></table>
+        </div>
+      </div>
+    </td>
+
+    <td class="AlignTop">
+      <div class="pure-g">
+        <div class="pure-u-1 pure-u-md-1-2">
+<table id='os2' class='pure-table pure-table-bordered pure-table-striped'>
+<thead>
+<tr><th>Os</th><th>Count</th><th>%</th><th>% less Bots</th></tr>  
+</thead>  
+<tbody>  <tr><td>Macintosh</td><td>835</td><td>2.56</td><td>6.39</td></tr><tr><td>Windows</td><td>7,671</td><td>23.56</td><td>58.66</td></tr><tr><td>Other</td><td>1,322</td><td>4.06</td><td>10.11</td></tr><tr><td>ROBOT</td><td>19,481</td><td>59.83</td><td></td></tr><tr><td>Android</td><td>342</td><td>1.05</td><td>2.62</td></tr><tr><td>Unix/Linux/BSD</td><td>1,103</td><td>3.39</td><td>8.43</td></tr><tr><td>iPhone</td><td>1,175</td><td>3.61</td><td>8.99</td></tr><tr><td>Darwin</td><td>320</td><td>0.98</td><td>2.45</td></tr><tr><td>iPad</td><td>278</td><td>0.85</td><td>2.13</td></tr><tr><td>CrOS</td><td>30</td><td>0.09</td><td>0.23</td></tr><tr><td>BlackBerry</td><td>1</td><td>0.00</td><td>0.01</td></tr></tbody></table>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <!-- Browser rows -->
+  <tr class="HeaderRow"><th>Browser All</th><th>Browser Last 60 Days</th></tr>
+  <tr>
+    <td class="AlignTop">
+      <div class="pure-g">
+        <div class="pure-u-1 pure-u-md-1-2">
+<table id='browser1' class='pure-table pure-table-bordered pure-table-striped'>
+<thead>
+<tr><th>Browser</th><th>Count</th><th>%</th><th>% less Bots</th></tr>  
+</thead>  
+<tbody>  <tr><td>Chrome</td><td>4,214</td><td>11.32</td><td>30.33</td></tr><tr><td>Firefox</td><td>3,012</td><td>8.09</td><td>21.68</td></tr><tr><td>Safari</td><td>2,152</td><td>5.78</td><td>15.49</td></tr><tr><td>MsIe</td><td>2,643</td><td>7.10</td><td>19.03</td></tr><tr><td>Other</td><td>1,566</td><td>4.21</td><td>11.27</td></tr><tr><td>ROBOT</td><td>23,347</td><td>62.70</td><td></td></tr><tr><td>Opera</td><td>305</td><td>0.82</td><td>2.20</td></tr></tbody></table>
+        </div>
+      </div>
+    </td>
+
+    <td class="AlignTop">
+      <div class="pure-g">
+        <div class="pure-u-1 pure-u-md-1-2">
+<table id='browser2' class='pure-table pure-table-bordered pure-table-striped'>
+<thead>
+<tr><th>Browser</th><th>Count</th><th>%</th><th>% less Bots</th></tr>  
+</thead>  
+<tbody>  <tr><td>Chrome</td><td>3,877</td><td>11.91</td><td>29.65</td></tr><tr><td>Firefox</td><td>2,848</td><td>8.75</td><td>21.78</td></tr><tr><td>Safari</td><td>2,031</td><td>6.24</td><td>15.53</td></tr><tr><td>MsIe</td><td>2,550</td><td>7.83</td><td>19.50</td></tr><tr><td>Other</td><td>1,501</td><td>4.61</td><td>11.48</td></tr><tr><td>ROBOT</td><td>19,481</td><td>59.83</td><td></td></tr><tr><td>Opera</td><td>270</td><td>0.83</td><td>2.06</td></tr></tbody></table>
+        </div>
+      </div>
+    </td>
+  </tr>
+</tbody>
+</table>

@@ -40,9 +40,9 @@ CREATE TABLE `region_names` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8
 */
 
-require_once("/var/www/includes/siteautoload.class.php");
+$_site = require_once(getenv("HOME")."/includes/siteautoload.class.php");
 if($ipstr = $_GET['ip']) {
-  $S = new Database($dbinfo);
+  $S = new Database($_site['dbinfo']);
 
   $country_blocks = "ip str: $ipstr<br>";
   $iplong = Dot2LongIP($ipstr);
@@ -73,7 +73,7 @@ if($ipstr = $_GET['ip']) {
   exit();
 }
 
-$S = new Blp; // takes an array if you want to change defaults
+$S = new $siteinfo['className']($siteinfo);
 
 $h->banner = "<h1>IPDB test</h1>";
 

@@ -1,0 +1,19 @@
+User-agent: *
+Crawl-delay: 30
+Disallow: /MySitemap.php
+Disallow: fonts/ 
+Disallow: geo/   
+Disallow: heidi/ 
+Disallow: images/
+Disallow: includes/
+Disallow: js/    
+Disallow: other/ 
+Disallow: scripts/
+Disallow: make-webstats.php
+Disallow: robots.php
+Disallow: sitemap.php
+Disallow: banner.php
+Disallow: tracker.php
+
+User-agent: Baiduspider
+Disallow: /

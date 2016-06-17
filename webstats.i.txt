@@ -1,167 +1,70 @@
 <hr/>
-<div id="table1">
-<h2>Table One from <i>blpip</i></h2>
+</script>
+
+<p id="hourly" class="h-update">The first six tables are created within an hour of this access.<br>
+ This was created 2016-06-16 02:23:47 PDT. Hourly update.</p>
+
+<h2>From table <i>blpip</i></h2>
 <p>These are the IP Addresses used by the Webmaster. When these addresses appear in the other tables they are in
-<span style="color: red">RED</span>. Some of these are from the Granby Library (63.238.70.*)</p>
-<table border='1'>
+<span style="color: red">RED</span>.</p>
+<table id='blpid' border='1'>
 <thead>
 <tr><th>BLP IP</th><th>Since</th></tr>
 </thead>
 <tbody>
-<tr><td>75.85.1.121</td><td>2015-07-07 14:01:03</td></tr>
-<tr><td>172.251.246.13</td><td>2015-05-30 09:26:33</td></tr>
-<tr><td>bartonphillips.dyndn</td><td>2014-05-09 10:25:31</td></tr>
-<tr><td>50.134.162.215</td><td>2013-05-09 12:40:02</td></tr>
-</tbody>
+<tr><td>23.242.170.142</td><td>2015-08-06 12:25:58</td></tr></tbody>
 </table>
-
-</div><div id="table2">
-<a href="#table3">Goto Table3</a>
-<h2>Table Two: from table <i>logip</i></h2>
-<table id='blpmembers' border='1'>
-<thead>
-<tr><th>IP</th><th>Count</th><th>LastTime</th></tr>
-</thead>
-<tbody>
-<tr><td>185.10.107.68</td><td>10</td><td>2015-07-13 03:55:26</td></tr>
-<tr><td>207.46.13.94</td><td>6</td><td>2015-07-13 01:48:32</td></tr>
-<tr><td>209.126.117.84</td><td>1</td><td>2015-07-12 21:42:16</td></tr>
-<tr><td>207.46.13.130</td><td>2</td><td>2015-07-12 21:12:05</td></tr>
-<tr><td>66.249.65.210</td><td>4</td><td>2015-07-12 20:50:56</td></tr>
-<tr><td>207.46.13.89</td><td>2</td><td>2015-07-12 14:19:46</td></tr>
-<tr><td>208.115.113.83</td><td>18</td><td>2015-07-12 07:19:51</td></tr>
-<tr><td>23.94.173.64</td><td>1</td><td>2015-07-12 02:41:13</td></tr>
-<tr><td>204.124.183.98</td><td>14</td><td>2015-07-12 02:41:01</td></tr>
-<tr><td>64.88.164.100</td><td>2</td><td>2015-07-12 00:09:27</td></tr>
-<tr><td>192.92.196.244</td><td>1</td><td>2015-07-11 15:23:41</td></tr>
-<tr><td>77.75.77.32</td><td>9</td><td>2015-07-11 02:27:38</td></tr>
-<tr><td>144.76.26.177</td><td>1</td><td>2015-07-10 17:56:34</td></tr>
-<tr><td>207.46.13.105</td><td>1</td><td>2015-07-10 14:46:29</td></tr>
-<tr><td>45.55.162.183</td><td>1</td><td>2015-07-10 11:12:52</td></tr>
-<tr><td>192.92.196.181</td><td>1</td><td>2015-07-10 06:56:00</td></tr>
-<tr><td>207.46.13.65</td><td>3</td><td>2015-07-10 03:14:56</td></tr>
-<tr><td>136.243.36.100</td><td>5</td><td>2015-07-10 02:31:15</td></tr>
-<tr><td>64.246.165.140</td><td>2</td><td>2015-07-09 17:28:24</td></tr>
-<tr><td>208.115.111.66</td><td>14</td><td>2015-07-09 10:22:18</td></tr>
-<tfoot>
-<tr><th colspan='3'>Total Records: 1409, Total Visits: 6550</th></tr>
-
-</tfoot>
-</tbody>
-</table>
-
-</div>
-<div id="table3">
-<a href="#table4">Goto Table4</a>
-<h2>Table Three from table <i>logagent</i>. Data for today only.</h2>
+<h2 id="table3">From table <i>logagent</i> for today</h2>
+<a href="#table4">Next</a>
 <table id='logagent' border='1'>
 <thead>
 <tr><th>IP</th><th>Agent</th><th>Count</th><th>LastTime</th></tr>
 </thead>
 <tbody>
-<tr><td>185.10.107.68</td><td>Mozilla/5.0 (Windows NT 5.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2</td><td>10</td><td>2015-07-13 03:55:26</td></tr>
-<tr><td>207.46.13.94</td><td>Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)</td><td>6</td><td>2015-07-13 01:48:32</td></tr>
-</tbody>
+<tr><td>162.244.11.73</td><td>Mozilla/5.0 (X11; CrOS x86_64 6310.68.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.96 Safari/537.36</td><td>1</td><td>2016-06-16 02:23:47</td></tr><tr><td>66.249.79.134</td><td>Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)</td><td>2</td><td>2016-06-16 01:15:27</td></tr><tr><td>66.249.79.182</td><td>Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)</td><td>11</td><td>2016-06-16 00:26:44</td></tr></tbody>
 </table>
-
-</div>
-<div id="table4">
-<a href="#table5">Goto Table5</a>
-<h2>Table Four: from table <i>counter</i></h2>
+<h2 id="table4">From table <i>counter</i> for today</h2>
+<a href="#table5">Next</a>
+<p>Shows the total number of hits for a page.<br>
+'count' is the total number of hits including real and bots. 'real' is the number of non-bots.</p>
 <table border='1' id='counter'>
 <thead>
-<tr><th>Page</th><th>Count</th><th>LastTime</th></tr>
+<tr><th>Page</th><th>Real</th><th>Bots</th><th>LastTime</th></tr>
 </thead>
 <tbody>
-<tr><td>/index.php</td><td>4186</td><td>2015-07-13 03:55:26</td></tr>
-<tr><td>/aboutwebsite.php</td><td>460</td><td>2015-07-12 21:42:16</td></tr>
-<tr><td>/blp-blog.php</td><td>1304</td><td>2015-07-12 02:41:13</td></tr>
-<tr><td>/webstats-new.php</td><td>237</td><td>2015-07-08 01:04:44</td></tr>
-<tr><td>/webstats.php</td><td>52</td><td>2015-02-27 15:04:58</td></tr>
-<tr><td>/namespace-test.php</td><td>5</td><td>2015-02-23 16:54:18</td></tr>
-<tr><td>/html/multmail.php</td><td>2</td><td>2015-02-22 11:23:27</td></tr>
-<tr><td>/html/aboutwebsite.php</td><td>33</td><td>2015-02-21 13:08:03</td></tr>
-<tr><td>/blp-blog.php/wp-login.php</td><td>3</td><td>2015-01-19 12:06:52</td></tr>
-<tr><td>/bartonphillipsdotcom/featurescheck.php</td><td>1</td><td>2015-01-16 12:04:31</td></tr>
-<tr><td>/bartonphillipsdotcom/linuxmint-from-iso.php</td><td>1</td><td>2015-01-16 12:04:16</td></tr>
-<tr><td>/bartonphillipsdotcom/index.php</td><td>8</td><td>2015-01-16 12:03:50</td></tr>
-<tr><td>/purecss.php</td><td>1</td><td>2014-12-17 15:39:04</td></tr>
-<tr><td>/underline.php</td><td>52</td><td>2014-12-07 11:21:58</td></tr>
-<tr><td>/ipdb.php</td><td>57</td><td>2014-11-29 15:28:50</td></tr>
-<tr><td>/disques-test.php</td><td>15</td><td>2014-11-24 15:04:34</td></tr>
-<tr><td>/blp-blog.php/trackback/</td><td>13</td><td>2014-11-17 17:30:02</td></tr>
-<tr><td>/checkwebp.php</td><td>37</td><td>2014-11-08 14:47:19</td></tr>
-<tr><td>/html/webstats-new.php</td><td>21</td><td>2014-11-07 13:40:15</td></tr>
-<tr><td>/digitalocean.php</td><td>15</td><td>2014-11-03 16:02:04</td></tr>
-</tbody>
+<tr><td>/webstats-new.php</td><td>182</td><td>76</td><td>2016-06-16 02:23:47</td></tr><tr><td>/blp/toweewx.php</td><td>113</td><td>187</td><td>2016-06-16 01:15:27</td></tr></tbody>
 </table>
-
-</div>
-<div id="table5">
-<a href="#table6">Goto Table6</a>
-<h2>Table Five: from table <i>counter2</i> for last 7 days</h2>
+<h2 id="table5">From table <i>counter2</i> for today</h2>
+<a href="#table6">Next</a>
+<p>Shows the number of hits today for each page.<br>
 <table border='1' id='counter2'>
 <thead>
-<tr><th>Date</th><th>Page</th><th>Count</th><th>LastTime</th></tr>
+<tr><th>Page</th><th>Real</th><th>Bots</th><th>LastTime</th></tr>
 </thead>
 <tbody>
-<tr><td>2015-07-13</td><td>/index.php</td><td>2</td><td>2015-07-13 03:55:26</td></tr>
-<tr><td>2015-07-12</td><td>/aboutwebsite.php</td><td>2</td><td>2015-07-12 21:42:16</td></tr>
-<tr><td>2015-07-12</td><td>/blp-blog.php</td><td>2</td><td>2015-07-12 02:41:13</td></tr>
-<tr><td>2015-07-12</td><td>/index.php</td><td>5</td><td>2015-07-12 21:12:05</td></tr>
-<tr><td>2015-07-11</td><td>/index.php</td><td>3</td><td>2015-07-11 14:25:57</td></tr>
-<tr><td>2015-07-11</td><td>/blp-blog.php</td><td>2</td><td>2015-07-11 15:23:41</td></tr>
-<tr><td>2015-07-10</td><td>/blp-blog.php</td><td>1</td><td>2015-07-10 06:56:00</td></tr>
-<tr><td>2015-07-10</td><td>/aboutwebsite.php</td><td>2</td><td>2015-07-10 17:56:34</td></tr>
-<tr><td>2015-07-10</td><td>/index.php</td><td>4</td><td>2015-07-10 14:46:29</td></tr>
-<tr><td>2015-07-09</td><td>/blp-blog.php</td><td>2</td><td>2015-07-09 10:22:18</td></tr>
-<tr><td>2015-07-09</td><td>/index.php</td><td>3</td><td>2015-07-09 17:28:24</td></tr>
-<tr><td>2015-07-08</td><td>/blp-blog.php</td><td>1</td><td>2015-07-08 01:20:52</td></tr>
-<tr><td>2015-07-08</td><td>/aboutwebsite.php</td><td>2</td><td>2015-07-08 12:32:52</td></tr>
-<tr><td>2015-07-08</td><td>/webstats-new.php</td><td>1</td><td>2015-07-08 01:04:44</td></tr>
-<tr><td>2015-07-08</td><td>/index.php</td><td>2</td><td>2015-07-08 14:08:53</td></tr>
-<tr><td>2015-07-07</td><td>/index.php</td><td>5</td><td>2015-07-07 22:11:11</td></tr>
-<tr><td>2015-07-07</td><td>/aboutwebsite.php</td><td>1</td><td>2015-07-07 21:05:54</td></tr>
-<tr><td>2015-07-06</td><td>/aboutwebsite.php</td><td>1</td><td>2015-07-06 09:55:31</td></tr>
-<tr><td>2015-07-06</td><td>/index.php</td><td>8</td><td>2015-07-06 23:18:19</td></tr>
-<tr><td>2015-07-06</td><td>/blp-blog.php</td><td>2</td><td>2015-07-06 04:27:05</td></tr>
-</tbody>
+<tr><td>/webstats-new.php</td><td>0</td><td>2</td><td>2016-06-16 02:23:47</td></tr><tr><td>/blp/toweewx.php</td><td>0</td><td>1</td><td>2016-06-16 01:15:27</td></tr></tbody>
 </table>
-
-</div>
-<div id="table6">
-<a href="#table7">Goto Table7</a>
-<h2>Table Six from table <i>daycount</i></h2>
-<p>Day Counts are for 'index.php" and do NOT include webmaster visits.<br>
+<h2 id="table6">From table <i>daycount</i> for seven days</h2>
+<p>'Visitors' is the number of distinct IP addresses (via 'tracker' table).<br>
+'Count' is the sum of 'Real' and 'Bots', the total number of HITS.<br>
+'Real' is the number of non-robots.<br>
+'AJAX' is the number of non-robots with AJAX functioning (via 'tracker' table).<br>
+'Bots' is the number of robots.<br>
+'Visits' are hits outside of a 10 minutes interval.<br>
+So if you come to the site from two different IP addresses you would be two 'Visitors'.<br>
+If you hit our site 10 times the sum of 'Real' and 'Bots' would be 10.<br>
+If you hit our site 5 time within 10 minutes you will have only one 'Visits'.<br>
+If you hit our site again after 10 minutes you would have two 'Visits'.</p>
+<a href="#table7">Next</a>
+<p>Counting All files.</p>
 <table border='1' id='daycount'>
 <thead>
-<tr><th>Date</th><th>Visitors</th><th>Count</th><th>Visits</th></tr>
+<tr><th>Date</th><th>Visitors</th><th>Count</th><th>Real</th><th>AJAX</th><th>Bots</th><th>Visits</th></tr>
 </thead>
 <tbody>
-<tr><td>2015-07-13</td><td>2</td><td>2</td><td>2</td></tr>
-<tr><td>2015-07-12</td><td>4</td><td>5</td><td>5</td></tr>
-<tr><td>2015-07-11</td><td>2</td><td>3</td><td>3</td></tr>
-<tr><td>2015-07-10</td><td>4</td><td>4</td><td>4</td></tr>
-<tr><td>2015-07-09</td><td>3</td><td>3</td><td>3</td></tr>
-<tr><td>2015-07-08</td><td>2</td><td>2</td><td>2</td></tr>
-<tr><td>2015-07-07</td><td>5</td><td>5</td><td>5</td></tr>
-<tr><td>2015-07-06</td><td>8</td><td>8</td><td>8</td></tr>
-<tr><td>2015-07-05</td><td>11</td><td>12</td><td>11</td></tr>
-<tr><td>2015-07-04</td><td>6</td><td>6</td><td>6</td></tr>
-<tr><td>2015-07-03</td><td>4</td><td>4</td><td>4</td></tr>
-<tr><td>2015-07-02</td><td>5</td><td>6</td><td>6</td></tr>
-<tr><td>2015-07-01</td><td>4</td><td>4</td><td>4</td></tr>
-<tr><td>2015-06-30</td><td>2</td><td>2</td><td>2</td></tr>
-<tr><td>2015-06-29</td><td>2</td><td>2</td><td>2</td></tr>
-<tr><td>2015-06-28</td><td>3</td><td>3</td><td>3</td></tr>
-<tr><td>2015-06-27</td><td>9</td><td>9</td><td>9</td></tr>
-<tr><td>2015-06-26</td><td>5</td><td>6</td><td>6</td></tr>
-<tr><td>2015-06-25</td><td>6</td><td>6</td><td>6</td></tr>
-<tr><td>2015-06-24</td><td>3</td><td>4</td><td>4</td></tr>
-<tfoot>
-<tr><th>Totals</th><th>2741</th><th>4208</th><th>3958</th></tr>
+<tr><td>2016-06-16</td><td>3</td><td>3</td><td>0</td><td></td><td>3</td><td>3</td></tr><tr><td>2016-06-15</td><td>19</td><td>32</td><td>9</td><td>3</td><td>23</td><td>30</td></tr><tr><td>2016-06-14</td><td>24</td><td>43</td><td>10</td><td>1</td><td>33</td><td>42</td></tr><tr><td>2016-06-13</td><td>20</td><td>30</td><td>2</td><td>1</td><td>28</td><td>29</td></tr><tr><td>2016-06-12</td><td>21</td><td>188</td><td>143</td><td>102</td><td>45</td><td>48</td></tr><tr><td>2016-06-11</td><td>26</td><td>109</td><td>65</td><td>40</td><td>44</td><td>53</td></tr><tr><td>2016-06-10</td><td>20</td><td>33</td><td>9</td><td>1</td><td>24</td><td>32</td></tr><tfoot>
+<tr><th>Totals</th><th>133</th><th>438</th><th>238</th><th>148</th><th>200</th><th>237</th></tr>
 </tfoot>
 </tbody>
 </table>
-
-</div>
+<p class='h-update'>End Hourly update.</p>

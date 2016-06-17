@@ -1,43 +1,33 @@
 <?php
-// BLP 2014-09-11 -- modified for requirejs. Add $pageScript as a pass in parameter
-// that can override the default jquery.js and tracker.js
+// BLP 2016-01-09 -- check to see if this may be a robot
 
-$pageScript = <<<EOF
-  <script src='http://bartonlp.com/html/js/jquery.js'></script>
-  <script src='http://bartonlp.com/html/js/tracker.js'></script>
-  <!--<script src="//fast.eager.io/Wlq8pcrZTL.js"></script>-->
-EOF;
-
-if($arg['pageScript']) {
-  $pageScript = $arg['pageScript'];
-}
-
-$pageHeadText = <<<EOF
+return <<<EOF
 <head>
   <title>{$arg['title']}</title>
   <!-- METAs -->
   <meta charset='utf-8'/>
   <meta name="copyright" content="$this->copyright">
-  <meta name="Author"
-     content="Barton L. Phillips, mailto:barton@bartonphillips.org"/>
-  <meta name="description"
-     content="{$arg['desc']}"/>
+  <meta name="Author" content="$this->author"/>
+  <meta name="description" content="{$arg['desc']}"/>
   <meta name="keywords"
-     content="Barton Phillips, Granby, Applitec Inc., Rotary, Programming,
-        RSS Generator, Poker, Tips and tricks, blog"/>
+    content="Barton Phillips, Applitec Inc., Rotary, Programming, Poker, Tips and tricks, blog"/>
   <meta name=viewport content="width=device-width, initial-scale=1">
   <!-- ICONS, RSS -->
-  <link rel="shortcut icon" href="http://www.bartonphillips.org/favicon.ico" />
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="/rssfeed.xml" />
+  <link rel="shortcut icon" href="favicon.ico" />
   <!-- CSS -->
-  <link rel="stylesheet" href="css/blp.css">
+  <link rel="stylesheet" href="/blp/css/blp.css">
   {$arg['link']}
-  <!-- pageScript -->
-  $pageScript
+  <!-- jQuery -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+  <script>
+var lastId = $this->LAST_ID;
+  </script>
+  <script src="http://bartonlp.com/html/js/fingerprint2.js"></script>
+  <script src="http://bartonlp.com/html/js/fingerprint.js"></script>
+  <script src="http://bartonlp.com/html/js/tracker.js"></script>
   <!-- Custom Scripts -->
 {$arg['extra']}
 {$arg['script']}
 {$arg['css']}
 </head>
 EOF;
-?>

@@ -23,9 +23,10 @@ alt="web analytics"></a></div></noscript>
 Stats</a>
 EOF;
 
-// If we set $b['statcounter'] for getFooter($b) to a string or TRUE
-// then we want to either use the string or set the string.
-// If $b['statcounter'] is NOT set then we want to use the supplied
+// If we set $b['statcounter'] for getFooter($b) to a string
+// then we want to use the string.
+// If $b['statcounter'] === false then make $statcounter be ''.
+// If $b['statcounter'] is NOT set then we want to use the above $statcounter.
 
 if(isset($arg['statcounter'])) {
   if(is_string($arg['statcounter'])) {
@@ -35,7 +36,7 @@ if(isset($arg['statcounter'])) {
   }
 }
 
-$pageFooterText = <<<EOF
+return <<<EOF
 <footer>
 <h2><a target="_blank" href='aboutwebsite.php'>About This
    Site</a></h2>
@@ -44,8 +45,8 @@ $pageFooterText = <<<EOF
 <address>
   Copyright &copy; $this->copyright</address>
 <address>
-Barton Phillips, PO Box 4152, CO 80446-4152
-
+Barton Phillips<br>
+828 Cayo Grande Ct., Newbury Park CA 91320<br>
 <a href='mailto:bartonphillips@gmail.com?to=test@bartonlp.com&subject=test'>
   bartonphillips@gmail.com
 </a>
@@ -53,7 +54,7 @@ Barton Phillips, PO Box 4152, CO 80446-4152
 </div>
 </div>
 {$arg['msg']}
-{$arg['msg1']}
+{$arg['msg1']} 
 $counterWigget
 {$arg['msg2']}
 </footer>

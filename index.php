@@ -6,21 +6,15 @@
 // BLP 2014-08-18 -- add click on toweewx to add date so we kill caching. Also
 // add blp=8653 as flag for Admin links
 
-require_once("/var/www/includes/siteautoload.class.php");
-$S = new Blp; // takes an array if you want to change defaults
+//$AutoLoadDEBUG = 1;
+$_site = require_once(getenv("HOME")."/includes/siteautoload.class.php");
+$S = new $_site['className']($_site);
 
 /* We can send last-modified if we want. Right now don't
 if(!($_GET || $_POST)) {
   header("Last-Modified: ". date("r", getlastmod()));
 }
 */
-
-// BLP 2014-09-12 -- This page uses requirejs. If this is NOT present then we get a
-// regular script tag with jquery and tracker.
-// See includes/head.i.php for more details.
-
-$h->pageScript = "<script data-main='http://bartonlp.com/html/index-app' ".
-                 "src='http://bartonlp.com/html/js/require.js'></script>";
 
 // Special Fonts from google.
 
@@ -88,7 +82,7 @@ ul {
   font-family: 'Jacques Francois Shadow', serif;
 }
 
-#blpimg {
+#logo {
   float: left;
   padding: 5px 10px;
 }
@@ -102,11 +96,12 @@ ul {
 EOF;
 
 $h->title = "Barton Phillips Experimental Page &#9760;";
+
 $h->banner = "<h1 class='center font-effect-shadow-multiple'>".
-             "Barton Phillips Experimental Page</h1>".
+             "$S->mainTitle</h1>".
              "<h2 class='center weather'>".
              "<a target='_blank' ".
-             "href='http://www.bartonphillips.com/toweewx.php'>".
+             "href='http://bartonlp.com/html/toweewx.php'>".
              "My Home Weather Station</a></h2>";
 
 $ref = $_SERVER['HTTP_REFERER'];
@@ -121,14 +116,25 @@ EOF;
 // BLP 2014-08-18 -- add blp=8653 as flag
 // If it's me add in the admin stuff
 
-if($S->isBlp() || ($_GET['blp'] == "7098")) {
+if($S->isMe() || ($_GET['blp'] == "7098")) {
   // BLP 2014-12-02 -- as this is only for admin (me) I am using my local net address
-  
+
   $adminStuff = <<<EOF
 <h2>Administration Links</h2>
 <ul>
-<li><a target="_blank" class="uptest" href="http://192.168.0.6/weewx/">WEEWX home</a></li>
-<li><a target="_blank" class="uptest" href="http://192.168.0.6/apc.php">APC Status home</a></li>
+<li><a target="_blank" class="uptest" href="http://bartonphillips.dyndns.org/weewx/">WEEWX home</a></li>
+<li><a target="_blank" class="uptest" href="http://bartonphillips.dyndns.org/apc.php">APC Status home</a></li>
+<li><a target="_blank" href="http://www.conejoskiclub.org">Conejo Ski and Sports Club</a></li>
+<li><a target="_blank" href="http://www.myphotochannel.com">www.MyPhotoChannel.com</a><br>
+<li><a target="_blank" href="http://go.myphotochannel.com/">MyPhotoChannel 1and1</a> only a super user</li>
+<li><a target="_blank" href="http://www.mountainmessiah.com">Mountain Messiah</a></li>
+<li><a target="_blank" href="http://www.purwininsurance.com">Purwin Insurance</a></li>
+<li><a target="_blank" href="http://www.tinapurwininsurance.com">Tina Purwin Insurance</a></li>
+<li><a target="_blank" href="http://www.puppiesnmore.com">Puppies N More</a></li>
+<li><a target="_blank" href="http://www.grandlakerotary.org">Grand Lake Rotary</a></li>
+<li><a target="_blank" href="http://www.bartonlp.com/heidi/">Heidi's Home Page</a></li>
+<li><a target="_blank" href="http://www.bartonlp.com/heidi/upload.php">Heidi's Upload Page</a></li>
+
 </ul>
 EOF;
 }
@@ -138,18 +144,17 @@ list($top, $footer) = $S->getPageTopBottom($h, array('msg1'=>"<hr>"));
 $ip = $S->ip;
 $blpIp = $S->blpIp;
 
-$curdate = date("Y-m-d");
-
 // Get todays count and visitors from daycounts table
-$S->query("select sum(count) as count, sum(visits) as visits from daycounts where date='$curdate'");
+$S->query("select sum(`real`+bots) as count, sum(visits) as visits ".
+          "from $S->masterdb.daycounts ".
+          "where date=current_date() and site='$S->siteName'");
 $row = $S->fetchrow();
 $count = number_format($row['count'], 0, "", ",");
 $visits = number_format($row['visits'], 0, "", ",");
 
 // Get total number for today.
-$S->query("select count(*) from daycounts where date='$curdate'");
-list($visitors) = $S->fetchrow();
-$visitors = number_format($visitors, 0, "", ",");
+$n = $S->query("select distinct ip from $S->masterdb.tracker where lasttime>=current_date() and site='$S->siteName'");
+$visitors = number_format($n, 0, "", ",");
 
 $visitors .= ($visitors < 2) ? " visitor" : " visitors";
 $date = date("l F j, Y");
@@ -188,6 +193,7 @@ $top
 <li><a target="_blank" href="http://www.sitepoint.com">Site Point</a></li>
 <li><a target="_blank" href="http://www.html5rocks.com/en/">HTML5 Rocks</a></li>
 <li><a target="_blank" href="webstats-new.php">Web Stats</a></li>
+<li><a target="_blank" href="analysis.php">Analysis</a></li>
 </ul>
 <h2>About the Internet</h2>
 <ul>
@@ -212,6 +218,5 @@ $adminStuff
 <li>Visitors are seperate accesses by different IP Addresses.</li>
 </ul>
 </section>
-
 $footer
 EOF;

@@ -2,7 +2,7 @@
 // special whois for granbyrotary.org admin
 // We are passed the email address
 // We do a whois on the domain part of the address
-// and a dig mx on the it too
+// and a dig mx on the ip too
 
 $ret = array();
 
@@ -44,5 +44,3 @@ EOF;
   $ret[] = "</pre>";
   echo implode("\n", $ret);
 }
-  
-

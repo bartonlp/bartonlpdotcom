@@ -1,8 +1,8 @@
 <?php
 //   $Debug=1; // if enabled then show page as regualar viewer instead of ME
 
-require_once("/var/www/includes/siteautoload.class.php");
-$S = new Blp;
+$_site = require_once(getenv("HOME")."/includes/siteautoload.class.php");
+$S = new $_site['className']($_site);
 $ref = $_SERVER['HTTP_REFERER'];
 
 // Post Comment
@@ -159,7 +159,7 @@ if($n) {
 
   while(list($id, $date, $title, $text) = $S->fetchrow($result)) {
     $text = stripslashes($text);
-    if($S->isBlp() && !$Debug) {
+    if($S->isMe() && !$Debug) {
       $blp = "<th><a href='add-blog.php?page=edit&id=$id'>$id</a></th>\n";
     }
     // are there any comments?
@@ -197,7 +197,7 @@ $comments
 EOF;
   }
 
-  if($S->isBlp() && !$Debug) {
+  if($S->isMe() && !$Debug) {
     $blp = "<a href='add-blog.php'>Add a new blog entry</a><br>\n";
     if($n) {
       $blp .= "<p>To edit an Item click on the id number.</p>\n";

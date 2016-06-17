@@ -25,26 +25,32 @@
 </div>
 <div id="main">
 	<div class="digg">
-		<script type="text/javascript">
-		digg_url = 'http://digg.com/programming/jQuery_plugin_Tablesorter_2_0';
-		</script>
-		<script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script>
+		<script src="http://images.del.icio.us/static/js/blogbadge.js"></script>
 	</div>
+	
 	<p>
 	  	<strong>Author:</strong> <a class="external" href="http://lovepeacenukes.com">Christian Bach</a><br />
-		<strong>Version:</strong> 2.0.3 (<a href="../changelog">changelog</a>)<br />
+		<strong>Version:</strong> 2.0.5 (<a href="../changelog">changelog</a>)<br />
 		<strong>Licence:</strong> 
 		Dual licensed under <a class="external" href="http://www.opensource.org/licenses/mit-license.php">MIT</a>
 		or <a class="external" href="http://www.opensource.org/licenses/gpl-license.php">GPL</a> licenses.
 	</p>
 	
-	<p class="tip">
-	<em>Helping out!</em> If you like tablesorter and you're feeling generous, take a look at my <a  class="external" href="http://www.amazon.com/gp/registry/wishlist/3VAOWCL63NEA6/ref=wl_web/">Amazon Wish List</a>
+	<p class="tip update">
+		<em>Update!</em> New version!, and the tablesorter docs are now available in russian, head over to <a class="external" href="http://tablesorter.ru/docs/">tablesorter.ru</a>
 	</p>
+	
+	<p class="tip">
+		<em>Helping out!</em> If you like tablesorter and you're feeling generous, take a look at my <a  class="external" href="http://www.amazon.com/gp/registry/wishlist/3VAOWCL63NEA6/ref=wl_web/">Amazon Wish List</a>
+	</p>
+
 
 	<p>Comments and love letters can be sent to: <span class="email">christian at tablesorter dot com</span>.</p>
 	
 	<p> </p>
+
+
+
 	<!--
 	<p class="tip">
 		<em>Help!</em> keep tablesorter.com up and running. If you like tablesorter, have a couple of bucks over or just feel like it. Please donate.</p>
@@ -90,7 +96,9 @@
   	<ul>
   		<li>Multi-column sorting</li>
   		<li>Parsers for sorting text, URIs, integers, currency, floats, IP addresses, dates (ISO, long and short formats), time.  <a href="example-parsers.html">Add your own easily</a></li>
-  		<li>Support for ROWSPAN and COLSPAN on TH elements</li>
+  		<!--
+		<li>Support for ROWSPAN and COLSPAN on TH elements</li>
+		-->
   		<li>Support secondary "hidden" sorting (e.g., maintain alphabetical sort when sorting on other criteria)</li>
   		<li>Extensibility via <a href="example-widgets.html">widget system</a></li>
   		<li>Cross-browser: IE 6.0+, FF 2+, Safari 2.0+, Opera 9.0+</li>	
@@ -159,6 +167,15 @@
 				<td>-100.9</td>
 				<td>Jan 18, 2007 9:12 AM</td>
 			</tr>
+			<tr>
+				<td>Bruce</td>
+				<td>Evans</td>
+				<td>22</td>
+				<td>$13.19</td>
+				<td>11%</td>
+				<td>0</td>
+				<td>Jan 18, 2007 9:12 AM</td>
+			</tr>
 		</tbody>
 	</table>
 	
@@ -184,7 +201,7 @@
 	<p>tablesorter works on standard HTML tables.  You must include THEAD and TBODY tags:</p>
 	
 	<pre class="html">
-&lt;table id="myTable"&gt;
+&lt;table id="myTable" class="tablesorter"&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 	&lt;th&gt;Last Name&lt;/th&gt;

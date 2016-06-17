@@ -1,10 +1,7 @@
 <?php
-require_once("/var/www/includes/siteautoload.class.php");
-if(file_exists(TOPFILE)) {
-  include(TOPFILE);
-} else throw new Exception(TOPFILE . "not found");
+$_site = require_once(getenv("HOME")."/includes/siteautoload.class.php");
 
-$S = new Blp;
+$S = new $_site['className']($_site);
 
 $errorhdr = <<<EOF
 <!DOCTYPE HTML>
@@ -14,7 +11,7 @@ $errorhdr = <<<EOF
 </head>
 EOF;
 
-if(!$S->isBlp()) {
+if(!$S->isMe()) {
   echo <<<EOF
 $errorhdr
 <body>

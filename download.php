@@ -1,8 +1,8 @@
 <?php
 // BLP 2014-09-15 -- utility to assist downloading files
 
-require_once("/var/www/includes/siteautoload.class.php");
-$S = new Blp; // count page
+$_site = require_once(getenv("HOME")."/includes/siteautoload.class.php");
+$S = new $_site['className']($_site);
 
 $file = $_GET['file'];
 
@@ -48,12 +48,12 @@ if($path) $path .= "/";
 $fp = @fopen("${path}${file}",'r');
 
 if($fp === false) {
-  mail("barton@bartonlp.com", "$S->self,  File Open Error",
+  mail("bartonphillips@gmail.com", "$S->self,  File Open Error",
        "Errno=$ERRNO, $ERRSTR,\n" .
        "file info: ${path}${file},\n" .
        "Referrer={$_SERVER['HTTP_REFERER']},\nIP={$_SERVER['REMOTE_ADDR']}," .
        "AGENT={$_SERVER['HTTP_USER_AGENT']}",
-       "From: download.php", "-f bartonp@bartonlp.com");
+       "From: download.php");
 
   echo <<<EOF
 $errorhdr

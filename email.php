@@ -1,19 +1,21 @@
 <?php
+// BLP 2016-03-06 -- fix formatting. .left should be .leftside so as not to conflict with .left in
+// rotary.css
 // BLP 2015-02-22 -- make this global for all members pages in all sites.
 // BLP 2015-02-17 -- changed mail sending and removed attachments. Now using plain mail();
 
 $FILE = basename(__FILE__);
 
-require_once("/var/www/includes/siteautoload.class.php");;
+$_site = require_once(getenv("HOME")."/includes/siteautoload.class.php");;
 
-$S = new $siteinfo['className'];
+$S = new $_site['className']($_site);
 //vardump($_REQUEST);
 $referer = $_SERVER['HTTP_REFERER'];
 
 // Don't let people come here from anywhere else than the members
 // page! We can change this later to make it only our sites
 
-if(!preg_match("~{$S->s['siteDomain']}~i", $referer) && ($_REQUEST['mail'] != 1)) {
+if(!preg_match("~$S->siteDomain~i", $referer) && ($_REQUEST['mail'] != 1)) {
   if($referer) echo "referer=$referer<br/>";
   
   echo <<<EOL
@@ -63,7 +65,7 @@ exit();
 // $S->id; TO id or ids a string if only one or an array if several
 
 function start($S) {
-  $memberTable = $S->s['memberTable'];
+  $memberTable = $S->memberTable;
   $idTo = $S->idTo; // either a single id or an array of ids
   $fromId = $S->id;
   $page = $S->page; // 'single' or 'multi'
@@ -104,33 +106,31 @@ function start($S) {
   <!-- Local CSS -->
   <style>
 #mailform * {
-  font-size: 1.05em;
+  font-size: 1.05rem;
   background-color: white;
-  padding: 1em;
+  padding: 1rem;
 }
 #mailform table * {
   border: 1px solid black;
-  cellpadding: 1px;
-  cellspacing: 0px;
 }
 #mailform table input {
         width: 96%;
 }
 #mailform textarea {
         width: 96%;
-        height: 10em;
+        height: 10rem;
 }
 #mailform table {
         width: 100%;
 }
-#mailform .left {
+#mailform .leftside {
         text-align: left;
-        width: 10px;
+        width: 10rem;
 }
 #mailform input[type='submit'] {
   border-radius: 1em;
-  padding: .5em;
-  margin-top: .5em;
+  padding: .5rem;
+  margin-top: .5rem;
 }
   </style>
 EOF;
@@ -142,15 +142,15 @@ $top
 <form id='mailform' method='post' action="$S->self">
   <table>
     <tr>
-      <td class='left'>From (email&nbsp;address)</td>
+      <td class='leftside'>From (email&nbsp;address)</td>
       <td><input required type='text' name='from' value='$fromName <$fromEmail>'></td>
     </tr>
     <tr>
-      <td class='left'>Subject</td>
+      <td class='leftside'>Subject</td>
       <td><input autofocus required  type='text' name='subject' value="$subject"></td>
     </tr>
     <tr>
-      <td class='left'>Message</td>
+      <td class='leftside'>Message</td>
       <td>
         <textarea required name="message"></textarea>
       </td>
@@ -174,17 +174,8 @@ EOF;
 
 function sendMail($S) {
   // Submited message from this page
-  $memberTable = $S->s['memberTable'];
-  $courtesy = isset($S->s['siteName']) ? "\n\nThanks from ".$S->s['siteName'] : '';
-  $siteEmail = explode(".", $S->s['siteDomain']);
-
-  // $siteEmail might look like 'www.abc.def.com', we only want 'def.com' part.
-
-  while(count($siteEmail) > 2) {
-    array_shift($siteEmail);
-  }
-
-  $siteEmail = implode(".", $siteEmail);
+  $memberTable = $S->memberTable;
+  $courtesy = isset($S->siteDomain) ? "\n\nSent from ".$S->siteDomain : '';
 
   $id = $_POST['id'];
   $from = $_POST["from"]; // From full name and email
@@ -213,15 +204,13 @@ function sendMail($S) {
   while(list($name, $email) = each($names)) {
     $msg = "Messsage from $from\n\n$message\n\n--$cc$courtesy";  
 
-    /*
+/*
     echo "TO: $name &lt;$email&gt;, subject: $subject, message: $msg<br>";
-    echo "From: Member Mail ($from) <$siteEmail><br>".
-         "-fbartonphillips@gmail.com\r\n<br>";
-    */
+    echo "From: Member Mail ($from) <$siteEmail><br>"
+*/
 
-    mail("$name <$email>", $subject, $msg,
-         "From: Member Mail ($from) <info@$siteEmail>",
-         "-fbartonphillips@gmail.com\r\n"
+    mail("$name <$email>", "$subject (from $S->siteDomain)", $msg,
+         "From: $from\r\n"
         );
   }
 
