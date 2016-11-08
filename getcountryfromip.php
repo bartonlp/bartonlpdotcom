@@ -1,6 +1,6 @@
 <?php
-$_site = require_once(getenv("HOME").'/includes/siteautoload.class.php');
-$S = new $_site['className']($_site);
+$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$S = new $_site->className($_site);
 
 function Dot2LongIP($IPaddr) {
   if($IPaddr == "") {
@@ -21,7 +21,7 @@ if($list = $_GET['list']) {
   foreach($list as $ip) {
     $iplong = Dot2LongIP($ip);
 
-    $sql = "select countryLONG from {$_site['masterdb']}.ipcountry ".
+    $sql = "select countryLONG from $S->masterdb.ipcountry ".
             "where '$iplong' between ipFROM and ipTO";
 
     $S->query($sql);
@@ -56,7 +56,7 @@ $options = array('http' => array(
 
 $context  = stream_context_create($options);
 
-$ipc = file_get_contents("http://bartonlp.com/html/getcountryfromip.php", false, $context);
+$ipc = file_get_contents("http://www.bartonlp.com/getcountryfromip.php", false, $context);
 foreach(json_decode($ipc) as $k=>$v) {
   $ipcountry[$k] = $v;
 }
@@ -87,7 +87,7 @@ list($top, $footer) = $S->getPageTopBottom($h);
 
 if($ip = $_POST['ip']) {
   $request = '["'. $ip . '"]';
-  $ar = file_get_contents("http://bartonlp.com/html/getcountryfromip.php?list=$request");
+  $ar = file_get_contents("http://www.bartonlp.com/getcountryfromip.php?list=$request");
   $list = json_decode($ar);
   $list = $list->$ip;
 }

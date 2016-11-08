@@ -1,12 +1,5 @@
 // BLP 2014-03-06 -- track user activity
 
-// Conejoskiclub.org sets the lastIdObj rather than just setting lastId
-
-if(typeof lastId == 'undefined') {
-  console.log("lastId from lastIdObj");
-  var lastId = lastIdObj.lastId;
-}
-
 // Kluge! For weewx only. LocalPath is defined in the head.i.php file
 // as '/weewx'. Otherwise LocalPath is always 'undefined' and we set
 // it to ''.
@@ -18,6 +11,7 @@ if(typeof LocalPath == 'undefined') {
 // Post a AjaxMsg. Local function
 
 function postAjaxMsg(msg) {
+  msg = "NEW: " + msg;
   $.ajax({
     url: trackerUrl,
     data: {page: 'ajaxmsg', ipagent: true, msg: msg},
@@ -39,17 +33,6 @@ function postAjaxMsg(msg) {
 jQuery(document).ready(function($) {
   console.log("loc: " +LocalPath);
   $("#logo").attr('src', LocalPath +"/tracker.php?page=script&id="+lastId);
-});
-
-// For Conejoskiclub. Initializes the 'nivoSlider' for Conejoskiclub.
-// Only using 'nivoSlider' at Conejoskiclub so this should ONLY be a function there.
-
-jQuery(window).load(function() {
-  var $ = jQuery;
-  if(typeof jQuery.fn.nivoSlider == 'function') {
-    jQuery('#slider').nivoSlider({controlNav: false, slices: 4, pauseTime: 5000, directionNav: true,
-                                 prevText: '<', nextText: '>'});
-  }
 });
 
 // The rest of this is for everybody!
@@ -146,25 +129,33 @@ jQuery(window).load(function() {
       navigator.sendBeacon('/beacon.php', JSON.stringify({'id':lastId, 'which': 4}));    
     });
   } else {
-    var msg = "Beacon NOT SUPPORTED";
-    postAjaxMsg(msg);
+    var msg = "NEW: Beacon NOT SUPPORTED";
+    console.log(msg);
   }
 
   // Now lets try a timer to update the endtime
 
-  setInterval(function() {
-    //console.log("lastId: " +lastId);
+  var $time = 5000,
+  $cnt = 0;
+
+  function runtimer() {
+    if($cnt++ < 20) {
+      $time += 2000;
+    }
     $.ajax({
       url: trackerUrl,
       data: {page: 'timer', id: lastId },
       type: 'post',
       success: function(data) {
              console.log(data);
+             setTimeout(runtimer, $time)
            },
            error: function(err) {
              console.log(err);
            }
     });
-  }, 5000);
+  }
+
+  runtimer();
 })(jQuery);
 

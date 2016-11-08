@@ -1,11 +1,12 @@
 <?php
 // BLP 2014-03-06 -- ajax for tracker.js
 
-$_site = require_once(getenv("HOME")."/includes/siteautoload.class.php");
+$_site = require_once(getenv("SITELOAD")."/siteload.php");
 
-$dbinfo = $_site['dbinfo'];
+$dbinfo = $_site->dbinfo;
 
 $S = new Database($dbinfo);
+$_site = (array)$_site;
 
 $ip = $_SERVER['REMOTE_ADDR'];
 $agent = $_SERVER['HTTP_USER_AGENT'];
@@ -16,9 +17,8 @@ if($_POST['page'] == 'ajaxmsg') {
   $msg = $_POST['msg'];
   // NOTE: $_POST['ipagent'] is a string not a boolian! So === true does NOT work but == true
   // or == 'true' does work.
-//  $ipagent = ($_POST['ipagent'] == 'true') ? ": $ip, $agent" : '';
-//  error_log("tracker: AJAXMSG, {$_site['siteName']}, '$msg'" . $ipagent);
-  error_log("tracker: AJAXMSG, {$_site['siteName']}, '$msg', $ip, $agent");
+  $ipagent = ($_POST['ipagent'] == 'true') ? ": $ip, $agent" : '';
+  error_log("tracker: AJAXMSG, {$_site['siteName']}, '$msg'" . $ipagent);
   echo "AJAXMSG OK";
   exit();
 }
@@ -29,7 +29,7 @@ if($_POST['page'] == 'start') {
   $id = $_POST['id'];
   
   if(!$id) {
-    error_log("tracker.php {$_site['siteName']}: START NO ID, $ip, $agent");
+    error_log("tracker: {$_site['siteName']}: START NO ID, $ip, $agent");
     exit();
   }
 
@@ -46,7 +46,7 @@ if($_POST['page'] == 'load') {
   $id = $_POST['id'];
   
   if(!$id) {
-    error_log("tracker.php {$_site['siteName']}: LOAD NO ID, $ip, $agent");
+    error_log("tracker: {$_site['siteName']}: LOAD NO ID, $ip, $agent");
     exit();
   }
 
@@ -63,7 +63,7 @@ if($_POST['page'] == 'pagehide') {
   $id = $_POST['id'];
 
   if(!$id) {
-    error_log("tracker.php {$_site['siteName']}: PAGEHIDE NO ID, $ip, $agent");
+    error_log("tracker: {$_site['siteName']}: PAGEHIDE NO ID, $ip, $agent");
     exit();
   }
 
@@ -90,15 +90,13 @@ if($_POST['page'] == 'beforeunload') {
   $id = $_POST['id'];
 
   if(!$id) {
-    error_log("tracker.php {$_site['siteName']}: BEFOREUNLOAD NO ID, $ip, $agent");
+    error_log("tracker: {$_site['siteName']}: BEFOREUNLOAD NO ID, $ip, $agent");
     exit();
   }
 
   $S->query("select isJavaScript from {$_site['masterdb']}.tracker where id=$id");
   
   list($js) = $S->fetchrow('num');
-
-  //error_log("tracker beforeunload: js=$js");
 
   // 4127 is 0x101F or 0x1000 timer, 0x10 noscript, 0xf start|load|script|normal
   // So if js is zero after the &~ then we do not have a (32|64|128) beacon,
@@ -119,7 +117,7 @@ if($_POST['page'] == 'unload') {
   $id = $_POST['id'];
 
   if(!$id) {
-    error_log("tracker.php {$_site['siteName']}: UNLOAD NO ID, $ip, $agent");
+    error_log("tracker: {$_site['siteName']}: UNLOAD NO ID, $ip, $agent");
     exit();
   }
 
@@ -145,11 +143,11 @@ if($_GET['page'] == 'script') {
   $id = $_GET['id'];
 
   if(!$id) {
-    error_log("tracker.php {$_site['siteName']}: SCRIPT NO ID, $ip, $agent");
+    error_log("tracker: {$_site['siteName']}: SCRIPT NO ID, $ip, $agent");
     exit();
   }
 
-  //error_log("tracker: script,   {$_site['siteName']}, $id, $ip, $agent");
+  //error_log("tracker: script, {$_site['siteName']}, $id, $ip, $agent");
 
   try {
     $sql = "select page, agent from {$_site['masterdb']}.tracker where id=$id";
@@ -169,10 +167,10 @@ if($_GET['page'] == 'script') {
   } catch(Exception $e) {
     error_log(print_r($e, true));
   }
-  $img1 = "http://bartonlp.com/html/images/blank.png";
+  $img1 = "http://bartonphillips.net/images/blank.png";
 
   if($_site['trackerImg1']) {
-    $img1 = "http://bartonlp.com/html" . $_site['trackerImg1'];
+    $img1 = "http://bartonphillips.net" . $_site['trackerImg1'];
   }
 
   $imageType = preg_replace("~^.*\.(.*)$~", "$1", $img1);
@@ -186,11 +184,11 @@ if($_GET['page'] == 'normal') {
   $id = $_GET['id'];
   
   if(!$id) {
-    error_log("tracker.php {$_site['siteName']}: NORMAL NO ID, $ip, $agent");
+    error_log("tracker: {$_site['siteName']}: NORMAL NO ID, $ip, $agent");
     exit();
   }
 
-  //error_log("tracker: normal,   {$_site['siteName']}, $id, $ip, $agent");
+  //error_log("tracker: normal, {$_site['siteName']}, $id, $ip, $agent");
 
   try {
     $sql = "select page, agent from {$_site['masterdb']}.tracker where id=$id";
@@ -208,10 +206,10 @@ if($_GET['page'] == 'normal') {
   } catch(Exception $e) {
     error_log(print_r($e, true));
   }
-  $img2 = "http://bartonlp.com/html/images/blank.png";
+  $img2 = "http://bartonphillips.net/images/blank.png";
 
   if($_site['trackerImg2']) {
-    $img2 = "http://bartonlp.com/html" . $_site['trackerImg2'];
+    $img2 = "http://bartonphillips.net" . $_site['trackerImg2'];
   }
 
   $imageType = preg_replace("~.*\.(.*)$~", "$1", $img2);
@@ -227,11 +225,11 @@ if($_GET['page'] == 'noscript') {
   $id = $_GET['id'];
 
   if(!$id) {
-    error_log("tracker.php {$_site['siteName']}: NOSCRIPT NO ID, $ip, $agent");
+    error_log("tracker: {$_site['siteName']}: NOSCRIPT NO ID, $ip, $agent");
     exit();
   }
 
-  error_log("tracker: noscript, {$_site['siteName']}, $id, $ip, $agent");
+  //error_log("tracker: noscript, {$_site['siteName']}, $id, $ip, $agent");
 
   try {
     $sql = "select page, agent from {$_site['masterdb']}.tracker where id=$id";
@@ -249,7 +247,7 @@ if($_GET['page'] == 'noscript') {
   } catch(Exception $e) {
     error_log(print_r($e, true));
   }
-  $img = file_get_contents("http://bartonlp.com/html/images/blank.png");
+  $img = file_get_contents("http://bartonphillips.net/images/blank.png");
   header("Content-type: image/png");
   echo $img;
   exit();
@@ -259,12 +257,9 @@ if($_POST['page'] == 'timer') {
   $id = $_POST['id'];
 
   if(!$id) {
-    error_log("tracker.php {$_site['siteName']}: TIMER NO ID, $ip, $agent");
+    error_log("tracker: {$_site['siteName']}: TIMER NO ID, $ip, $agent");
     exit();
   }
-
-  //$date = date('Y-m-d H:i:s');
-  //error_log("tracker: timer, {$_site['siteName']}-($date), $id, $ip, $agent");
 
   try {
     $sql = "update {$_site['masterdb']}.tracker set isJavaScript=isJavaScript|4096, endtime=now(), ".
@@ -285,11 +280,11 @@ if($_POST['page'] == 'fingerprint') {
   $page = $_POST['pagename'];
 
   if(!$finger) {
-    error_log("tracker.php {$_site['siteName']}: TIMER NO finger, $ip, $agent");
+    error_log("tracker: {$_site['siteName']}: TIMER NO finger, $ip, $agent");
     exit();
   }
 
-  error_log("tracker: finger {$_site['siteName']}, $finger, $page, $ip, $agent");
+  //error_log("tracker: finger {$_site['siteName']}, $finger, $page, $ip, $agent");
   
   try {
     $sql = "insert into {$_site['masterdb']}.finger (ip, finger, page, agent, count, created, lasttime) ".
@@ -316,4 +311,3 @@ echo <<<EOF
 </body>
 </html>
 EOF;
-

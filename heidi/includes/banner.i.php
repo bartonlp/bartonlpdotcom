@@ -1,7 +1,7 @@
 <?php
 return <<<EOF
 <header>
-<img id="logo" src="http://bartonlp.com/html/images/blank.png">
+<img id="logo" src="http://bartonphillips.net/images/blank.png">
 <img src="/heidi/tracker.php?page=normal&id=$this->LAST_ID">
 $mainTitle
 <noscript>

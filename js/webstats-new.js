@@ -222,7 +222,7 @@ jQuery(document).ready(function($) {
   $("#update").click(function() {
     $.ajax({
       url: directory+'/webstats-new.php',
-      data: {page: 'gettracker', ipcountry: ipcountry},
+      data: {page: 'gettracker', ipcountry: ipcountry, site: thesite},
       type: 'post',
       success: function(data) {
              $("#tracker").html(data);
@@ -401,7 +401,7 @@ jQuery(document).ready(function($) {
                              "<h2>Please Wait While Loading</h2></div><br><hr>")
     $.ajax({
       url: directory+'/webstats-new.php',
-      data: {page: 'getnewhourly'},
+      data: {page: 'getnewhourly', site: thesite},
       type: 'post',
       success: function(data) {
              $("#hourly-update").html(data);
@@ -419,10 +419,17 @@ jQuery(document).ready(function($) {
   // On ctrl mousedown put results of bot search
 
   var mouseflag = true;
-  
-  $("#logagent, #tracker, #robots, #robots2").on("mousedown", "td:first-child", function(e) {
-    if(mouseflag) {
-      if(e.altKey) {
+
+  $("body").on("click", function(e) {
+    if(mouseflag == false) {
+      $("#FindBot").remove();
+      mouseflag = !mouseflag;
+    }
+  });
+      
+  $("#logagent, #tracker, #robots, #robots2").on("click", "td:first-child", function(e) {
+    if(mouseflag) { // Show
+      if(e.altKey) { // Alt key?
         var ip = $(this).text();
         ip = ip.match(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/)[0];
         var ypos = e.pageY;
@@ -445,7 +452,7 @@ jQuery(document).ready(function($) {
                  console.log(err);
                }
         });
-    } else {
+    } else { // No alt.
         var ip = $(this).text();
         ip = ip.match(/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/)[0];
         var bottom = $(this).offset()['top'] + $(this).height();
@@ -475,16 +482,10 @@ jQuery(document).ready(function($) {
                  console.log(err);
                }
         });
-      } 
-    } else {
-      $("#FindBot").remove();
+      }
+      e.stopPropagation();
+      mouseflag = !mouseflag;
     }
-    mouseflag = !mouseflag;
-  });
-
-  $("body").on("dblclick", "#FindBot", function() {
-    $(this).remove();
-    mouseflag = !mouseflag;
   });
 
   // Popup a human version of 'isJavaScript'
@@ -520,9 +521,8 @@ jQuery(document).ready(function($) {
       $("body").append("<div id='FindBot' style='position: absolute; top: "+ypos+"px; left: "+xpos+"px; "+
                        "background-color: white; border: 5px solid black; "+
                        "padding: 10px;'>"+h+"</div>");
-    } else {
-    $("#FindBot").remove();
+      e.stopPropagation();
+      mouseflag = !mouseflag;
     }
-    mouseflag = !mouseflag;
   });
 });

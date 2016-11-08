@@ -1,8 +1,8 @@
 <?php
 // BLP 2014-09-15 -- utility to assist downloading files
 
-$_site = require_once(getenv("HOME")."/includes/siteautoload.class.php");
-$S = new $_site['className']($_site);
+$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$S = new $_site->className($_site);
 
 $file = $_GET['file'];
 

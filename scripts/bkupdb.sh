@@ -2,7 +2,7 @@
 # Backup the database before starting.
 # I create a file CE_BACKUP.sql which can be used to create a new database
 cd /var/www
-dir=html/other
+dir=bartonlp/other
 # Day of week Mon-Sun
 #dayOfWeek=`date | cut -d " " -f 1`
 # date will show 'Thu Mar  3 12:38:43 PST 2005' which has two spaces

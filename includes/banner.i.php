@@ -4,7 +4,7 @@ return <<<EOF
 <header>
   <a href="http://www.bartonlp.com">
     <img id='logo' width="90" height="120"
-      src="/blp/images/blp-image.png"></a>
+      src="http://bartonphillips.net/images/blp-image.png" alt="barton"></a>
   <!-- the 'a' tag must be at the end of the image src otherwise we get an '-'-->
   <a href="http://linuxcounter.net/">
     <img id='linuxcounter' width="190" height="110"
@@ -13,7 +13,7 @@ return <<<EOF
 $mainTitle
 <noscript>
 <p style='color: red; background-color: #FFE4E1; padding: 10px'>
-<img src="/tracker.php?page=noscript&id=$this->LAST_ID">
+<img src="/tracker.php?page=noscript&id=$this->LAST_ID" alt="noscript">
 Your browser either does not support <b>JavaScripts</b> or you have JavaScripts disabled, in either case your browsing
 experience will be significantly impaired. If your browser supports JavaScripts but you have it disabled consider enabaling
 JavaScripts conditionally if your browser supports that. Sorry for the inconvienence.</p>

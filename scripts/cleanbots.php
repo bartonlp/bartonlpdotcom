@@ -1,12 +1,10 @@
 #!/usr/bin/php
 <?php
-//$AutoLoadDEBUG = true;  
-$_site = require_once("/var/www/includes/siteautoload.class.php");
+$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$S = new $_site->className($_site);
 
-$db = $_site['masterdb'];
-$myIp = gethostbyname($_site['myUri']);
-
-$S = new Database($_site['dbinfo']);
+$db = $S->masterdb;
+$myIp = gethostbyname($S->myUri);
 
 $sql = "select ip, who from $db.bots where (robots & ~(0x40|0x80)) = 0 and not locate(',',who) order by ip";
 

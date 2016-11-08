@@ -1,10 +1,10 @@
 #!/bin/bash
 # backup the Sitemap.xml and then create a new one
-cd /var/www/html
+cd /var/www/bartonlp
 dir=other
 bkupdate=`date +%B-%d-%y`
 filename="Sitemap.$bkupdate.xml"
-scripts/updatesitemap.pl < sitemap.txt > sitemap.$$
+scripts/updatesitemap.php > sitemap.$$
 mv Sitemap.xml $dir/$filename
 mv sitemap.$$ Sitemap.xml
 gzip $dir/$filename

@@ -12,13 +12,14 @@ CREATE TABLE `detect` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 */
 
-$_site = require_once(getenv("HOME")."/includes/siteautoload.class.php");
-
-$S = new $_site['className']($_site);
+$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$S = new $_site->className($_site);
 
 if($S->isBot) {
   header("location: http://www.bartonphillips.com/weewx/index.php");
 }
+
+require_once("includes/Mobile_Detect.php");
 
 class myDetect extends Mobile_Detect {
   protected $otherOss = array(/*'Linux X11 64' => "Linux x86_64",
@@ -51,8 +52,6 @@ class myDetect extends Mobile_Detect {
 }
 
 // </endclass
-
-//$db = new Database($_site['dbinfo']);
 
 $ip = $_SERVER['REMOTE_ADDR'];
 $agent = $S->escape($_SERVER['HTTP_USER_AGENT']);

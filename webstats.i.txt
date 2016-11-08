@@ -2,7 +2,7 @@
 </script>
 
 <p id="hourly" class="h-update">The first six tables are created within an hour of this access.<br>
- This was created 2016-06-16 02:23:47 PDT. Hourly update.</p>
+ This was created 2016-11-07 00:47:20 PST. Hourly update.</p>
 
 <h2>From table <i>blpip</i></h2>
 <p>These are the IP Addresses used by the Webmaster. When these addresses appear in the other tables they are in
@@ -12,7 +12,7 @@
 <tr><th>BLP IP</th><th>Since</th></tr>
 </thead>
 <tbody>
-<tr><td>23.242.170.142</td><td>2015-08-06 12:25:58</td></tr></tbody>
+<tr><td>bartonphillips.dyndns.org</td><td>2016-07-26 10:53:49</td></tr><tr><td>23.21.224.150</td><td>2016-07-19 20:13:27</td></tr><tr><td>23.242.170.142</td><td>2015-08-06 12:25:58</td></tr></tbody>
 </table>
 <h2 id="table3">From table <i>logagent</i> for today</h2>
 <a href="#table4">Next</a>
@@ -21,18 +21,18 @@
 <tr><th>IP</th><th>Agent</th><th>Count</th><th>LastTime</th></tr>
 </thead>
 <tbody>
-<tr><td>162.244.11.73</td><td>Mozilla/5.0 (X11; CrOS x86_64 6310.68.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.96 Safari/537.36</td><td>1</td><td>2016-06-16 02:23:47</td></tr><tr><td>66.249.79.134</td><td>Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)</td><td>2</td><td>2016-06-16 01:15:27</td></tr><tr><td>66.249.79.182</td><td>Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)</td><td>11</td><td>2016-06-16 00:26:44</td></tr></tbody>
+<tr><td>200.144.31.84</td><td>Mozilla/5.0 (Windows; U; MSIE 7.0; Windows NT 6.0; en-US)</td><td>1</td><td>2016-11-07 00:47:20</td></tr><tr><td>68.180.230.172</td><td>Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)</td><td>1</td><td>2016-11-07 00:10:38</td></tr></tbody>
 </table>
 <h2 id="table4">From table <i>counter</i> for today</h2>
 <a href="#table5">Next</a>
 <p>Shows the total number of hits for a page.<br>
-'count' is the total number of hits including real and bots. 'real' is the number of non-bots.</p>
+'Real' is the total number of non-robots hits. 'Bots' is the number of robots hits.</p>
 <table border='1' id='counter'>
 <thead>
 <tr><th>Page</th><th>Real</th><th>Bots</th><th>LastTime</th></tr>
 </thead>
 <tbody>
-<tr><td>/webstats-new.php</td><td>182</td><td>76</td><td>2016-06-16 02:23:47</td></tr><tr><td>/blp/toweewx.php</td><td>113</td><td>187</td><td>2016-06-16 01:15:27</td></tr></tbody>
+<tr><td>/webstats-new.php</td><td>1931</td><td>315</td><td>2016-11-07 00:47:20</td></tr><tr><td>/getcountryfromip.php</td><td>95</td><td>139</td><td>2016-11-07 00:10:38</td></tr></tbody>
 </table>
 <h2 id="table5">From table <i>counter2</i> for today</h2>
 <a href="#table6">Next</a>
@@ -42,7 +42,7 @@
 <tr><th>Page</th><th>Real</th><th>Bots</th><th>LastTime</th></tr>
 </thead>
 <tbody>
-<tr><td>/webstats-new.php</td><td>0</td><td>2</td><td>2016-06-16 02:23:47</td></tr><tr><td>/blp/toweewx.php</td><td>0</td><td>1</td><td>2016-06-16 01:15:27</td></tr></tbody>
+<tr><td>/webstats-new.php</td><td>1</td><td>0</td><td>2016-11-07 00:47:20</td></tr><tr><td>/getcountryfromip.php</td><td>0</td><td>1</td><td>2016-11-07 00:10:38</td></tr></tbody>
 </table>
 <h2 id="table6">From table <i>daycount</i> for seven days</h2>
 <p>'Visitors' is the number of distinct IP addresses (via 'tracker' table).<br>
@@ -62,8 +62,8 @@ If you hit our site again after 10 minutes you would have two 'Visits'.</p>
 <tr><th>Date</th><th>Visitors</th><th>Count</th><th>Real</th><th>AJAX</th><th>Bots</th><th>Visits</th></tr>
 </thead>
 <tbody>
-<tr><td>2016-06-16</td><td>3</td><td>3</td><td>0</td><td></td><td>3</td><td>3</td></tr><tr><td>2016-06-15</td><td>19</td><td>32</td><td>9</td><td>3</td><td>23</td><td>30</td></tr><tr><td>2016-06-14</td><td>24</td><td>43</td><td>10</td><td>1</td><td>33</td><td>42</td></tr><tr><td>2016-06-13</td><td>20</td><td>30</td><td>2</td><td>1</td><td>28</td><td>29</td></tr><tr><td>2016-06-12</td><td>21</td><td>188</td><td>143</td><td>102</td><td>45</td><td>48</td></tr><tr><td>2016-06-11</td><td>26</td><td>109</td><td>65</td><td>40</td><td>44</td><td>53</td></tr><tr><td>2016-06-10</td><td>20</td><td>33</td><td>9</td><td>1</td><td>24</td><td>32</td></tr><tfoot>
-<tr><th>Totals</th><th>133</th><th>438</th><th>238</th><th>148</th><th>200</th><th>237</th></tr>
+<tr><td>2016-11-07</td><td>2</td><td>2</td><td>1</td><td></td><td>1</td><td>2</td></tr><tr><td>2016-11-06</td><td>20</td><td>99</td><td>67</td><td>11</td><td>32</td><td>90</td></tr><tr><td>2016-11-05</td><td>11</td><td>71</td><td>59</td><td>1</td><td>12</td><td>69</td></tr><tr><td>2016-11-04</td><td>15</td><td>747</td><td>739</td><td>2</td><td>8</td><td>746</td></tr><tr><td>2016-11-03</td><td>19</td><td>634</td><td>619</td><td>7</td><td>15</td><td>630</td></tr><tr><td>2016-11-02</td><td>18</td><td>63</td><td>57</td><td>6</td><td>6</td><td>59</td></tr><tr><td>2016-11-01</td><td>12</td><td>23</td><td>18</td><td>4</td><td>5</td><td>19</td></tr><tfoot>
+<tr><th>Totals</th><th>97</th><th>1639</th><th>1560</th><th>31</th><th>79</th><th>1615</th></tr>
 </tfoot>
 </tbody>
 </table>

@@ -25,7 +25,7 @@ jQuery(document).ready(function($) {
   $("#logo").attr('src', "/heidi/tracker.php?page=script&id="+lastId);
 });
   </script>
-  <script async src="http://bartonlp.com/html/js/tracker.js"></script>
+  <script async src="http://bartonphillips.net/js/tracker.js"></script>
   <!-- Custom Scripts -->
 {$arg['extra']}
 {$arg['script']}

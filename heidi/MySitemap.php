@@ -44,6 +44,9 @@ $siteinfo = array('siteDomain' => "www.bartonlp.com/heidi",
                   'analysis' => true,
                   'trackerImg1' => "/images/blank.png", // script
                   'trackerImg2' => "/images/blank.png", // normal
-                  'myUri' => "bartonphillips.dyndns.org" // If we are local (at home) then 'localhost'
+                  'myUri' => "bartonphillips.dyndns.org", // If we are local (at home) then 'localhost'
+                  'EMAILADDRESS' => EMAILADDRESS,
+                  'EMAILRETURN' => EMAILRETURN,
+                  'EMAILFROM' => EMAILFROM,
                  );
 

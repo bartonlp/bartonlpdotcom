@@ -51,6 +51,8 @@ $dbinfo = array('host' => 'localhost',
 // See the SiteClass constructor for other possible values like 'count',
 // 'emailDomain' etc.
 
+$__year = date('Y');
+
 $siteinfo = array('siteDomain' => "www.bartonlp.com", // www. needed to keep bartonlp.com
                                                       // cookieless!
                   'siteName' => 'Bartonlp',
@@ -58,7 +60,7 @@ $siteinfo = array('siteDomain' => "www.bartonlp.com", // www. needed to keep bar
                   'emailDomain' => "bartonlp.com",
                   'path' => "/var/www/bartonlp",
                   'className' => "SiteClass",
-                  'copyright' => "2016 Barton L. Phillips",
+                  'copyright' => "$__year Barton L. Phillips",
                   'author' => "Barton L. Phillips, mailto:bartonphillips@gmail.com",
                   //'memberTable' => "blpmembers", // www.bartonlp.com has not members
                   'masterdb' => 'barton', // This is where bots, tracker and analysis are.
@@ -69,9 +71,11 @@ $siteinfo = array('siteDomain' => "www.bartonlp.com", // www. needed to keep bar
                   'count' => true,
                   'countMe' => true, // Count BLP
                   //'daycountwhat' => 'all', // what should we daycount? Can be a filename, all, or an array of filenames.
-                  'analysis' => true, // update the barton.analysis table
                   'trackerImg1' => "/images/blp-image.png", // script
                   'trackerImg2' => "/images/146624.png", // normal
-                  'myUri' => "bartonphillips.dyndns.org" // If we are local (at home) then 'localhost'
+                  'myUri' => "bartonphillips.dyndns.org", // If we are local (at home) then 'localhost'
+                  'EMAILADDRESS' => EMAILADDRESS,
+                  'EMAILRETURN' => EMAILRETURN,
+                  'EMAILFROM' => EMAILFROM,
                  );
 

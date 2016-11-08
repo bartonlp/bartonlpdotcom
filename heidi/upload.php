@@ -1,11 +1,12 @@
 <?php
 // Upload files to Heidi
-//$AutoLoadDEBUG = true;
-$_site = require("/var/www/includes/siteautoload.class.php");
-$S = new SiteClass($_site);
-//vardump($S);
+$_site = require_once(getenv("HOME"). "siteload.php");
+ErrorClass::setDevelopment(true);
+$S = new $_site->className($_site);
 
 if(isset($_POST['submit'])) {
+  vardump($_FILES);
+  exit();
   $uploaddir = '/var/www/bartonlp/heidi/uploads/';
   $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
 
@@ -34,7 +35,7 @@ You can execute the file by entering 'http://www.bartonlp.com/heidi/uploads/<fil
 <filename> with the actual filename.</p>
 
 <form enctype="multipart/form-data" method="POST">
-  Upload this file: <input name="userfile" type="file" />
+  Upload this file: <input name="userfile[]" type="file" multiple />
   <br>
   <input type="submit" name='submit' value="Send File" />
 </form>

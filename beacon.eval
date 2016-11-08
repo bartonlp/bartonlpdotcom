@@ -4,18 +4,21 @@
 
 $_site = require_once(getenv("HOME")."/includes/siteautoload.class.php");
 
-$dbinfo = $_site['dbinfo'];
+$dbinfo = $_site->dbinfo;
 
 $S = new Database($dbinfo);
 
+$_site = (array)$_site;
+
+$agent = $_SERVER['HTTP_USER_AGENT'];
+$ip = $_SERVER['REMOTE_ADDR'];
+
 $data = file_get_contents('php://input');
-
 $data = json_decode($data, true);
-
 $id = $data['id'];
 
 if(!$id) {
-  error_log("beacon.php {$_site['siteName']}: NO ID, $ip, $agent");
+  error_log("beacon: {$_site['siteName']}: NO ID, $ip, $agent");
   exit();
 } else {
   $S->query("select isJavaScript from {$_site['masterdb']}.tracker where id=$id");
@@ -26,7 +29,7 @@ if(!$id) {
   // or (256|512|1024) tracker:pagehide/beforeunload/unload. We should update.
   
   if(($js & ~(4127)) == 0) {
-    //error_log("beacon.php {$_site['siteName']}: which={$data['which']}: id=$id, js=$js");
+    //error_log("beacon: {$_site['siteName']}: which={$data['which']}: id=$id, js=$js");
 
     // 'which' can be 1, 2, or 4
     

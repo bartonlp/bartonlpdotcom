@@ -30,12 +30,11 @@ CREATE TABLE `bots` (
 */
 
 //$AutoLoadDEBUG = true;  
-$_site = require_once("/var/www/includes/siteautoload.class.php");
+$_site = require_once(getenv("SITELOAD") ."/siteload.php");
+$S = new Database($_site);
 
-$db = $_site['masterdb'];
-$myIp = gethostbyname($_site['myUri']);
-
-$S = new Database($_site['dbinfo']);
+$db = $S->masterdb;
+$myIp = gethostbyname($S->myUri);
 
 // Get the current days records
 // the key is id so there is one per session.
@@ -70,7 +69,7 @@ if($S->query($sql)) {
     $agent = $S->escape($row['agent']);
     $site = $row['site'];
 
-    // remove the robot tag (0x2000) is there still something?
+    // remove the robot tag and start, load, normal, script and noscript (0x201f) is there still something?
     
     if($row['isJavaScript'] & ~0x201f) {
       // If yes get the ip/agent from bots.
@@ -157,7 +156,7 @@ if($S->query($sql)) {
 
       $ok = false;
 
-      // Is $bot have a value after 0x40 | 0x80 has been removed?
+      // Does $bot have a value after 0x40 | 0x80 has been removed?
       
       while(list($bot) = $S->fetchrow('num')) {
         if($bot & ~(0x40 | 0x80)) {

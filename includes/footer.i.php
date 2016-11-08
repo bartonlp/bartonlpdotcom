@@ -36,6 +36,8 @@ if(isset($arg['statcounter'])) {
   }
 }
 
+$lastmod = date("M j, Y H:i", getlastmod());
+
 return <<<EOF
 <footer>
 <h2><a target="_blank" href='aboutwebsite.php'>About This
@@ -43,22 +45,22 @@ return <<<EOF
 
 <div id="address">
 <address>
-  Copyright &copy; $this->copyright</address>
+  Copyright &copy; $this->copyright
+</address>
 <address>
 Barton Phillips<br>
 828 Cayo Grande Ct., Newbury Park CA 91320<br>
-<a href='mailto:bartonphillips@gmail.com?to=test@bartonlp.com&subject=test'>
+<a href='mailto:bartonphillips@gmail.com'>
   bartonphillips@gmail.com
 </a>
 </address>
-</div>
 </div>
 {$arg['msg']}
 {$arg['msg1']} 
 $counterWigget
 {$arg['msg2']}
+<p>Last Modified: $lastmod</p>
 </footer>
-$statcounter
 </body>
 </html>
 EOF;

@@ -9,9 +9,9 @@ if($_GET['page'] == 'list') {
     }
   }
 
-  $_site = require_once("/var/www/includes/siteautoload.class.php");
-    
-  $S = new Database($_site['dbinfo']);
+  $_site = require_once(getenv("SITELOAD")."/siteload.php");
+  $S = new $_site->className($_site);
+
   $S->query("select ip from barton.logagent limit 20");
   while(list($ip) = $S->fetchrow('num')) {
     $list[] = $ip;

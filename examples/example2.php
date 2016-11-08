@@ -1,10 +1,8 @@
 <?php
 // Example of how to do a POST instead of a GET.
 
-$_site = require_once(getenv("HOME")."/includes/siteautoload.class.php");
-$S = new $_site['className']($_site);
-
-$j = json_encode($_site);
+$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$S = new $_site->className($_site);
 
 // http_build_query($query_data, ...) takes an object or array. $_site is an array.
 
@@ -19,7 +17,7 @@ $options = array('http' => array(
 
 $context  = stream_context_create($options);
 
-$siteName = file_get_contents("http://bartonlp.com/html/example1.php", false, $context);
+$siteName = file_get_contents("http://www.bartonlp.com/examples/example1.php", false, $context);
 
 echo <<<EOF
 $top

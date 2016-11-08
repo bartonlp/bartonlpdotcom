@@ -6,9 +6,8 @@
 // BLP 2014-08-18 -- add click on toweewx to add date so we kill caching. Also
 // add blp=8653 as flag for Admin links
 
-//$AutoLoadDEBUG = 1;
-$_site = require_once(getenv("HOME")."/includes/siteautoload.class.php");
-$S = new $_site['className']($_site);
+$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$S = new $_site->className($_site);
 
 /* We can send last-modified if we want. Right now don't
 if(!($_GET || $_POST)) {
@@ -95,13 +94,13 @@ ul {
   </style>
 EOF;
 
-$h->title = "Barton Phillips Experimental Page &#9760;";
+$h->title = "Barton Phillips Experimental Page";
 
 $h->banner = "<h1 class='center font-effect-shadow-multiple'>".
              "$S->mainTitle</h1>".
              "<h2 class='center weather'>".
              "<a target='_blank' ".
-             "href='http://bartonlp.com/html/toweewx.php'>".
+             "href='http://www.bartonlp.com/toweewx.php'>".
              "My Home Weather Station</a></h2>";
 
 $ref = $_SERVER['HTTP_REFERER'];
@@ -122,19 +121,18 @@ if($S->isMe() || ($_GET['blp'] == "7098")) {
   $adminStuff = <<<EOF
 <h2>Administration Links</h2>
 <ul>
+<li><a target="_blank" href="http://www.bartonlp.org/showmarkdown.php">Display <b>Markdown</b> files</a></li>
 <li><a target="_blank" class="uptest" href="http://bartonphillips.dyndns.org/weewx/">WEEWX home</a></li>
 <li><a target="_blank" class="uptest" href="http://bartonphillips.dyndns.org/apc.php">APC Status home</a></li>
-<li><a target="_blank" href="http://www.conejoskiclub.org">Conejo Ski and Sports Club</a></li>
 <li><a target="_blank" href="http://www.myphotochannel.com">www.MyPhotoChannel.com</a><br>
 <li><a target="_blank" href="http://go.myphotochannel.com/">MyPhotoChannel 1and1</a> only a super user</li>
 <li><a target="_blank" href="http://www.mountainmessiah.com">Mountain Messiah</a></li>
 <li><a target="_blank" href="http://www.purwininsurance.com">Purwin Insurance</a></li>
-<li><a target="_blank" href="http://www.tinapurwininsurance.com">Tina Purwin Insurance</a></li>
 <li><a target="_blank" href="http://www.puppiesnmore.com">Puppies N More</a></li>
 <li><a target="_blank" href="http://www.grandlakerotary.org">Grand Lake Rotary</a></li>
 <li><a target="_blank" href="http://www.bartonlp.com/heidi/">Heidi's Home Page</a></li>
-<li><a target="_blank" href="http://www.bartonlp.com/heidi/upload.php">Heidi's Upload Page</a></li>
-
+<li><a target="_blank" href="http://allnatural.bartonlp.com">All Natural Test</a></li>
+<li><a target="_blank" href="http://www.swam.us">South West Aquatic Masters</a></li>
 </ul>
 EOF;
 }
@@ -194,6 +192,7 @@ $top
 <li><a target="_blank" href="http://www.html5rocks.com/en/">HTML5 Rocks</a></li>
 <li><a target="_blank" href="webstats-new.php">Web Stats</a></li>
 <li><a target="_blank" href="analysis.php">Analysis</a></li>
+<li><a target="_blank" href="http://www.allnaturalcleaningcompany.com">All Natural Cleaning</a></li>
 </ul>
 <h2>About the Internet</h2>
 <ul>
@@ -218,5 +217,11 @@ $adminStuff
 <li>Visitors are seperate accesses by different IP Addresses.</li>
 </ul>
 </section>
+<br>
+<span itemscope itemtype="http://schema.org/Organization">
+  <link itemprop="url" href="http://www.bartonlp.com">
+  <a itemprop="sameAs" href="http://www.facebook.com/bartonlp"><img width="200" src="images/facebook.png" alt="follow us on facebook"></a>
+  <a itemprop="sameAs" href="http://www.twitter.com/bartonlp"><img width="200" src="images/twitter3.png" alt="follow us on twitter"></a>
+</span>  
 $footer
 EOF;

@@ -1,15 +1,17 @@
 <?php
 // All sites that have an "About Web Site" link should have a symlink
-// to /var/www/html/aboutwebsite.php and should have a modified MySitemap.php that has
+// to /var/www/html/aboutwebsite.php and should have a modified MySitemap.php and/or mysitemap.json that has
 // these items in the $_site array: 1) 'copyright', 2 'className' 3 'siteName' etc.
-// The className is the name of the class for the site. For example: /var/www/endpolio uses
-// the file /var/www/endpolio/includes/Endpolio.clas.php which has Endpolio as the class.
-// Therefore 'className' should be 'Endpolio' which is then instantiated by
-// $S = new $_site['className']; which becomes '$S = new Endpolio;
-//$AutoLoadDEBUG = true;
-$_site = require_once(getenv("HOME")."/includes/siteautoload.class.php");
-
-$S = new $_site['className']($_site);
+// The className is the name of the class for the site. For example: /var/www/granbyrotary uses
+// the file /var/www/granbyrotary/includes/GranbyRotary.clas.php which has GranbyRotary as the class.
+// Therefore 'className' should be 'GranbyRotary' which is then instantiated by
+// $S = new $_site->className($_site); which becomes '$S = new GranbyRotary($_site);
+if(file_exists("vendor/autoload.php")) {
+  require_once("vendor/autoload.php");
+}
+$_site = require_once(getenv("SITELOAD")."/siteload.php");
+ErrorClass::setDevelopment(true);
+$S = new $_site->className($_site);
 
 // check for subdomain. This doesn't need to be rigorous as we will Never have a multiple
 // subdomain like en.test.domain.com. At most we might have www. or mpc.
@@ -94,51 +96,51 @@ $top
   
 	<p>This site is hosted by
     <a href="http://www.digitalocean.com">
-		  <img	src="http://bartonlp.com/html/images/aboutsite/digitalocean.jpg"
+		  <img	src="http://bartonphillips.net/images/aboutsite/digitalocean.jpg"
 		    alt="DigitalOcean">
 		</a>
   </p>
   <p>This site is run with Linux, Apache, MySql, and PHP<br>
-    <img src="http://bartonlp.com/html/images/aboutsite/linux-powered.gif"
+    <img src="http://bartonphillips.net/images/aboutsite/linux-powered.gif"
       alt="Linux Powered">
   </p>
 	<p>
     <a href="http://www.apache.org/">
-    <img src="http://bartonlp.com/html/images/aboutsite/apache_logo.gif"
+    <img src="http://bartonphillips.net/images/aboutsite/apache_logo.gif"
       alt="Apache">
     </a>
   </p>
 	<p>
     <a href="http://www.mysql.com">
-      <img src="http://bartonlp.com/html/images/aboutsite/powered_by_mysql.gif"
+      <img src="http://bartonphillips.net/images/aboutsite/powered_by_mysql.gif"
         alt="Powered by MySql">
     </a>
   </p>
 	<p>
     <a href="http://www.php.net">
-      <img src="http://bartonlp.com/html/images/aboutsite/php-small-white.png"
+      <img src="http://bartonphillips.net/images/aboutsite/php-small-white.png"
         alt="PHP Powered">
     </a>
   </p>
   <p>
     <a href="http://jquery.com/">
-      <img src="http://bartonlp.com/html/images/aboutsite/logo_jquery_215x53.gif"
+      <img src="http://bartonphillips.net/images/aboutsite/logo_jquery_215x53.gif"
         alt="jQuery logo">
     </a>
   </p>
 <!--	<p>
     <a href="http://www.mozilla.org">
-      <img src="http://bartonlp.com/html/images/aboutsite/bestviewedwithmozillabig.gif"
+      <img src="http://bartonphillips.net/images/aboutsite/bestviewedwithmozillabig.gif"
         alt="Best viewed with Mozilla or any other browser">
     </a>
   </p> -->
 	<p>
-    <img src="http://bartonlp.com/html/images/aboutsite/msfree.png"
+    <img src="http://bartonphillips.net/images/aboutsite/msfree.png"
       alt="100% Microsoft Free">
   </p>
 	<p>
     <a href="http://www.netcraft.com/whats?url=$webdomain">
-	    <img src="http://bartonlp.com/html/images/aboutsite/powered.gif"
+	    <img src="http://bartonphillips.net/images/aboutsite/powered.gif"
         alt="Powered By ...?">
     </a>
 	</p>

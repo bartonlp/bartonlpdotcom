@@ -4,13 +4,13 @@
 // Get the ip address of bartonphillips.dyndns.org our dynamic DNS address
 // insert it into the blpip table. If it already exists say No Change!
 
-$_site = require_once(getenv("HOME")."/www/includes/siteautoload.class.php");
-   
-$S = new Database($_site['dbinfo']);
-$blpip = gethostbyname("bartonphillips.dyndns.org"); // get my home ip address
+$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$S = new $_site->className($_site);
 
-if($S->query("insert ignore into {$_site['masterdb']}.blpip (blpIp, createtime) values ('$blpip', now())")) {
-  echo "blpip=$blpip\n";
+$myip = gethostbyname("bartonphillips.dyndns.org"); // get my home ip address
+
+if($S->query("insert ignore into $S->masterdb.myip (myIp, createtime) values ('$myip', now())")) {
+  echo "myip=$myip\n";
   echo "******* IP For bartonphillips.dyndns.org HAS CHANGED ********\n";
 }
 
