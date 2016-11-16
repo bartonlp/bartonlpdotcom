@@ -427,7 +427,7 @@ $browser[1]
 </table>
 EOF;
 
-  if(ftp_file_put_contents("www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
+  if(ftp_file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
     error_log("analysis: ftp_file_put_contents FAILED on $site-analysis.i.txt");
   }
   return $analysis;

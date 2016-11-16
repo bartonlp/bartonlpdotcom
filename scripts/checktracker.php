@@ -13,7 +13,8 @@ $myIp = gethostbyname($S->myUri);
 
 $sql = "select ip, agent, site " .
        "from $db.tracker ".
-       "where ip != '$myIp' and (isJavaScript & ~0x2000) = 0 and lasttime >= current_date() - interval 1 day order by ip";
+       "where ip != '$myIp' and (isJavaScript & ~0x2000) = 0 ".
+       "and lasttime >= current_date() - interval 1 day order by ip";
 
 // Are there any records that are zero after the robot tag of 0x2000 is removed?
 

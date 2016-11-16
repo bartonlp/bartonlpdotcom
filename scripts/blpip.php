@@ -1,4 +1,4 @@
-#!/usr/bin/php -q
+#!/usr/bin/php
 <?php
 // Cron job
 // Get the ip address of bartonphillips.dyndns.org our dynamic DNS address
