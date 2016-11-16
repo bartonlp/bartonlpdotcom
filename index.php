@@ -1,19 +1,11 @@
 <?php
 // Main page for bartonlp.com
-// BLP 2014-12-02 -- remove uptest.php logic as it didn't really work well
-// BLP 2014-10-24 -- changed blp flag to 7098
-// BLP 2014-09-10 -- This is on the new bartonlp.com at digitalocian.com
-// BLP 2014-08-18 -- add click on toweewx to add date so we kill caching. Also
-// add blp=8653 as flag for Admin links
+// BLP 2016-11-12 -- site now uses SITELOAD
 
 $_site = require_once(getenv("SITELOAD")."/siteload.php");
+//ErrorClass::setNoEmailErrs(true);
+//ErrorClass::setDevelopment(true);
 $S = new $_site->className($_site);
-
-/* We can send last-modified if we want. Right now don't
-if(!($_GET || $_POST)) {
-  header("Last-Modified: ". date("r", getlastmod()));
-}
-*/
 
 // Special Fonts from google.
 
@@ -112,12 +104,9 @@ EOF;
 }
 
 // BLP 2014-10-24 -- changed blp flag to 7098
-// BLP 2014-08-18 -- add blp=8653 as flag
 // If it's me add in the admin stuff
 
 if($S->isMe() || ($_GET['blp'] == "7098")) {
-  // BLP 2014-12-02 -- as this is only for admin (me) I am using my local net address
-
   $adminStuff = <<<EOF
 <h2>Administration Links</h2>
 <ul>
@@ -134,6 +123,16 @@ if($S->isMe() || ($_GET['blp'] == "7098")) {
 <li><a target="_blank" href="http://allnatural.bartonlp.com">All Natural Test</a></li>
 <li><a target="_blank" href="http://www.swam.us">South West Aquatic Masters</a></li>
 </ul>
+EOF;
+}
+
+$S->query("select count, date(created) from $S->masterdb.logagent ".
+          "where ip='$S->ip' and agent='$S->agent' and site='$S->siteName'");
+
+list($hereCount, $created) = $S->fetchrow('num');
+if($hereCount > 1) {
+  $hereMsg =<<<EOF
+<h3>You have been to our site $hereCount since $created</h3>
 EOF;
 }
 
@@ -162,6 +161,7 @@ $date = date("l F j, Y");
 echo <<<EOF
 $top
 <section id='browser-info'>
+$hereMsg
 <p>
    Your browser's User Agent String: <i>$S->agent</i><br>
    Your IP Address: <i>$S->ip</i><br>
@@ -188,10 +188,10 @@ $top
 </ul>
 <h2>Interesting Sites</h2>
 <ul>
+<li><a target="_blank" href="http://bartonlp.github.io/site-class/">SiteClass on GitHub</a></li>
 <li><a target="_blank" href="http://www.sitepoint.com">Site Point</a></li>
 <li><a target="_blank" href="http://www.html5rocks.com/en/">HTML5 Rocks</a></li>
 <li><a target="_blank" href="webstats-new.php">Web Stats</a></li>
-<li><a target="_blank" href="analysis.php">Analysis</a></li>
 <li><a target="_blank" href="http://www.allnaturalcleaningcompany.com">All Natural Cleaning</a></li>
 </ul>
 <h2>About the Internet</h2>
@@ -207,21 +207,11 @@ So You Want to Build a Website</a></li>
 </ul>
 $adminStuff
 </section>
-
-<section id="daycount">
-<p>There have been $count hits and $visits visits by $visitors today $date</p>
-<ul>
-<li>Hits are each time this page is accessed. If you do three refreshes in a row you have 3 hits.</li>
-<li>Visits are hits that happen 10 minutes appart. Three refresses in a row will not change the number of hits, but if you wait
-10 minutes between refresses (or other accesses) to our site that is a visit.</li>
-<li>Visitors are seperate accesses by different IP Addresses.</li>
-</ul>
-</section>
-<br>
 <span itemscope itemtype="http://schema.org/Organization">
   <link itemprop="url" href="http://www.bartonlp.com">
   <a itemprop="sameAs" href="http://www.facebook.com/bartonlp"><img width="200" src="images/facebook.png" alt="follow us on facebook"></a>
   <a itemprop="sameAs" href="http://www.twitter.com/bartonlp"><img width="200" src="images/twitter3.png" alt="follow us on twitter"></a>
-</span>  
+</span>
+<hr>
 $footer
 EOF;

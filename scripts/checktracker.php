@@ -1,35 +1,6 @@
 #!/usr/bin/php
 <?php
-/*
-CREATE TABLE `tracker` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `site` varchar(50) DEFAULT NULL,
-  `page` varchar(255) NOT NULL DEFAULT '',
-  `ip` varchar(20) DEFAULT NULL,
-  `agent` varchar(255) DEFAULT NULL,
-  `starttime` datetime DEFAULT NULL,
-  `endtime` datetime DEFAULT NULL,
-  `difftime` time DEFAULT NULL,
-  `refid` int(11) DEFAULT '0',
-  `isJavaScript` int(5) DEFAULT '0',
-  `lasttime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `site` (`site`)
-) ENGINE=MyISAM AUTO_INCREMENT=605829 DEFAULT CHARSET=latin1;
-
-CREATE TABLE `bots` (
-  `ip` varchar(30) NOT NULL,
-  `agent` varchar(255) NOT NULL DEFAULT '',
-  `count` int(11) DEFAULT NULL,
-  `robots` int(5) DEFAULT '0',
-  `who` varchar(255) DEFAULT NULL,
-  `creation_time` datetime DEFAULT NULL,
-  `lasttime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ip`,`agent`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-*/
-
-//$AutoLoadDEBUG = true;  
+echo "site load: " .getenv("SITELOAD")."\n";
 $_site = require_once(getenv("SITELOAD") ."/siteload.php");
 $S = new Database($_site);
 

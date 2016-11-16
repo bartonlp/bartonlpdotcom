@@ -5,7 +5,7 @@
 // insert it into the blpip table. If it already exists say No Change!
 
 $_site = require_once(getenv("SITELOAD")."/siteload.php");
-$S = new $_site->className($_site);
+$S = new Database($_site);
 
 $myip = gethostbyname("bartonphillips.dyndns.org"); // get my home ip address
 

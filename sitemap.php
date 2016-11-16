@@ -1,11 +1,9 @@
 <?php
-// BLP 2016-07-28 -- update lasttime in insert and update.
 // BLP 2016-02-18 -- This file is a substitute for Sitemap.xml. This file is RewriteRuled in
 // .htaccess to read Sitemap.xml and output it. It also writes a record into the bots table
 
 $_site = require_once(getenv("SITELOAD")."/siteload.php");
 $S = new Database($_site);
-error_log("S: ".print_r($S, true));
 
 if(!file_exists($S->path . "/Sitemap.xml")) {
   echo "NO SITEMAP<br>";
