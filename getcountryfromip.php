@@ -90,6 +90,21 @@ if($ip = $_POST['ip']) {
   $ar = file_get_contents("http://www.bartonlp.com/getcountryfromip.php?list=$request");
   $list = json_decode($ar);
   $list = $list->$ip;
+
+  // Use ipinfo.io to get the country for the ip
+  $cmd = "http://ipinfo.io/$ip";
+  $ch = curl_init($cmd);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $loc = json_decode(curl_exec($ch));
+
+  $locstr = <<<EOF
+<ul class="user-info">
+  <li>Hostname: <i class='green'>$loc->hostname</i></li>
+  <li>Location: <i class='green'>$loc->city, $loc->region $loc->postal</i></li>
+  <li>GPS Loc: <i class='green'>$loc->loc</i></li>
+  <li>ISP: <i class='green'>$loc->org</i></li>
+</ul>
+EOF;
 }
 
 echo <<<EOF
@@ -99,6 +114,7 @@ Enter IP: <input autofocus type='text' name='ip' value='$ip'><br>
 <button type='submit'>Submit</button>
 </form>
 <h2>Country is: <span>$list</span></h2>
+$locstr
 <hr>
 $footer
 EOF;

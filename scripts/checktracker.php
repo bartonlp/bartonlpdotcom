@@ -1,7 +1,8 @@
 #!/usr/bin/php
 <?php
-echo "site load: " .getenv("SITELOAD")."\n";
-$_site = require_once(getenv("SITELOAD") ."/siteload.php");
+echo "checktracker.php\n";
+
+$_site = require_once("/var/www/vendor/bartonlp/site-class/includes/siteload.php");
 $S = new Database($_site);
 
 $db = $S->masterdb;
@@ -24,7 +25,7 @@ if($S->query($sql)) {
   while($row = $S->fetchrow('assoc')) {
     $todays[] = $row;
   }
-
+  
   // Get tracker records before today
   // This is actually the day before yesterday as the CRON job is run first thing in the morning.
   

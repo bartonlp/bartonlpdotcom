@@ -19,6 +19,16 @@ if($_POST['page'] == 'ajaxmsg') {
   exit();
 }
 
+$S->query("select count(*) from information_schema.tables ".
+          "where (table_schema = '$S->masterdb') and (table_name = 'tracker')");
+
+list($ok) = $S->fetchrow('num');
+
+if($ok != 1) {
+  error_log("No tracker in $S->masterdb");
+  exit();
+}
+
 // start is an ajax call
 
 if($_POST['page'] == 'start') {
@@ -46,8 +56,6 @@ if($_POST['page'] == 'load') {
     exit();
   }
 
-  //error_log("tracker: load,     $S->siteName, $id, $ip, $agent");
-  
   $S->query("update $S->masterdb.tracker set isJavaScript=isJavaScript|2, lasttime=now() where id='$id'");
   echo "Load OK";
   exit();
@@ -126,6 +134,7 @@ if($_POST['page'] == 'unload') {
   // or (256|512) tracker:beforeunload/unload. We should update.
   
   if(($js & ~(4127)) == 0) {
+    //error_log("tracker: unload,   $S->siteName, $id, $ip, $agent, $js");
     $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timediff(now(),starttime), ".
               "isJavaScript=isJavaScript|512, lasttime=now() where id=$id");
   }
@@ -266,32 +275,6 @@ if($_POST['page'] == 'timer') {
     error_log(print_r($e, true));
   }
   echo "Timer OK";
-  exit();
-}
-
-// Capture the fingerprint
-
-if($_POST['page'] == 'fingerprint') {  
-  $finger = $_POST['finger'];
-  $page = $_POST['pagename'];
-
-  if(!$finger) {
-    error_log("tracker: $S->siteName: TIMER NO finger, $ip, $agent");
-    exit();
-  }
-
-  //error_log("tracker: finger $S->siteName, $finger, $page, $ip, $agent");
-  
-  try {
-    $sql = "insert into $S->masterdb.finger (ip, finger, page, agent, count, created, lasttime) ".
-           "values('$ip', '$finger', '$page', '$agent', 1, now(), now()) ".
-           "on duplicate key update count=count+1, lasttime=now()";
-    
-    $S->query($sql);
-  } catch(Exception $e) {
-    error_log(print_r($e, true));
-  }
-  echo "Finger OK";
   exit();
 }
 

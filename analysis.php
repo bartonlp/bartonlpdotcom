@@ -205,7 +205,7 @@ function getAnalysis($S, $site='ALL') {
   $cnt = 0;
   $cnt2 = 0;
 
-  $S->query("select blpip from $S->masterdb.blpip");
+  $S->query("select myip from $S->masterdb.myip");
 
   $ips = '';
   

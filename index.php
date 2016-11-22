@@ -126,14 +126,30 @@ if($S->isMe() || ($_GET['blp'] == "7098")) {
 EOF;
 }
 
-$S->query("select count, date(created) from $S->masterdb.logagent ".
-          "where ip='$S->ip' and agent='$S->agent' and site='$S->siteName'");
+// Do we have a cookie? If not offer to register
 
-list($hereCount, $created) = $S->fetchrow('num');
-if($hereCount > 1) {
-  $hereMsg =<<<EOF
-<h3>You have been to our site $hereCount since $created</h3>
+if(!($hereId = $_COOKIE['SiteId'])) {
+  $S->query("select count, date(created) from $S->masterdb.logagent ".
+            "where ip='$S->ip' and agent='$S->agent' and site='$S->siteName'");
+
+  list($hereCount, $created) = $S->fetchrow('num');
+  if($hereCount > 1) {
+    $hereMsg =<<<EOF
+<div class="hereMsg">You have been to our site $hereCount since $created<br>
+Why not <a href="register.php">register</a>
+</div>
 EOF;
+  }
+} else {
+  $sql = "select name from members where id=$hereId";
+  if($n = $S->query($sql)) {
+    list($memberName) = $S->fetchrow('num');
+    $hereMsg =<<<EOF
+<div class="hereMsg">Welcome $memberName</div>
+EOF;
+  } else {
+    error_log("$S->siteName: members id ($hereId) not found at line ".__LINE__);
+  }
 }
 
 list($top, $footer) = $S->getPageTopBottom($h, array('msg1'=>"<hr>"));
