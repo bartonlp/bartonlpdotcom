@@ -11,6 +11,20 @@ $robots = file_get_contents($S->path."/robots.txt");
 echo $robots;
 
 $ip = $_SERVER['REMOTE_ADDR'];
+if($S->myUri) {
+  if(is_array($S->myUri)) {
+    foreach($S->myUri as $v) {
+      if($ip == gethostbyname($v)) {
+        return;
+      }
+    }
+  } else {
+    if($ip == gethostbyname($S->myUri)) {
+      return;
+    }
+  }
+}
+
 $agent = $S->escape($_SERVER['HTTP_USER_AGENT']);
 
 $S->query("select count(*) from information_schema.tables ".

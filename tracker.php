@@ -7,6 +7,8 @@ $S = new Database($_site);
 $ip = $_SERVER['REMOTE_ADDR'];
 $agent = $_SERVER['HTTP_USER_AGENT'];
 
+//error_log("tracker: ". print_r($_REQUEST, true));
+
 // Post an ajax error message
 
 if($_POST['page'] == 'ajaxmsg') {
@@ -142,7 +144,28 @@ if($_POST['page'] == 'unload') {
   exit();
 }
 
-// Via the <img> in the header section set via the head.i.php
+// BLP 2016-11-27 -- Here is an example of the banner.i.php:
+// <header>
+//   <a href="http://www.bartonlp.com">
+//    <img id='logo' width="90" height="120"
+//       src="http://bartonphillips.net/images/blp-image.png" alt="barton"></a>
+//   <a href="http://linuxcounter.net/">
+//     <img id='linuxcounter' width="190" height="110"
+//       src="/tracker.php?page=normal&id=$this->LAST_ID" alt="linux counter image.">
+//   </a>
+// $mainTitle
+//   <noscript>
+//     <p style='color: red; background-color: #FFE4E1; padding: 10px'>
+//     <img src="/tracker.php?page=noscript&id=$this->LAST_ID" alt="noscript">
+//     Your browser either does not support <b>JavaScripts</b> or you have JavaScripts disabled, in either case your browsing
+//     experience will be significantly impaired. If your browser supports JavaScripts but you have it disabled consider enabaling
+//     JavaScripts conditionally if your browser supports that. Sorry for the inconvienence.</p>
+//   </noscript>
+// </header>
+// BLP 2016-11-27 -- END
+
+// Via the <img id="logo"> in the header section via tracker.js. tracker.js changes the id="logo"
+// src="tracker.php?page=script&id=$this->LAST_ID"
 
 if($_GET['page'] == 'script') {
   $id = $_GET['id'];
@@ -185,6 +208,10 @@ if($_GET['page'] == 'script') {
   exit();
 }
 
+// We can put an image in the banner.i.php it will look like:
+// <img id='dummy' src="tracker.php?page=normal&id=$this->LAST_ID"> or something like that.
+// If this is not there this will never happen!
+
 if($_GET['page'] == 'normal') {
   $id = $_GET['id'];
   
@@ -224,7 +251,7 @@ if($_GET['page'] == 'normal') {
   exit();
 }
 
-// Via the <img> in the 'noscript' tag in the banner.i.php
+// Via the <img> in the 'noscript' tag in the banner.i.php. See comment BLP 2016-11-27 -- 
 
 if($_GET['page'] == 'noscript') {
   $id = $_GET['id'];

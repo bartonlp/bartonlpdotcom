@@ -14,6 +14,20 @@ $sitemap = file_get_contents($S->path."/Sitemap.xml");
 echo $sitemap;
 
 $ip = $_SERVER['REMOTE_ADDR'];
+if($S->myUri) {
+  if(is_array($S->myUri)) {
+    foreach($S->myUri as $v) {
+      if($ip == gethostbyname($v)) {
+        return;
+      }
+    }
+  } else {
+    if($ip == gethostbyname($S->myUri)) {
+      return;
+    }
+  }
+}
+
 $agent = $S->escape($_SERVER['HTTP_USER_AGENT']);
 
 error_log("sitemap: $S->siteName, $ip, $agent");

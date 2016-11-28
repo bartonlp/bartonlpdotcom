@@ -110,6 +110,7 @@ if($S->isMe() || ($_GET['blp'] == "7098")) {
   $adminStuff = <<<EOF
 <h2>Administration Links</h2>
 <ul>
+<li><a target="_blank" href="webstats-new.php">Web Stats</a></li>
 <li><a target="_blank" href="http://www.bartonlp.org/showmarkdown.php">Display <b>Markdown</b> files</a></li>
 <li><a target="_blank" class="uptest" href="http://bartonphillips.dyndns.org/weewx/">WEEWX home</a></li>
 <li><a target="_blank" class="uptest" href="http://bartonphillips.dyndns.org/apc.php">APC Status home</a></li>
@@ -207,7 +208,6 @@ $hereMsg
 <li><a target="_blank" href="http://bartonlp.github.io/site-class/">SiteClass on GitHub</a></li>
 <li><a target="_blank" href="http://www.sitepoint.com">Site Point</a></li>
 <li><a target="_blank" href="http://www.html5rocks.com/en/">HTML5 Rocks</a></li>
-<li><a target="_blank" href="webstats-new.php">Web Stats</a></li>
 <li><a target="_blank" href="http://www.allnaturalcleaningcompany.com">All Natural Cleaning</a></li>
 </ul>
 <h2>About the Internet</h2>

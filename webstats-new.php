@@ -198,7 +198,8 @@ $analysis = file_get_contents("http://bartonphillips.net/analysis/ALL-analysis.i
 // Make tracker right now.
 // Only need one ip out of posibly many
 
-$sql = "select distinct ip from $S->masterdb.tracker where site='$S->siteName' and starttime >= current_date() - interval 24 hour";
+$sql = "select distinct ip from $S->masterdb.tracker where site='$S->siteName' " .
+       "and starttime >= current_date() - interval 24 hour";
 
 $S->query($sql);
 $tkipar = array(); // tracker ip array

@@ -209,11 +209,11 @@ function getAnalysis($S, $site='ALL') {
 
   $ips = '';
   
-  while(list($blpip) = $S->fetchrow('num')) {
-    $ips .= "$blpip,";
+  while(list($myip) = $S->fetchrow('num')) {
+    $ips .= "$myip,";
   }
   $ips = rtrim($ips, ',');
-      
+  
   $where1 = $for = '';
 
   if($site && $site != 'ALL') {
@@ -427,42 +427,43 @@ $browser[1]
 </table>
 EOF;
 
-  if(ftp_file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
+  // On bartonlp.com just do a regular file_put_contents
+  if(file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
     error_log("analysis: ftp_file_put_contents FAILED on $site-analysis.i.txt");
   }
+/*
+  // On bartonlp.org do the ssh_file_put_contents. This requires
+  // 'sudo apt-get install libssh2-1 php-ssh2'
+  if(ssh_file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
+    error_log("analysis: ftp_file_put_contents FAILED on $site-analysis.i.txt");
+  }
+*/  
   return $analysis;
 }
 
-// do file_put_contents() via ftp
+// do file_put_contents() via ssh2. Requires 'sudo apt-get install libssh2-1 php-ssh2'
 
-function ftp_file_put_contents($remote_file, $file_string) {
-// FTP login
-  $ftp_server="bartonphillips.net"; 
-  $ftp_user_name="barton"; 
-  $ftp_user_pass="7098653?";
+function ssh_file_put_contents($remote_file, $file_string) {
+  // FTP login
+  $user_name = "barton"; 
+  $user_pass = "7098653?"; // BLP 2016-09-03 -- New Password
 
+  if(!($connection = ssh2_connect('bartonphillips.net', 2220))) {
+    error_log("ssh2_connect failed");
+    return false;
+  }
+  if(ssh2_auth_password($connection, $user_name, $user_pass) === false) {
+    error_log("ssh2_auth_password failed");
+    return false;
+  }
   // Create temporary file
   $local_file = fopen('php://temp', 'r+');
   fwrite($local_file, $file_string);
   rewind($local_file);       
 
-  // Create FTP connection
-  $ftp_conn=ftp_connect($ftp_server); 
-
-  // FTP login
-  @$login_result = ftp_login($ftp_conn, $ftp_user_name, $ftp_user_pass); 
-
-  // FTP upload
-  if($login_result) $upload_result=ftp_fput($ftp_conn, $remote_file, $local_file, FTP_ASCII);
-
-  // Error handling
-  if(!$login_result || !$upload_result) {
-    echo('FTP error: The file could not be written on the remote server.');
+  if(ssh2_scp_send($connection, $remote_file, $local_file, 0644) === false) {
+    error_log("ssh2_scp_send failed");
+    return false;
   }
-
-  // Close FTP connection
-  ftp_close($ftp_conn);
-
-  // Close file handle
-  fclose($local_file);
+  return true;
 }
