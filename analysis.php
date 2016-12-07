@@ -13,6 +13,7 @@ $_site = require_once(getenv("SITELOAD")."/siteload.php");
 // Ajax from CRON job /var/www/bartonlp/scrits/update-analysis.sh
 
 if($thisSite = $_GET['siteupdate']) {
+  echo "$thisSite<br>";
   $S = new $_site->className($_site);
   getAnalysis($S, $thisSite);
   exit();
@@ -429,7 +430,7 @@ EOF;
 
   // On bartonlp.com just do a regular file_put_contents
   if(file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
-    error_log("analysis: ftp_file_put_contents FAILED on $site-analysis.i.txt");
+    error_log("analysis: file_put_contents FAILED on $site-analysis.i.txt");
   }
 /*
   // On bartonlp.org do the ssh_file_put_contents. This requires

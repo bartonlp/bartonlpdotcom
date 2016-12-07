@@ -16,4 +16,6 @@
 /images
 heidi/
 webstats.i.txt
-
+domparser/
+phpQuery/
+vendor/

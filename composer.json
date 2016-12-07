@@ -1,0 +1,6 @@
+{
+    "require": {
+        "zendframework/zendframework": "^3.0",
+        "fluentdom/fluentdom": "dev-master"
+    }
+}
