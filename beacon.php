@@ -33,8 +33,11 @@ if(!$id) {
     $beacon = $data['which'] * 32; // 0x20, 0x40 or 0x80
     $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timediff(now(),starttime), ".
               "isJavaScript=isJavaScript|$beacon, lasttime=now() where id=$id");
+
+    //error_log("beacon: which={$data['which']}, new JavaScript=" . dechex($js | $beacon));
+  } else {
+    //error_log("beacon: which={$data['which']}, Not Done");
   }
-  echo "Beacon OK: {$data['which']}";
   exit();
 }
 

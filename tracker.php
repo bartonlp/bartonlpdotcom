@@ -58,11 +58,14 @@ if($_POST['page'] == 'load') {
     exit();
   }
 
+  //error_log("tracker: load,    $S->siteName, $id, $ip, $agent");
+
   $S->query("update $S->masterdb.tracker set isJavaScript=isJavaScript|2, lasttime=now() where id='$id'");
   echo "Load OK";
   exit();
 }
 
+// ON EXIT FUNCTIONS
 // Page hide is an ajax call
 
 if($_POST['page'] == 'pagehide') {
@@ -85,8 +88,10 @@ if($_POST['page'] == 'pagehide') {
     //error_log("tracker: beforeunload,   $S->siteName, $id, $ip, $agent, $js");
     $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timediff(now(),starttime), ".
               "isJavaScript=isJavaScript|1024, lasttime=now() where id=$id");
+    echo "pagehide OK";
+  } else {
+    echo "pagehide Not Done";
   }
-  echo "pagehide OK";
   exit();
 }
 
@@ -112,8 +117,10 @@ if($_POST['page'] == 'beforeunload') {
     //error_log("tracker: beforeunload,   $S->siteName, $id, $ip, $agent, $js");
     $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timediff(now(),starttime), ".
               "isJavaScript=isJavaScript|256, lasttime=now() where id=$id");
+    echo "beforeunload OK";
+  } else {
+    echo "beforeunload Not Done";
   }
-  echo "beforeunload OK";
   exit();
 }
 
@@ -139,10 +146,13 @@ if($_POST['page'] == 'unload') {
     //error_log("tracker: unload,   $S->siteName, $id, $ip, $agent, $js");
     $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timediff(now(),starttime), ".
               "isJavaScript=isJavaScript|512, lasttime=now() where id=$id");
+    echo "Unload OK";
+  } else {
+    echo "Unload Not Done";
   }
-  echo "Unload OK";
   exit();
 }
+// END OF EXIT FUNCTIONS
 
 // BLP 2016-11-27 -- Here is an example of the banner.i.php:
 // <header>
@@ -284,6 +294,8 @@ if($_GET['page'] == 'noscript') {
   echo $img;
   exit();
 }
+
+// TIMER. This runs while the page is up.
 
 if($_POST['page'] == 'timer') {  
   $id = $_POST['id'];

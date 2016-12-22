@@ -20,11 +20,18 @@ $h->css = <<<EOF
 body {
   background-color: white;
   font-family: 'Lora', serif;
-  font-size: 1.5em;
+  font-size: 1.5rem;
 
 }
 h1 {
   font-family: Rancho, serif;
+}
+h2 {
+  font-family: 'Jacques Francois Shadow', serif;
+  font-size: 1.6rem;
+}
+h3 {
+  font-family: 'Rancho', serif;
 }
 #browser-info {
   border-top: 1px solid gray;
@@ -37,31 +44,50 @@ h1 {
   margin: auto;
   border: 1px solid #696969;
 }
-#daycount {
-  text-align: center;
-  width: 90%;
-  margin: auto;
-  border: 1px solid black;
-  background-color: #ECD087;
-  padding-bottom: 20px;
-}
-#daycount ul {
-  width: 80%;
-  text-align: left;
-  margin: auto;
+.hereMsg {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-top: 1rem;
 }
 .weather {
   font-family: 'Jacques Francois Shadow', serif;
+  margin-top: -2rem;
+}
+.mylinks {
+  font-size: 1rem;
+  column-count: 4;
+  column-gap: 2rem;
+  column-rule: 3px solid black;
+  line-height: 1.5rem;
+}
+.mylinks p {
+  margin: 0;
+}
+#links a:hover {
+  background-color: #FCF6CF;;
+}
+#links a {
+  padding: .3rem;
+}
+.admin {
+  font-size: 1rem;
+  column-count: 4;
+  column-gap: 2rem;
+  column-rule: 3px solid black;
+  line-height: 1.5rem;
+}
+.admin p {
+  margin: 0;
 }
 ul {
   font-family: Rancho, serif;
-  line-height: 150%;
-  font-size: 1.5em;
+  font-size: 1.2rem;
+  margin-top: -2rem;
 }
 .fontface {
   line-height: 110%;
-  font-size: 1.2em;
-  margin-top: -20px;
+  font-size: 1.2rem;
+  margin-top: -1.5rem;
 }
 .lora {
   font-family: 'Lora', serif;
@@ -72,24 +98,33 @@ ul {
 .jacques {
   font-family: 'Jacques Francois Shadow', serif;
 }
+.center {
+  text-align: center;
+}
 
 #logo {
   float: left;
   padding: 5px 10px;
 }
 @media (max-width: 600px) {
-  a {
-    font-size: 1.9rem;
-    line-height: 2.5rem;
+  body {
+    font-size: 16px;
+  }
+  .admin, .mylinks {
+    width: 97%;
+    font-size: 1rem;
+    line-height: 1rem;
+    column-count: 2;
+    column-gap: 1rem;
   }
 }
   </style>
 EOF;
 
-$h->title = "Barton Phillips Experimental Page";
+$h->title = "Bartonlp.com";
 
 $h->banner = "<h1 class='center font-effect-shadow-multiple'>".
-             "$S->mainTitle</h1>".
+             "bartonlp.com</h1>".
              "<h2 class='center weather'>".
              "<a target='_blank' ".
              "href='http://www.bartonlp.com/toweewx.php'>".
@@ -108,22 +143,21 @@ EOF;
 
 if($S->isMe() || ($_GET['blp'] == "7098")) {
   $adminStuff = <<<EOF
-<h2>Administration Links</h2>
-<ul>
-<li><a target="_blank" href="webstats-new.php">Web Stats</a></li>
-<li><a target="_blank" href="http://www.bartonlp.org/showmarkdown.php">Display <b>Markdown</b> files</a></li>
-<li><a target="_blank" class="uptest" href="http://bartonphillips.dyndns.org/weewx/">WEEWX home</a></li>
-<li><a target="_blank" class="uptest" href="http://bartonphillips.dyndns.org/apc.php">APC Status home</a></li>
-<li><a target="_blank" href="http://www.myphotochannel.com">www.MyPhotoChannel.com</a><br>
-<li><a target="_blank" href="http://go.myphotochannel.com/">MyPhotoChannel 1and1</a> only a super user</li>
-<li><a target="_blank" href="http://www.mountainmessiah.com">Mountain Messiah</a></li>
-<li><a target="_blank" href="http://www.purwininsurance.com">Purwin Insurance</a></li>
-<li><a target="_blank" href="http://www.puppiesnmore.com">Puppies N More</a></li>
-<li><a target="_blank" href="http://www.grandlakerotary.org">Grand Lake Rotary</a></li>
-<li><a target="_blank" href="http://www.bartonlp.com/heidi/">Heidi's Home Page</a></li>
-<li><a target="_blank" href="http://allnatural.bartonlp.com">All Natural Test</a></li>
-<li><a target="_blank" href="http://www.swam.us">South West Aquatic Masters</a></li>
-</ul>
+<h3>Administration Links</h3>
+<div class='admin'>
+<p><a target="_blank" href="webstats-new.php">Web Stats</a></p>
+<p><a target="_blank" href="http://www.bartonlp.org/showmarkdown.php">Display <b>Markdown</b> files</a></p>
+<p><a target="_blank" href="http://bartonphillips.dyndns.org/weewx/">WEEWX home</a></p>
+<p><a target="_blank" href="http://bartonphillips.dyndns.org/apc.php">APC Status home</a></p>
+<p><a target="_blank" href="proxy.php?http://go.myphotochannel.com/">MyPhotoChannel 1and1</a> only a super user</p>
+<p><a target="_blank" href="http://www.mountainmessiah.com">Mountain Messiah</a></p>
+<p><a target="_blank" href="proxy.php?http://www.purwininsurance.com">Purwin Insurance</a></p>
+<p><a target="_blank" href="http://www.puppiesnmore.com">Puppies N More</a></p>
+<p><a target="_blank" href="http://www.grandlakerotary.org">Grand Lake Rotary</a></p>
+<p><a target="_blank" href="http://www.bartonlp.com/heidi/">Heidi's Home Page</a></p>
+<p><a target="_blank" href="http://www.allnaturalcleaningcompany.com">All Natural Test</a></p>
+<p><a target="_blank" href="proxy.php?http://www.swam.us">South West Aquatic Masters</a></p>
+</div>
 EOF;
 }
 
@@ -155,22 +189,15 @@ EOF;
 
 list($top, $footer) = $S->getPageTopBottom($h, array('msg1'=>"<hr>"));
 
-$ip = $S->ip;
-$blpIp = $S->blpIp;
-
 // Get todays count and visitors from daycounts table
 $S->query("select sum(`real`+bots) as count, sum(visits) as visits ".
           "from $S->masterdb.daycounts ".
           "where date=current_date() and site='$S->siteName'");
+
 $row = $S->fetchrow();
 $count = number_format($row['count'], 0, "", ",");
 $visits = number_format($row['visits'], 0, "", ",");
 
-// Get total number for today.
-$n = $S->query("select distinct ip from $S->masterdb.tracker where lasttime>=current_date() and site='$S->siteName'");
-$visitors = number_format($n, 0, "", ",");
-
-$visitors .= ($visitors < 2) ? " visitor" : " visitors";
 $date = date("l F j, Y");
 
 // Render the page
@@ -180,54 +207,52 @@ $top
 <section id='browser-info'>
 $hereMsg
 <p>
-   Your browser's User Agent String: <i>$S->agent</i><br>
-   Your IP Address: <i>$S->ip</i><br>
-   Today is: <span id="datetoday">$date</span><br>
-   This site uses three fonts from <i>fonts.googleapis.com</i> just for fun:
-   <ul class='fontface'>
-   <li class='rancho'>Rancho</li>
-   <li class='jacques'>Jacques Francois Shadow</li>
-   <li class='lora'>Lora</li>
-   </ul>
-   </p>
-   <hr>
-   <p>This page is dynamically generated using PHP on our expermental server at
-   <a target="_blank" href="http://www.digitalocean.com/">digitalocean.com</a>.
+  Your browser's User Agent String: <i>$S->agent</i><br>
+  Your IP Address: <i>$S->ip</i><br>
+  Today is: <span id="datetoday">$date</span><br>
+  This site uses three fonts from <i>fonts.googleapis.com</i> just for fun:
+</p>
+<ul class='fontface'>
+  <li class='rancho'>Rancho</li>
+  <li class='jacques'>Jacques Francois Shadow</li>
+  <li class='lora'>Lora</li>
+</ul>
+<hr>
+<p>This page is dynamically generated using PHP on our expermental server at
+  <a target="_blank" href="http://www.digitalocean.com/">digitalocean.com</a>.
 </p>
 </section>
 
 <section id="blog">
-<a target="_blank" href="http://myblog.bartonphillips.com">My BLOG with tips and tricks</a>.
+<a target="_blank" href="proxy.php?http://myblog.bartonphillips.com">My BLOG with tips and tricks</a>.
 </section>
 
 <section id="links">
 <h2><a href="http://www.bartonphillips.com">My Home Page (bartonphillips.com)</a></h2>
-</ul>
-<h2>Interesting Sites</h2>
-<ul>
-<li><a target="_blank" href="http://bartonlp.github.io/site-class/">SiteClass on GitHub</a></li>
-<li><a target="_blank" href="http://www.sitepoint.com">Site Point</a></li>
-<li><a target="_blank" href="http://www.html5rocks.com/en/">HTML5 Rocks</a></li>
-<li><a target="_blank" href="http://www.allnaturalcleaningcompany.com">All Natural Cleaning</a></li>
-</ul>
-<h2>About the Internet</h2>
-<ul>
-<li><a target="_blank" href="http://www.bartonphillips.com/historyofinternet.php">
-The History and Timeline of the Internet</a></li>
-<li><a target="_blank" href="http://www.bartonphillips.com/howtheinternetworks.php">
-How the Internet Works</a></li>
-<li><a target="_blank" href="http://www.bartonphillips.com/howtowritehtml.php">
-Tutorial: How To Write HTML</a></li>
-<li><a target="_blank" href="http://www.bartonphillips.com/buildawebsite.php">
-So You Want to Build a Website</a></li>
-</ul>
+
+<h3>GitHub Projects</h3>
+<div class='mylinks'>
+  <p><a target="_blank" href="proxy.php?https://bartonlp.github.io/bartonphillips">Barton Phillips GitHub site</a></p>
+  <p><a target="_blank" href="proxy.php?https://bartonlp.github.io/site-class/">SiteClass on GitHub</a></p>
+  <p><a target="_blank" href="proxy.php?https://bartonlp.github.io/updatesite/">UpdateSite Class on GitHub</a></p>
+  <p><a target="_blank" href="proxy.php?https://bartonlp.github.io/rssfeed/">RssFeed Class on GitHub</a></p>
+</div>
+<h3>About the Internet</h3>
+<div class='mylinks'>
+  <p><a target="_blank" href="proxy.php?http://www.bartonphillips.com/historyofinternet.php">The History and Timeline of the Internet</a></p>
+  <p><a target="_blank" href="proxy.php?http://www.bartonphillips.com/howtheinternetworks.php">How the Internet Works</a></p>
+  <p><a target="_blank" href="proxy.php?http://www.bartonphillips.com/howtowritehtml.php">Tutorial: How To Write HTML</a></p>
+  <p><a target="_blank" href="proxy.php?http://www.bartonphillips.com/buildawebsite.php">So You Want to Build a Website</a></p>
+</div>
 $adminStuff
 </section>
+<hr>
+<div class='center'>
 <span itemscope itemtype="http://schema.org/Organization">
   <link itemprop="url" href="http://www.bartonlp.com">
   <a itemprop="sameAs" href="http://www.facebook.com/bartonlp"><img width="200" src="images/facebook.png" alt="follow us on facebook"></a>
   <a itemprop="sameAs" href="http://www.twitter.com/bartonlp"><img width="200" src="images/twitter3.png" alt="follow us on twitter"></a>
 </span>
-<hr>
+</div>
 $footer
 EOF;
