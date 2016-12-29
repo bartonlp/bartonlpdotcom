@@ -1,6 +1,15 @@
 <?php
 // BLP 2014-03-06 -- ajax for tracker.js
 
+// BLP 2016-12-29 -- NOTE: the $_site info is from a mysitemap.json that is where the tracker.php
+// is located (or a directory above it) not necessarily from the mysitemap.json that lives with the
+// target program.
+// For example in /var/www/bartonphillips/weewx there is a mysitemap.json and the index.php gets
+// that info. But the bannerFile is from bartonphillips/includes which is one up from the weewx.
+// The banner.i.php file has /tracker.php... and tracker gets its information from
+// bartonphillips/mysitemap.json not weewx/mysitemap.json. That is why the <img ...> has my picture
+// and not blank images.
+
 $_site = require_once(getenv("SITELOAD")."/siteload.php");
 $S = new Database($_site);
 
@@ -299,7 +308,11 @@ if($_GET['page'] == 'noscript') {
 
 if($_POST['page'] == 'timer') {  
   $id = $_POST['id'];
-
+  $time = $_POST['time'] / 1000;
+  $filename = $_POST['filename'];
+  
+  error_log("time: $S->siteName, $filename, $ip, $time sec.");
+  
   if(!$id) {
     error_log("tracker: $S->siteName: TIMER NO ID, $ip, $agent");
     exit();

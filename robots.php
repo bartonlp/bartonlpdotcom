@@ -34,7 +34,7 @@ list($ok) = $S->fetchrow('num');
       
 if($ok == 1) {
   try {
-    //error_log("robots: $S->siteName, $ip, $agent");
+    error_log("robots: $S->siteName, $ip, $agent");
 
     $S->query("insert into $S->masterdb.bots (ip, agent, count, robots, who, creation_time, lasttime) ".
                "values('$ip', '$agent', 1, 1, '$S->siteName', now(), now())");
