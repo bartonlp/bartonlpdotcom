@@ -13,9 +13,9 @@ $_site = require_once(getenv("SITELOAD")."/siteload.php");
 // Ajax from CRON job /var/www/bartonlp/scrits/update-analysis.sh
 
 if($thisSite = $_GET['siteupdate']) {
-  echo "$thisSite<br>";
   $S = new $_site->className($_site);
   getAnalysis($S, $thisSite);
+  echo "Analysis for $thisSite Done";
   exit();
 }
 
@@ -428,24 +428,25 @@ $browser[1]
 </table>
 EOF;
 
-  // On bartonlp.com just do a regular file_put_contents
-  if(file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
-    error_log("analysis: file_put_contents FAILED on $site-analysis.i.txt");
+  if($_SERVER['SERVER_NAME'] == 'www.bartonlp.com') {
+    // On bartonlp.com just do a regular file_put_contents
+    if(file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
+      error_log("analysis: file_put_contents FAILED on $site-analysis.i.txt");
+    }
+  } else {
+    // On bartonlp.org do the ssh_file_put_contents. This requires
+    // 'sudo apt-get install libssh2-1 php-ssh2'
+    if(ssh_file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
+      error_log("analysis: ssh_file_put_contents FAILED on $site-analysis.i.txt");
+    }
   }
-/*
-  // On bartonlp.org do the ssh_file_put_contents. This requires
-  // 'sudo apt-get install libssh2-1 php-ssh2'
-  if(ssh_file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
-    error_log("analysis: ftp_file_put_contents FAILED on $site-analysis.i.txt");
-  }
-*/  
   return $analysis;
 }
 
 // do file_put_contents() via ssh2. Requires 'sudo apt-get install libssh2-1 php-ssh2'
 
-function ssh_file_put_contents($remote_file, $file_string) {
-  // FTP login
+function ssh_file_put_contents($remote_file, $data) {
+  // ssh login
   $user_name = "barton"; 
   $user_pass = "7098653?"; // BLP 2016-09-03 -- New Password
 
@@ -453,18 +454,20 @@ function ssh_file_put_contents($remote_file, $file_string) {
     error_log("ssh2_connect failed");
     return false;
   }
+  
   if(ssh2_auth_password($connection, $user_name, $user_pass) === false) {
     error_log("ssh2_auth_password failed");
     return false;
   }
-  // Create temporary file
-  $local_file = fopen('php://temp', 'r+');
-  fwrite($local_file, $file_string);
-  rewind($local_file);       
 
-  if(ssh2_scp_send($connection, $remote_file, $local_file, 0644) === false) {
+  // Create temporary file
+  $t = stream_get_meta_data($_f = tmpfile())['uri'];
+  file_put_contents($t, $data);
+
+  if(ssh2_scp_send($connection, $t, $remote_file, 0644) === false) {
     error_log("ssh2_scp_send failed");
     return false;
   }
+  
   return true;
 }

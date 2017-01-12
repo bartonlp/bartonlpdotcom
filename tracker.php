@@ -311,10 +311,10 @@ if($_POST['page'] == 'timer') {
   $time = $_POST['time'] / 1000;
   $filename = $_POST['filename'];
   
-  error_log("time: $S->siteName, $filename, $ip, $time sec.");
+  //error_log("time: $S->siteName, $filename, $ip, $time sec.");
   
   if(!$id) {
-    error_log("tracker: $S->siteName: TIMER NO ID, $ip, $agent");
+    error_log("tracker: $S->siteName, $filename: TIMER NO ID, $ip, $agent");
     exit();
   }
 
