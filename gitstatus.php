@@ -63,7 +63,7 @@ $h->css =<<<EOF
 EOF;
 
 $h->title = "GIT Status All";
-$h->banner = "<h1>Show GIT Status All</h1>";
+$h->banner = "<h1>bartonlp.com</h1><h2>Show GIT Status All</h2>";
 list($top, $footer) = $S->getPageTopBottom($h);
 
 echo <<<EOF
