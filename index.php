@@ -103,7 +103,6 @@ ul {
 }
 
 #logo {
-  float: left;
   padding: 5px 10px;
 }
 @media (max-width: 600px) {
