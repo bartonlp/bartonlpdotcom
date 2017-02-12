@@ -6,7 +6,7 @@
 
 echo "Do Analysis"
 
-for x in Applitec Allnatural Bartonlp Bartonphillips GranbyRotary Messiah Weewx ALL
+for x in Applitec Allnatural Bartonlp Bartonphillips BartonphillipsOrg GranbyRotary Messiah Weewx ALL
 do
 echo "$x";
 wget -qO- http://www.bartonlp.com/analysis.php?siteupdate=$x >/dev/null

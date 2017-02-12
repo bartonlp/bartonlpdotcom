@@ -353,6 +353,7 @@ table.tablesorter thead tr .header {
       <option>Bartonlp</option>
       <option>BartonlpOrg</option>
       <option>Bartonphillips</option>
+      <option>BartonphillipsOrg</option>
       <option>GranbyRotary</option>
       <option>Messiah</option>
       <option>Puppiesnmore</option>

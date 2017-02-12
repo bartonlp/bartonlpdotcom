@@ -145,7 +145,7 @@ if($S->isMe() || ($_GET['blp'] == "7098")) {
 <h3>Administration Links</h3>
 <div class='admin'>
 <p><a target="_blank" href="gitstatus.php">Git Status All</a></p>
-<p><a target="_blank" href="http://www.bartonlp.org/showmarkdown.php">Display <b>Markdown</b> files</a></p>
+<p><a target="_blank" href="http://www.bartonlp.com/showmarkdown.php">Display <b>Markdown</b> files</a></p>
 <p><a target="_blank" href="http://bartonphillips.dyndns.org/weewx/">WEEWX home</a></p>
 <p><a target="_blank" href="http://bartonphillips.dyndns.org/apc.php">APC Status home</a></p>
 <p><a target="_blank" href="proxy.php?http://go.myphotochannel.com/">MyPhotoChannel 1and1</a> only a super user</p>
