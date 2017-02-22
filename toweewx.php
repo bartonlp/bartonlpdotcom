@@ -2,7 +2,7 @@
 // Weather Station weewx
 // Send to either normal page of smartphone page
 /*
-This is in the bartonphillipsdotcom database not in barton.
+This is in the bartonphillips.com database not in barton.
 CREATE TABLE `detect` (
   `ip` varchar(20) NOT NULL default '',
   `agent` varchar(255) NOT NULL default '',

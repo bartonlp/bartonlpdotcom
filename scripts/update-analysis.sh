@@ -15,3 +15,15 @@ done
 echo "BartonlpOrg"
 wget -qO- http://www.bartonlp.org/analysis.php?siteupdate=BartonlpOrg >/dev/null
 echo "Analysis files updated in /var/www/bartonphillipsnet/analysis";
+
+echo "Rpi"
+wget -qO- http://www.bartonphillips.dyndns.org/analysis.php?siteupdate=Rpi >/dev/null
+echo "Analysis files updated in /var/www/bartonphillipsnet/analysis";
+
+echo "Rpi"
+wget -qO- http://www.bartonphillips.dyndns.org:5080/analysis.php?siteupdate=Rpi2 >/dev/null
+echo "Analysis files updated in /var/www/bartonphillipsnet/analysis";
+
+echo "Rpi"
+wget -qO- http://www.bartonphillips.dyndns.org:4080/analysis.php?siteupdate=Hp-envy >/dev/null
+echo "Analysis files updated in /var/www/bartonphillipsnet/analysis";

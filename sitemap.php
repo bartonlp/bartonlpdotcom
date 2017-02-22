@@ -30,7 +30,7 @@ if($S->myUri) {
 
 $agent = $S->escape($_SERVER['HTTP_USER_AGENT']);
 
-error_log("sitemap: $S->siteName, $ip, $agent");
+//error_log("sitemap: $S->siteName, $ip, $agent");
 
 $S->query("select count(*) from information_schema.tables ".
            "where (table_schema = '$S->masterdb') and (table_name = 'bots')");

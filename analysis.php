@@ -85,7 +85,7 @@ EOF;
 
   $site = empty($_POST['site']) ? 'ALL' : $_POST['site'];
 
-  $analysis = file_get_contents("http://bartonphillipsnet/analysis/$site-analysis.i.txt");
+  $analysis = file_get_contents("http://bartonphillips.net/analysis/$site-analysis.i.txt");
 
   echo <<<EOF
 $top
@@ -358,6 +358,8 @@ table.tablesorter thead tr .header {
       <option>Messiah</option>
       <option>Puppiesnmore</option>
       <option>Weewx</option>
+      <option>Rpi</option>
+      <option>Rpi2</option>
       <option>ALL</option>
     </select>
 
@@ -437,6 +439,7 @@ EOF;
   } else {
     // On bartonlp.org do the ssh_file_put_contents. This requires
     // 'sudo apt-get install libssh2-1 php-ssh2'
+    // or on RPI 'sudo apt-get install libssh2-php'
     if(ssh_file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
       error_log("analysis: ssh_file_put_contents FAILED on $site-analysis.i.txt");
     }
