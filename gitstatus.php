@@ -4,7 +4,7 @@
 if($cmd = $_POST['page']) {
   $ret = '';
   
-  foreach(['/vendor/bartonlp/site-class', '/applitec', '/bartonlp', '/bartonphillips', '/bartonphillipsnet', '/granbyrotary', '/messiah'] as $site) {
+  foreach(['/vendor/bartonlp/site-class', '/applitec', '/bartonlp', '/bartonphillips.com', '/bartonphillipsnet', '/granbyrotary.org', '/messiah'] as $site) {
     chdir("/var/www/$site");
     //error_log("cmd: $cmd, site: $site");
     exec("git $cmd", $out);
