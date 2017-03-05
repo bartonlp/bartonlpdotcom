@@ -37,17 +37,27 @@ class myDetect extends Mobile_Detect {
   
   public function getOs($userAgent = null) {
     $userAgent = $userAgent ? $userAgent : $this->userAgent;
-    $this->allOs = array_merge($this->otherOss, self::$operatingSystems);
+    //$userAgent = "Mozilla/5.0 AppleWebKit/537.36 http://test_this";
+    $ret = '';
+    
+    if(preg_match("~https?://~", $userAgent, $m)) {
+      //error_log("toweewx: bot: $m[0]");
+      $ret = "ROBOT";
+    }
+
+    $this->allOs = array_merge(self::$operatingSystems, $this->otherOss);
 
     foreach($this->allOs as $k => $v) {
       if(empty($v)){ continue; }
+
+      //error_log("toweewx: k=$k, v=$v");
       
       if($this->match($v, $userAgent)) {
-        //echo "k: $k<br>";
-        return $k;
+        //error_log("toweewx: $k:$ret");
+        return "$k:$ret";
       }
     }
-    return "OS NOT FOUND";
+    return "OS NOT FOUND:$ret";
   }
 }
 
@@ -78,7 +88,7 @@ $type = "$os>>$type";
 //echo "TYPE: $type<br>";
 //echo "Agent: $agent<br>";
 
-$query = "select * from bartonphillipsdotcom.detect where ip='$ip' and agent='$agent'";
+$query = "select * from bartonphillips.detect where ip='$ip' and agent='$agent'";
 
 $n = $S->query($query);
 
@@ -98,16 +108,16 @@ if($n) {
   //echo "rtype: $rtype==type: $type<br>";
 
   if(($rtype == $type)) {
-    $query = "update bartonphillipsdotcom.detect set timestamp=now() where ip='$ip' && agent='$agent'";
+    $query = "update bartonphillips.detect set timestamp=now() where ip='$ip' && agent='$agent'";
   } else {
     $type .= " :: older({$rtype}{$extra})";
-    $query = "update bartonphillipsdotcom.detect set type='$type', timestamp=now() where ip='$ip' && agent='$agent'";
+    $query = "update bartonphillips.detect set type='$type', timestamp=now() where ip='$ip' && agent='$agent'";
   }
   //echo "query: $query<br>";
 
   $S->query($query);
 } else {
-  $query = "insert into bartonphillipsdotcom.detect (ip, agent, type) values('$ip', '$agent', '$type')";
+  $query = "insert into bartonphillips.detect (ip, agent, type) values('$ip', '$agent', '$type')";
 
   //echo "query: $query<br>";
 

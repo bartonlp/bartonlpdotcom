@@ -154,7 +154,7 @@ if($S->isMe() || ($_GET['blp'] == "7098")) {
 <p><a target="_blank" href="http://www.puppiesnmore.com">Puppies N More</a></p>
 <p><a target="_blank" href="http://www.grandlakerotary.org">Grand Lake Rotary</a></p>
 <p><a target="_blank" href="http://www.bartonlp.com/heidi/">Heidi's Home Page</a></p>
-<p><a target="_blank" href="http://www.allnaturalcleaningcompany.com">All Natural Test</a></p>
+<p><a target="_blank" href="http://www.allnaturalcleaningcompany.com">All Natural</a></p>
 <p><a target="_blank" href="proxy.php?http://www.swam.us">South West Aquatic Masters</a></p>
 </div>
 EOF;
