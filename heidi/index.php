@@ -9,8 +9,6 @@ list($top, $footer) = $S->getPageTopBottom($h);
 //$S->query("select * from test");
 echo <<<EOF
 $top
-<h1>$S->siteName</h1>
-<p><a href="webstats-new.php">Webstats</a></p>
 <hr>
 $footer
 EOF;

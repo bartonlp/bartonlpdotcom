@@ -217,9 +217,15 @@ if($_GET['page'] == 'script') {
   $img1 = "http://bartonphillips.net/images/blank.png";
 
   if($S->trackerImg1) {
-    $img1 = "http://bartonphillips.net" . $S->trackerImg1;
+    $pos = strpos($S->trackerImg1, "http");
+    if($pos !== false && $pos == 0) {
+      $img1 = $S->trackerImg1;
+    } else {
+      $img1 = "http://bartonphillips.net" . $S->trackerImg1;
+    }
   }
-
+  //error_log($img1);
+  
   $imageType = preg_replace("~^.*\.(.*)$~", "$1", $img1);
   $img = file_get_contents("$img1");
   header("Content-type: image/$imageType");
@@ -260,9 +266,15 @@ if($_GET['page'] == 'normal') {
   $img2 = "http://bartonphillips.net/images/blank.png";
 
   if($S->trackerImg2) {
-    $img2 = "http://bartonphillips.net" . $S->trackerImg2;
+    $pos = strpos($S->trackerImg2, "http");
+    if($pos !== false && $pos == 0) {
+      $img2 = $S->trackerImg2;
+    } else {
+      $img2 = "http://bartonphillips.net" . $S->trackerImg2;
+    }
   }
-
+  //error_log($img2);
+  
   $imageType = preg_replace("~.*\.(.*)$~", "$1", $img2);
   $img = file_get_contents("$img2");
   header("Content-type: image/$imageType");

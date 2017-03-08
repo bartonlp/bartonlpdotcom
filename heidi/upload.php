@@ -1,24 +1,28 @@
 <?php
 // Upload files to Heidi
-$_site = require_once(getenv("HOME"). "siteload.php");
+$_site = require_once(getenv("SITELOAD"). "/siteload.php");
 ErrorClass::setDevelopment(true);
 $S = new $_site->className($_site);
 
 if(isset($_POST['submit'])) {
-  vardump($_FILES);
-  exit();
-  $uploaddir = '/var/www/bartonlp/heidi/uploads/';
-  $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
+  $file = $_FILES['userfile']['name'][0];
+  $uploadfile = "/var/www/bartonlp/heidi/uploads/$file";
+
+  if(move_uploaded_file($_FILES['userfile']['tmp_name'][0], $uploadfile)) {
+    $tmp = "File is valid, and was successfully uploaded ($file)";
+  } else {
+    $tmp = "Error<br>";
+  }
 
   $h->banner = "<h1>Upload</h1>";
   list($top, $footer) = $S->getPageTopBottom();
-  echo $top;
-  if(move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
-    echo "File is valid, and was successfully uploaded.<br>";
-  } else {
-    echo "Error<br>";
-  }
-  echo $footer;
+
+  echo <<<EOF
+$top
+<p>$tmp</p>
+$footer
+EOF;
+
   exit();
 }
 
