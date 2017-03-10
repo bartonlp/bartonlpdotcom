@@ -53,12 +53,21 @@ h3 {
   font-family: 'Jacques Francois Shadow', serif;
   margin-top: -2rem;
 }
-.mylinks {
+.mylinks, #adminstuff ul {
   font-size: 1rem;
   column-count: 4;
   column-gap: 2rem;
   column-rule: 3px solid black;
   line-height: 1.5rem;
+}
+#adminstuff ul {
+  font-family: 'Lora', serif;
+  list-style: none;
+  padding-left: 0;
+}
+#adminstuff h2 {
+  font-family: 'Rancho', serif;
+  margin-bottom: 3rem;
 }
 .mylinks p {
   margin: 0;
@@ -141,23 +150,7 @@ EOF;
 // If it's me add in the admin stuff
 
 if($S->isMe() || ($_GET['blp'] == "7098")) {
-  $adminStuff = <<<EOF
-<h3>Administration Links</h3>
-<div class='admin'>
-<p><a target="_blank" href="gitstatus.php">Git Status All</a></p>
-<p><a target="_blank" href="http://www.bartonlp.com/showmarkdown.php">Display <b>Markdown</b> files</a></p>
-<p><a target="_blank" href="http://bartonphillips.dyndns.org/weewx/">WEEWX home</a></p>
-<p><a target="_blank" href="http://bartonphillips.dyndns.org/apc.php">APC Status home</a></p>
-<p><a target="_blank" href="proxy.php?http://go.myphotochannel.com/">MyPhotoChannel 1and1</a> only a super user</p>
-<p><a target="_blank" href="http://www.mountainmessiah.com">Mountain Messiah</a></p>
-<p><a target="_blank" href="proxy.php?http://www.purwininsurance.com">Purwin Insurance</a></p>
-<p><a target="_blank" href="http://www.puppiesnmore.com">Puppies N More</a></p>
-<p><a target="_blank" href="http://www.grandlakerotary.org">Grand Lake Rotary</a></p>
-<p><a target="_blank" href="http://www.bartonlp.com/heidi/">Heidi's Home Page</a></p>
-<p><a target="_blank" href="http://www.allnaturalcleaningcompany.com">All Natural</a></p>
-<p><a target="_blank" href="proxy.php?http://www.swam.us">South West Aquatic Masters</a></p>
-</div>
-EOF;
+  $adminStuff = file_get_contents("/var/www/bartonlp/adminsites.txt");
 }
 
 // Do we have a cookie? If not offer to register
