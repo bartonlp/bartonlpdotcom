@@ -8,21 +8,15 @@
 // 2) the preview include 'updatesite-preview.i.php' which can be in the $nextfilename file.
 // Item 2 is not manditory and can either be ignored or replaced by your own function updatesite_preview(...)
 // I have a simpler version of the preview 'updatesite-simple-preview.i.php' that can be used instead
-/*
-$_site = require_once("/var/www/includes/siteautoload.class.php");
-$S = new $_site['className']($_site);
-//require_once("includes/updatesite-preview.i.php");
-//require_once("includes/updatesite-preview.new.i.php"); // new with data-uri and no ajax
-require_once(INCLUDES . "/updatesite-simple-preview.i.php"); // Simple preview logic!
-*/
 
 $_site = require_once(getenv("SITELOADNAME"));
 $S = new $_site->className($_site);
 
-$h->title = "Update Site For Granby Rotary";
-$h->banner = "<h1>Update Site For Granby Rotary</h1>";
+$h->title = "Update Site For $S->siteName";
+$h->banner = "<h1>Update Site For $S->siteName</h1>";
 $h->nofooter = true; // don't have UpdateSite.class display the footers as we will do it below.
-
+$h->link = '<link rel="stylesheet" href="http://bartonphillips.net/css/blp.css" title="blp default">';
+           
 // This is some enhanced logic that shows the changes at once. You can cut and past this into other site versions of
 // updatestie2.php!
 
@@ -69,15 +63,14 @@ EOF;
 
 // Load updatesite.class.php
 
-//require_once("includes/updatesite.class.php");
-
-$s->site = "granbyrotary.org";
+$s->site = "www.bartonlp.com/heidi";
 
 UpdateSite::secondHalf($S, $h, $s);
 
 // footer created in secondHalf()
 
 echo <<<EOF
-<a href='howtowritehtml.php'>How to write HTML</a>
+<a href='howtowritehtml.php'>How to write HTML</a><br>
+<a href='index.php'>Back To Home Page</a>
 $S->footer
 EOF;

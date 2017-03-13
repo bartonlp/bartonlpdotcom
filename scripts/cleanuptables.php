@@ -17,5 +17,3 @@ foreach($ar as $v) {
   echo "delete from $v\n";
   $S->query("delete from $db.$v where lasttime < current_date() - interval 60 day");
 }
-
-echo "Done\n";

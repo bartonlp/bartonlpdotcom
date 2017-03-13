@@ -2,16 +2,9 @@
 $_site = require_once(getenv("SITELOADNAME"));
 $S = new $_site->className($_site);
 
-$errorhdr = <<<EOF
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-<meta name="robots" content="noindex">
-</head>
-EOF;
-
-$h->title = "Update Site Admin for Heather";
-$h->banner = "<h1>Update Site Admin For Heather</h1>";
+$h->title = "Update Site Admin for $S->siteName";
+$h->banner = "<h1>Update Site Admin For $S->siteName</h1>";
+$h->link = '<link rel="stylesheet" href="http://bartonphillips.net/css/blp.css" title="blp default">';
 $s->site = "bartonlp.com/heather";
 
 if(!$_GET && !$_POST) {

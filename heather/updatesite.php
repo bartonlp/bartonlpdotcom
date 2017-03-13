@@ -25,9 +25,10 @@ $errorhdr = <<<EOF
 EOF;
 
 // Get site info
-$h->title = "Update Site For Heather";
-$h->banner = "<h1>Update Site For Heather</h1>";
+$h->title = "Update Site For $S->siteName";
+$h->banner = "<h1>Update Site For $S->siteName</h1>";
 $h->nofooter = true;
+$h->link = '<link rel="stylesheet" href="http://bartonphillips.net/css/blp.css" title="blp default">';
 $footer = $S->getFooter("<hr/>");
 
 // UpdateSite::firstHalf() and secondHalf() are static members.

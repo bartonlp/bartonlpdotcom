@@ -23,3 +23,5 @@ mysqldump --user=root --add-drop-table --password=bartonl411 barton >$dir/$filen
 
 gzip $dir/$filename
 
+echo "bkupdb.sh for bartonlp.com Done"
+
