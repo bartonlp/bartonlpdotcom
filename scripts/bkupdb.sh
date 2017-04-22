@@ -15,8 +15,8 @@ dir=bartonlp/other
 bkupdate=`date +%B-%d-%y`
 filename="BARTONLP_BACKUP.$bkupdate.sql"
 
-mysqldump --user=root --no-data --password=bartonl411 barton > $dir/bartonlp.schema
-mysqldump --user=root --add-drop-table --password=bartonl411 barton >$dir/$filename
+mysqldump --user=root --no-data --password=bartonl411 barton 2>/dev/null > $dir/bartonlp.schema
+mysqldump --user=root --add-drop-table --password=bartonl411 barton 2>/dev/null >$dir/$filename
 #the schema.pl program needs the keys and fourign keys to have a format
 #of xxxId and xxxId_fk. The granbyranch database does not have that yet!
 #schema.pl granbyrotary.schema > granbyrotary.ref

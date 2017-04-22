@@ -3,28 +3,28 @@
 # email.
 # update Sitemap.xml
 /var/www/bartonlp/scripts/updatesitemap.sh
-echo "*************************************************\n"
+echo "****************************"
 /var/www/bartonphillips.com/scripts/updatesitemap.sh
-echo "*************************************************\n"
+echo "****************************"
 /var/www/granbyrotary.org/scripts/updatesitemap.sh
-echo "*************************************************\n"
+echo "****************************"
 
 # Backup jobs 
 # Granby Rotary bkupdb.sh
 /var/www/bartonlp/scripts/bkupdb.sh
-echo "*************************************************\n"
+echo "****************************"
 /var/www/granbyrotary.org/scripts/bkupdb.sh
-echo "*************************************************\n"
+echo "****************************"
 /var/www/allnaturalcleaningcompany/scripts/bkupdb.sh
-echo "*************************************************\n"
+echo "****************************"
 /var/www/bartonphillips.com/scripts/bkupdb.sh
-echo "*************************************************\n"
+echo "****************************"
 
 /var/www/bartonlp/scripts/checktracker.php
-echo "*************************************************\n"
+echo "****************************"
 /var/www/bartonlp/scripts/cleanuptables.php
-echo "*************************************************\n"
+echo "****************************"
 /var/www/bartonlp/scripts/update-analysis.sh
-echo "*************************************************\n"
+echo "****************************"
 
 

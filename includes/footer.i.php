@@ -49,7 +49,7 @@ return <<<EOF
 </address>
 <address>
 Barton Phillips<br>
-828 Cayo Grande Ct., Newbury Park CA 91320<br>
+$this->address<br>
 <a href='mailto:bartonphillips@gmail.com'>
   bartonphillips@gmail.com
 </a>
