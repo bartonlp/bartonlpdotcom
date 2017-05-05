@@ -150,7 +150,10 @@ EOF;
 // If it's me add in the admin stuff
 
 if($S->isMe() || ($_GET['blp'] == "7098")) {
-  $adminStuff = file_get_contents("/var/www/bartonlp/adminsites.txt");
+  if($_GET['blp']) {
+    $blplogin = $_GET['blp'];
+  }
+  $adminStuff = require("/var/www/bartonlp/adminsites.php");
 }
 
 // Do we have a cookie? If not offer to register
