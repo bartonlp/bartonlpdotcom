@@ -25,6 +25,7 @@ if (isSet($_REQUEST["year"])) {
 ?>
 
 <form action="holidays.php" method="get">
+Enter Year:   
 <input type="text" name="year" value="<?php if (isSet($_REQUEST["year"])) echo $_REQUEST["year"]; ?>"/>
 <br/>
 <input type="radio" name="israeldiaspora" value="D"<?php if (isSet($_REQUEST["israeldiaspora"]) && $_REQUEST["israeldiaspora"] == "D") echo " checked"; ?>>Diaspora

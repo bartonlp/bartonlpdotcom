@@ -68,6 +68,26 @@ if($item !== fasle) {
 $h->banner = $BANNER;
 $h->css = $CSS;
 
+if(strpos($msg1, 'id="show"') !== false) {
+  $h->extra = <<<EOF
+  <script src="https://bartonphillips.net/js/random.js"></script>
+  <script src="https://bartonphillips.net/js/ximage.js"></script>
+  <script>dobanner("Pictures/Germany2010/*.JPG", "no");</script>
+EOF;
+  $h->css = <<<EOF
+$CSS
+  <style>
+#show {
+   width: 20rem;
+   margin: auto;
+}
+#show img {
+  width: 100%;
+}
+  </style>
+EOF;
+}
+
 list($top, $footer) = $S->getPageTopBottom($h);
 
 echo <<<EOF

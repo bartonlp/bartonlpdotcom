@@ -95,7 +95,7 @@ if($_POST['page'] == 'pagehide') {
   
   if(($js & ~(4127)) == 0) {
     //error_log("tracker: beforeunload,   $S->siteName, $id, $ip, $agent, $js");
-    $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timediff(now(),starttime), ".
+    $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timestampdiff(second, starttime, now()), ".
               "isJavaScript=isJavaScript|1024, lasttime=now() where id=$id");
     echo "pagehide OK";
   } else {
@@ -124,7 +124,7 @@ if($_POST['page'] == 'beforeunload') {
   
   if(($js & ~(4127)) == 0) {
     //error_log("tracker: beforeunload,   $S->siteName, $id, $ip, $agent, $js");
-    $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timediff(now(),starttime), ".
+    $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timestampdiff(second, starttime, now()), ".
               "isJavaScript=isJavaScript|256, lasttime=now() where id=$id");
     echo "beforeunload OK";
   } else {
@@ -153,7 +153,7 @@ if($_POST['page'] == 'unload') {
   
   if(($js & ~(4127)) == 0) {
     //error_log("tracker: unload,   $S->siteName, $id, $ip, $agent, $js");
-    $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timediff(now(),starttime), ".
+    $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timestampdiff(second, starttime, now()), ".
               "isJavaScript=isJavaScript|512, lasttime=now() where id=$id");
     echo "Unload OK";
   } else {
@@ -332,7 +332,7 @@ if($_POST['page'] == 'timer') {
 
   try {
     $sql = "update $S->masterdb.tracker set isJavaScript=isJavaScript|4096, endtime=now(), ".
-           "difftime=timediff(now(),starttime), lasttime=now() where id=$id";
+           "difftime=timestampdiff(second, starttime, now()), lasttime=now() where id=$id";
     
     $S->query($sql);
   } catch(Exception $e) {
