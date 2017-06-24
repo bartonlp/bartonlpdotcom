@@ -15,6 +15,7 @@ return <<<EOF
 <li><a target="_blank" href="http://www.bartonlp.com/heidi">Heidi's Page</a></li>
 <li><a target="_blank" href="http://www.bartonlp.com/heather">Heather's Page</a></li>
 <li><a target="_blank" href="http://go.myphotochannel.com/?debug=8653">MyPhotochannel</a></li>
+<li><a target="_blank" href="http://www.bartonphillips.com/il-courtyard">il-courtyard</a></li>
 </ul>
 </section>
 EOF;
