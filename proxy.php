@@ -1,5 +1,5 @@
 <?php
-// This is a proxy for the gitHub and others. If takes the query string and logs both counter2 and
+// This is a proxy for the gitHub and others. It takes the query string and logs both counter2 and
 // tracker info and then redirects to the query string.
 
 $_site = require_once(getenv("SITELOAD")."/siteload.php");
