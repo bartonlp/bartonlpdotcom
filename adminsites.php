@@ -16,6 +16,9 @@ return <<<EOF
 <li><a target="_blank" href="http://www.bartonlp.com/heather">Heather's Page</a></li>
 <li><a target="_blank" href="http://go.myphotochannel.com/?debug=8653">MyPhotochannel</a></li>
 <li><a target="_blank" href="http://www.bartonphillips.com/il-courtyard">il-courtyard</a></li>
+<li><a target="_blank" href="http://bartonlp.com/myphotochannel.com/slideshow/slideshow.php?debug=8653">Slide Show</a></li>
+<li><a target="_blank" href="http://bartonlp.com/myphotochannel.com/cpanel/cpanel.php?debug=8653">Control Panel</a></li>
+<li><a target="_blank" href="http://bartonlp.com/myphotochannel.com/currentVersion/index.php?debug=8653">MyPhotochannel Inx local</a></li>
 </ul>
 </section>
 EOF;
