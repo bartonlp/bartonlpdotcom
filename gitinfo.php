@@ -61,7 +61,7 @@ list($top, $footer) = $S->getPageTopBottom($h);
 
 $prefix = "/var/www";
 
-$sites = ['/applitec', '/bartonlp', '/bartonphillips', '/bartonphillipsnet', '/granbyrotary', '/messiah'];
+$sites = ['/applitec', '/bartonlp', '/bartonphillips.com', '/bartonphillips.org', '/bartonphillipsnet', '/granbyrotary.org', '/messiah'];
 
 $data = '';
 

@@ -4,11 +4,12 @@
 if($cmd = $_POST['page']) {
   $ret = '';
   
-  foreach(['/vendor/bartonlp/site-class', '/applitec', '/bartonlp', '/bartonphillips.com', '/bartonphillipsnet', '/granbyrotary.org', '/messiah'] as $site) {
+  foreach(['/vendor/bartonlp/site-class', '/applitec', '/bartonlp', '/bartonphillips.com', '/bartonphillipsnet', '/bartonphillips.org', '/granbyrotary.org', '/messiah'] as $site) {
     chdir("/var/www/$site");
-    //error_log("cmd: $cmd, site: $site");
     exec("git $cmd", $out);
     $out = implode("\n", $out);
+    //error_log("cmd: $cmd, site: $site, getchw: ".getcwd());
+    //error_log("out: $out");
     $ret .= <<<EOF
 <hr>
 <pre><b>$site</b>
@@ -21,7 +22,7 @@ EOF;
   exit();
 }
 
-$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$_site = require_once(getenv("SITELOADNAME"));
 $S = new $_site->className($_site);
 
 $h->script =<<<EOF

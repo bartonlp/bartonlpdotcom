@@ -1,66 +1,69 @@
 <?php
-$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$_site = require_once(getenv("SITELOADNAME"));
 $S = new $_site->className($_site);
 
+// Turn an ip address into a long. This is for the country lookup
+
 function Dot2LongIP($IPaddr) {
-  if($IPaddr == "") {
-    return 0;
+  if(strpos($IPaddr, ":") === false) {
+    if($IPaddr == "") {
+      return 0;
+    } else {
+      $ips = explode(".", "$IPaddr");
+      return ($ips[3] + $ips[2] * 256 + $ips[1] * 256 * 256 + $ips[0] * 256 * 256 * 256);
+    }
   } else {
-    $ips = explode(".", "$IPaddr");
-    return ($ips[3] + $ips[2] * 256 + $ips[1] * 256 * 256 + $ips[0] * 256 * 256 * 256);
+    $int = inet_pton($IPaddr);
+
+    $bits = 15;
+    $ipv6long = 0;
+
+    while($bits >= 0) {
+      $bin = sprintf("%08b", (ord($int[$bits])));
+      if($ipv6long){
+        $ipv6long = $bin . $ipv6long;
+      } else {
+        $ipv6long = $bin;
+      }
+      $bits--;
+    }
+    $ipv6long = gmp_strval(gmp_init($ipv6long, 2), 10);
+    return $ipv6long;
   }
 }
 
-// via file_get_contents('webstats-new.php?list=<iplist>
+// via file_get_contents('webstats.php?list=<iplist>
 // Given a list of ip addresses get a list of countries as $ar[$ip] = $name of country.
+// FOR THIS APP we only have a single item in the 'list' and this also uses a $_GET not a $_POST as
+// does the webstat-ajax.php.
 
 if($list = $_GET['list']) {
+  $S = new Database($_site);
+
   $list = json_decode($list);
   $ar = array();
 
   foreach($list as $ip) {
     $iplong = Dot2LongIP($ip);
-
-    $sql = "select countryLONG from $S->masterdb.ipcountry ".
+    if(strpos($ip, ":") === false) {
+      $table = "ipcountry";
+    } else {
+      $table = "ipcountry6";
+    }
+    $sql = "select countryLONG from $S->masterdb.$table ".
             "where '$iplong' between ipFROM and ipTO";
 
     $S->query($sql);
     
     list($name) = $S->fetchrow('num');
-    
+
+    //error_log("name: $name, iplong: $iplong");
     $ar[$ip] = $name;
   }
+  //error_log("ar: ".print_r($ar, true));
   echo json_encode($ar);
   exit();
 }
-
-/*
-$sql = "select distinct ip from $S->masterdb.tracker where starttime >= current_date()"; 
-
-$S->query($sql);
-$tkipar = array(); // tracker ip array
-
-while(list($tkip) = $S->fetchrow('num')) {
-  $tkipar[] = $tkip;
-}
-$tkipar = array_keys(array_flip($tkipar));
-
-$list = json_encode($tkipar);
-
-$options = array('http' => array(
-                                 'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                                 'method'  => 'POST',
-                                 'content' => http_build_query(array('list'=>$list))
-                                )
-                );
-
-$context  = stream_context_create($options);
-
-$ipc = file_get_contents("http://www.bartonlp.com/getcountryfromip.php", false, $context);
-foreach(json_decode($ipc) as $k=>$v) {
-  $ipcountry[$k] = $v;
-}
-*/
 
 $h->title = "get country from ip";
 $h->banner = "<h1>Get Country From IP</h1>";
@@ -86,11 +89,15 @@ EOF;
 list($top, $footer) = $S->getPageTopBottom($h);
 
 if($ip = $_POST['ip']) {
+  $ip = trim($ip, " \t\n\r\0\x0B_"); // strip the _. Have no idea where that comes from?
   $request = '["'. $ip . '"]';
   $ar = file_get_contents("http://www.bartonlp.com/getcountryfromip.php?list=$request");
+  //error_log("AR: $ar");
   $list = json_decode($ar);
+  //error_log("LIST: ".print_r($list, true));
+  
   $list = $list->$ip;
-
+  //error_log("list: $list");
   // Use ipinfo.io to get the country for the ip
   $cmd = "http://ipinfo.io/$ip";
   $ch = curl_init($cmd);
