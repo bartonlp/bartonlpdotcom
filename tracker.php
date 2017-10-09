@@ -214,14 +214,14 @@ if($_GET['page'] == 'script') {
   } catch(Exception $e) {
     error_log(print_r($e, true));
   }
-  $img1 = "http://bartonphillips.net/images/blank.png";
+  $img1 = "https://bartonphillips.net/images/blank.png";
 
   if($S->trackerImg1) {
-    $pos = strpos($S->trackerImg1, "http");
+    $pos = strpos($S->trackerImg1, "http"); // Look for http at start. It could be http: or https:
     if($pos !== false && $pos == 0) {
       $img1 = $S->trackerImg1;
     } else {
-      $img1 = "http://bartonphillips.net" . $S->trackerImg1;
+      $img1 = "https://bartonphillips.net" . $S->trackerImg1;
     }
   }
   //error_log($img1);
@@ -263,14 +263,14 @@ if($_GET['page'] == 'normal') {
   } catch(Exception $e) {
     error_log(print_r($e, true));
   }
-  $img2 = "http://bartonphillips.net/images/blank.png";
+  $img2 = "https://bartonphillips.net/images/blank.png";
 
   if($S->trackerImg2) {
     $pos = strpos($S->trackerImg2, "http");
     if($pos !== false && $pos == 0) {
       $img2 = $S->trackerImg2;
     } else {
-      $img2 = "http://bartonphillips.net" . $S->trackerImg2;
+      $img2 = "https://bartonphillips.net" . $S->trackerImg2;
     }
   }
   //error_log($img2);

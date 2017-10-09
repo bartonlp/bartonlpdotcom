@@ -8,7 +8,7 @@ return <<<EOF
 <!-- <li><a target="_blank" href="http://bartonphillips.dyndns.org/apc.php">UPS</a></li> -->
 <li><a target="_blank" href="gitinfo.php">GitInfo</a></li>
 <li><a target="_blank" href="gitstatus.php">GitStatusAll</a></li>
-<li><a target="_blank" href="http://www.bartonphillips.dyndns.org">Rpi</a></li>
+<li><a target="_blank" href="http://www.bartonphillips.dyndns.org:8080">Rpi</a></li>
 <!-- <li><a target="_blank" href="http://www.bartonphillips.dyndns.org:5080">Rpi2</a></li> -->
 <li><a target="_blank" href="http://www.bartonphillips.dyndns.org:4080">Hp-envy</a></li>
 <li><a target="_blank" href="http://www.applitec.com/glencabin">Glen's Cabin</a></li>
