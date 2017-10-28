@@ -67,14 +67,16 @@
 
 // The first three are npm modules
 var syslog = require('node-syslog'); // node-syslog: npm install node-syslog
+
 var WebSocketServer = require('websocket').server; // websocket: npm install websocket
+
 var dateformat = require('dateformat'); // dateformat: npm install dateformat
 
 var fs = require('fs'); // internal to nodejs
 var http = require('http'); // internal to nodejs
 
 // Output startup to syslog
-syslog.init("Websocket-server", syslog.LOG_PID | syslog.LOG_ODELAY, syslog.LOG_LOCAL0);
+syslog.init("Websocket-server"); //, syslog.LOG_PID | syslog.LOG_ODELAY, syslog.LOG_LOCAL0);
 syslog.log(syslog.LOG_INFO, "Websocket Started");
 
 // Logging function for websocket.log
@@ -85,11 +87,11 @@ var now = new Date; // get start date/time
 
 // Make sure we can read and write to the log file
 
-fs.appendFileSync("/var/www/mpc/websocket.log", "\n" + now + " Websocket Startup\n");
+fs.appendFileSync("/var/www/bartonlp/examples/websocket.log", "\n" + now + " Websocket Startup\n");
 // 1000=uid barton, 33=uid/gid www-data
-fs.chownSync("/var/www/mpc/websocket.log", 1000, 33);
+fs.chownSync("/var/www/bartonlp/examples/websocket.log", 1000, 33);
 // chmod u=rw g=rw o=r (user rw, group rw, other r)
-fs.chmodSync("/var/www/mpc/websocket.log", 0664);
+fs.chmodSync("/var/www/bartonlp/examples/websocket.log", 0664);
 
 // Log information to websocket.log, If mode === true then don't add the date
 
@@ -97,13 +99,13 @@ function logit(msg, mode) {
   if(mode !== true) {
     var now = dateformat();
     msg = now + ', ' + msg;
-  }
-  if(process.argv.length == 3 && process.argv[2] == 'stdout') {
+//  }
+//  if(process.argv.length == 3 && process.argv[2] == 'stdout') {
     console.log(msg);
-  } else {
-    fs.appendFile("/var/www/mpc/websocket.log", msg + "\n", function(err) {
-      if(err) throw err;
-    });
+//  } else {
+//    fs.appendFile("/var/www/bartonlp/examples/websocket.log", msg + "\n", function(err) {
+//      if(err) throw err;
+//    });
   }
 }
 
@@ -200,6 +202,9 @@ wsServer.on('request', function(request) {
       }
 
       switch(jmsg.event) {
+        case 'hello':
+          connection.sendUTF("Hello World");
+          break;
         case 'register':
           // Tell the sender that he is registered
 
@@ -359,11 +364,12 @@ wsServer.on('request', function(request) {
         c[i].inx = i;
       }
     }
-/*
-    for(var i=0; i < c.length; ++i) {
-      logit("c: "+i+", inx: "+c[i].inx+", prog: "+c[i].prog);
-    }
-*/    
+
+//    for(var i=0; i < c.length; ++i) {
+//      logit("c: "+i+", inx: "+c[i].inx+", prog: "+c[i].prog);
+//    }
+    
     logit("\n", true);
   });
 });
+

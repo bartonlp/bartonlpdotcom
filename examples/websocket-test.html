@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <title>WebSocket Test</title>
 <script language="javascript" type="text/javascript">
-  var wsUri = "ws://bartonlp.com:8080";
+  var wsUri = "ws://bartonlp.com:8080?BLP=8653";
   var output;
   function init() {
     output = document.getElementById("output");
@@ -12,7 +12,7 @@
   }
   
   function testWebSocket() {
-    websocket = new WebSocket(wsUri, 'echo-protocol');
+    websocket = new WebSocket(wsUri, 'slideshow');
     websocket.onopen = function(evt) {
       onOpen(evt)
     };
@@ -28,7 +28,8 @@
   }
   function onOpen(evt) {
     writeToScreen("CONNECTED");
-    doSend("WebSocket rocks");
+    var jmsg = JSON.stringify({event: 'hello', siteId: 'ALL', prog: 'Test'});
+    doSend(jmsg);
   }
   function onClose(evt) {
     writeToScreen("DISCONNECTED");

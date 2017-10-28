@@ -6,10 +6,13 @@ $S = new $_site->className($_site);
 
 // http_build_query($query_data, ...) takes an object or array. $_site is an array.
 
+$t->test = "test from example2";
+$t->siteName = "bartonlp.com";
+
 $options = array('http' => array(
                                  'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
                                  'method'  => 'POST',
-                                 'content' => http_build_query($_site)
+                                 'content' => http_build_query($t)
                                 )
                 );
 

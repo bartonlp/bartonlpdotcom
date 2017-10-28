@@ -13,6 +13,7 @@
 $_site = require_once(getenv("SITELOAD")."/siteload.php");
 $S = new Database($_site);
 
+// Database does not set $ip or $agent!
 $ip = $_SERVER['REMOTE_ADDR'];
 $agent = $_SERVER['HTTP_USER_AGENT'];
 
