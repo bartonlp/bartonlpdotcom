@@ -1,16 +1,10 @@
 <?php
-// BLP 2016-09-03 -- change ftp password to 7098653?
-// BLP 2016-05-06 -- use logagent and logagent2 instead of analysis and analysis2. Restrict the
-// number of entries to 30,000 of the latest entries.  
-// All sites have the same analysis.php as simlinks
-// BLP 2016-04-02 -- we should really have two tables. One that accumulates everything and one that
-// accumulates 60 days and after 60 days deletes the oldest. As it is now when I add an entry if
-// the ip agent is old the old entry is updated. With two tables I would only update entries within
-// 60 days and drop old entries.
+// BLP 2017-11-01 -- all-cron.sh runs update-analysis.sh
+// BLP 2016-09-03 -- change ftp password to '7098653?' note without single quotes
 
-$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$_site = require_once(getenv("SITELOADNAME"));
 
-// Ajax from CRON job /var/www/bartonlp/scrits/update-analysis.sh
+// Ajax from CRON job /var/www/bartonlp/scrits/update-analysis.sh which is run via all-cron.sh
 
 if($thisSite = $_GET['siteupdate']) {
   $S = new $_site->className($_site);
@@ -19,10 +13,10 @@ if($thisSite = $_GET['siteupdate']) {
   exit();
 }
 
-// Ajax from webstats-new.js
+// Ajax from webstats.js
 
 if($thisSite = $_GET['site']) {
-  $analysis = file_get_contents("http://bartonphillips.net/analysis/$thisSite-analysis.i.txt");
+  $analysis = file_get_contents("https://bartonphillips.net/analysis/$thisSite-analysis.i.txt");
 
   echo $analysis;
   exit();
@@ -43,11 +37,11 @@ if(isset($_POST['submit']) || !$S) {
 <!--[if gt IE 8]><!-->
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
 <!--<![endif]-->
-  <link rel="stylesheet" href="http://bartonphillips.net/css/tablesorter.css">
+  <link rel="stylesheet" href="https://bartonphillips.net/css/tablesorter.css">
 EOF;
 
   $h->extra = <<<EOF
-  <script src="http://bartonphillips.net/js/tablesorter/jquery.tablesorter.js"></script>
+  <script src="https://bartonphillips.net/js/tablesorter/jquery.tablesorter.js"></script>
   <script>
 jQuery(document).ready(function($) {
   $.tablesorter.addParser({
@@ -85,7 +79,7 @@ EOF;
 
   $site = empty($_POST['site']) ? 'ALL' : $_POST['site'];
 
-  $analysis = file_get_contents("http://bartonphillips.net/analysis/$site-analysis.i.txt");
+  $analysis = file_get_contents("https://bartonphillips.net/analysis/$site-analysis.i.txt");
 
   echo <<<EOF
 $top

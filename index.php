@@ -245,8 +245,8 @@ $adminStuff
 <div class='center'>
 <span itemscope itemtype="http://schema.org/Organization">
   <link itemprop="url" href="http://www.bartonlp.com">
-  <a itemprop="sameAs" href="http://www.facebook.com/bartonlp"><img width="200" src="images/facebook.png" alt="follow us on facebook"></a>
-  <a itemprop="sameAs" href="http://www.twitter.com/bartonlp"><img width="200" src="images/twitter3.png" alt="follow us on twitter"></a>
+  <a itemprop="sameAs" href="http://www.facebook.com/bartonlp"><img width="200" src="https://bartonphillips.net/images/facebook.png" alt="follow us on facebook"></a>
+  <a itemprop="sameAs" href="http://www.twitter.com/bartonlp"><img width="200" src="https://bartonphillips.net/images/twitter3.png" alt="follow us on twitter"></a>
 </span>
 </div>
 $footer

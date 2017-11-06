@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$_site = require_once(getenv("/var/www/vendor/bartonlp/site-class/includes/siteload.php");
 $S = new Database($_site);
 
 $db = $S->masterdb;
