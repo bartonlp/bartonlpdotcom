@@ -227,7 +227,7 @@ $hereMsg
 
 <h3>GitHub Projects</h3>
 <div class='mylinks'>
-  <p><a target="_blank" href="proxy.php?https://bartonlp.github.io/bartonphillips">Barton Phillips GitHub site</a></p>
+  <p><a target="_blank" href="proxy.php?https://bartonlp.github.io/bartonphillips.com">Barton Phillips GitHub site</a></p>
   <p><a target="_blank" href="proxy.php?https://bartonlp.github.io/site-class/">SiteClass on GitHub</a></p>
   <p><a target="_blank" href="proxy.php?https://bartonlp.github.io/updatesite/">UpdateSite Class on GitHub</a></p>
   <p><a target="_blank" href="proxy.php?https://bartonlp.github.io/rssfeed/">RssFeed Class on GitHub</a></p>
