@@ -19,6 +19,7 @@ echo "****************************"
 echo "****************************"
 /var/www/bartonphillips.com/scripts/bkupdb.sh
 echo "****************************"
+/var/www/bartonphillipsnet/scripts/bkupdb.sh
 
 /var/www/bartonlp/scripts/checktracker.php
 echo "****************************"
