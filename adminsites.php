@@ -16,6 +16,9 @@ return <<<EOF
 <li><a target="_blank" href="http://go.myphotochannel.com/?debug=8653">MyPhotochannel</a></li>
 <li><a target="_blank" href="http://www.bartonphillips.org/?debug=8653">MyPhotochannel Inx local</a></li>
 <li><a target="_blank" href="http://www.bartonphillips.com/il-courtyard">il-courtyard</a></li>
+<li><a target="_blank" href="http://www.bartonphillips.com/stockquotes.php">Stock Price</a></li>
+<li><a target="_blank" href="http://www.bartonphillips.com/stockaddedit.php">Add/Edit Stocks</a></li>
+<li><a target="_blank" href="http://www.bartonphillips.com/stockanal.php">Stock Analysis</a></li>
 
 </ul>
 </section>
