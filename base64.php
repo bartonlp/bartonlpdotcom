@@ -8,13 +8,14 @@ if($_POST) {
   vardump($_POST);
   if($data = $_POST['data']) {
     $result = base64_decode($data);
-    echo "$result";
+    echo "$result<br>";
   } elseif($file = $_POST['file']) {
     $data = file_get_contents($file);
-    $result = base64_decode($date);
-    echo "$result";
+    $result = base64_decode($data);
+    $result = escapeltgt($result);
+    echo "$result<br>\n";
   } else {
-    echo "Nothing to do";
+    echo "Nothing to do<br>\n";
   }
   exit();
 }

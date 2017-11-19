@@ -2,10 +2,11 @@
 // BLP 2014-04-29 -- Do various git functions
 
 if($cmd = $_POST['page']) {
-  chdir($_POST['site']);
+  $site = $_POST['site'];
+  chdir($site);
   $out = '';
   error_log("cmd: $cmd, site: $site");
-  exec("git $cmd", $out);
+  exec("git " . $cmd, $out);
   $out = implode("\n", $out);
   $out = preg_replace(array("/</", "/>/"), array("&lt;","&gt;"), $out);
   echo "<pre>$out</pre>";

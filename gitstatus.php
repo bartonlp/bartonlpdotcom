@@ -69,13 +69,11 @@ list($top, $footer) = $S->getPageTopBottom($h);
 
 echo <<<EOF
 $top
-
 <div>
 <button id='git'>Status</button>
 <div id='results'>
 </div>
 <hr>
 </div>
-
 $footer
 EOF;

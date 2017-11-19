@@ -19,6 +19,8 @@ return <<<EOF
 <li><a target="_blank" href="http://www.bartonphillips.com/stockquotes.php">Stock Price</a></li>
 <li><a target="_blank" href="http://www.bartonphillips.com/stockaddedit.php">Add/Edit Stocks</a></li>
 <li><a target="_blank" href="http://www.bartonphillips.com/stockanal.php">Stock Analysis</a></li>
+<li><a target="_blank" href="http://www.bartonphillips.com/stockreaddata.php">Read Stock Data</a></li>
+<li><a target="_blank" href="http://www.bartonlp.com/base64.php">Decode Base 64</a></li>
 
 </ul>
 </section>

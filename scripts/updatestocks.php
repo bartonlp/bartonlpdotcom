@@ -10,7 +10,7 @@ date_default_timezone_set("America/New_York");
 
 $prefix = "https://api.iextrading.com/1.0";
 
-$sql = "select stock, price, qty from stocks.stocks where status not in('watch','sold')";
+$sql = "select stock, price, qty from stocks.stocks where status != 'sold'";
 $S->query($sql);
 
 while(list($stock, $price, $qty) = $S->fetchrow('num')) {
@@ -61,6 +61,8 @@ foreach($ar as $k=>$v) {
   $S->query("insert into stocks.pricedata (date, stock, price) values('$date', '$st', '$price') ".
             "on duplicate key update price='$price'");
 }
+
+echo "updatestocks.php DONE\n";
 
 // Table format:
 /*

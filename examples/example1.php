@@ -15,7 +15,7 @@ if($data) {
 <p>This is beacon: </p>
 {$ar['test']}<br>
 EOF;
-    exit();
+//    exit();
   }
 
   echo <<<EOF
@@ -28,17 +28,21 @@ EOF;
 }
 
 if($_POST) {
-  $_site = $_POST;
+  $_site = $_POST['json'];
 }
 error_log("POST: " .print_r($_site, true));
+echo "_site: $_site<br>\n";
 
-$j = json_encode($_site);
+$j = json_decode($_site, true);
+
 echo <<<EOF
 <p>This is a test of POST:</p>
-{$_site['test']}<br>
-{$_site['siteName']}<br>
-json encoded Data -> $j
+{$j['test']}<br>
+{$j['siteName']}<br>
+json encoded Data -> $_site<br>
 EOF;
+echo "\n";
+
 
 
 
