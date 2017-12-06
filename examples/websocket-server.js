@@ -66,7 +66,7 @@
 */
 
 // The first three are npm modules
-var syslog = require('node-syslog'); // node-syslog: npm install node-syslog
+//var syslog = require('node-syslog'); // node-syslog: npm install node-syslog
 
 var WebSocketServer = require('websocket').server; // websocket: npm install websocket
 
@@ -76,8 +76,8 @@ var fs = require('fs'); // internal to nodejs
 var http = require('http'); // internal to nodejs
 
 // Output startup to syslog
-syslog.init("Websocket-server"); //, syslog.LOG_PID | syslog.LOG_ODELAY, syslog.LOG_LOCAL0);
-syslog.log(syslog.LOG_INFO, "Websocket Started");
+//syslog.init("Websocket-server", syslog.LOG_PID | syslog.LOG_ODELAY, syslog.LOG_LOCAL0);
+//syslog.log(syslog.LOG_INFO, "Websocket Started");
 
 // Logging function for websocket.log
 // Make sure that 1) websocket.log is owned by barton and group is
@@ -140,6 +140,7 @@ wsServer = new WebSocketServer({
 // Check the origin of the connection
 
 function originIsAllowed(origin, r) {
+  console.log("r:", r, origin)
   if(r.BLP == '8653') return true;
   // put logic here to detect whether the specified origin is allowed.
   return false;
@@ -169,6 +170,7 @@ wsServer.on('request', function(request) {
     var connection = request.accept('slideshow', request.origin);
   } catch(e) {
     logit("request.accept Error: "+ e);
+    var connection = request.accept('weather', request.origin);
     return false;
   }
   
@@ -185,7 +187,7 @@ wsServer.on('request', function(request) {
     // We got a message
 
     if(message.type === 'utf8') {
-      logit('Received Message: inx: '+ connection.inx + "\n\t" + message.utf8Data);
+      logit('Received Message: inx: '+ connection.inx + ", " + message.utf8Data);
       // message is a json object
       // jmsg keys: event, siteId, ...
       // event: register, fastcall, startup, startup-update, shutdown
