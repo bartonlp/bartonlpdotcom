@@ -30,22 +30,19 @@ function sendText(txt) {
       
       if(this.responseText.match(/ERROR|DONE/)) {
         var str = this.responseText;
-
-        // make an ArrayBuffer for the string.
-        var buf = new ArrayBuffer(str.length);
-        // now make a Uint8Array from buf
-        var bufView = new Uint8Array(buf);
-        // Fill the values from the string into the Uint8Array
-        for(var i=0, strLen=str.length; i < strLen; i++) {
-          bufView[i] = str.charCodeAt(i);
-        }
+        // Make a bufView using Uint8Array.from().
+        // This takes the string value and make a uint array of the
+        // ascii code values. It uses the new => operator to indicate a
+        // function(x) { return x.charCodeAt() }. This is a MAP that
+        // converts each value from the string into an code.
+        bufView = Uint8Array.from(str, x => x.charCodeAt());
         console.log("Error Worker bufView: ", bufView);
         // Post the Transfer buffer
         postMessage(bufView, [bufView.buffer]);
         return;
       }
       // If it isn't the two possible ascii text values then this is a
-      // JSON packet fo decode it.
+      // JSON packet so decode it.
       
       console.log("Worker response", this.responseText);
       var newtxt = JSON.parse(this.responseText, true);
@@ -65,14 +62,9 @@ function sendText(txt) {
       }
       // Now we do the same thing we did above to make the Transfer
       // buffer
-      var buf = new ArrayBuffer(rows.length);
-      var bufView = new Uint8Array(buf);
-      for(var i=0, strLen=rows.length; i < strLen; i++) {
-        bufView[i] = rows.charCodeAt(i);
-      }
+      bufView = Uint8Array.from(rows, x => x.charCodeAt());
       console.log("Worker bufView: ", bufView);
       postMessage(bufView, [bufView.buffer]);
-      //postMessage(rows);
     }
   };
 }

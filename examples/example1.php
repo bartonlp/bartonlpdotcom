@@ -3,13 +3,15 @@
 // Note that the php://input has a raw input string so we must take it apart with parse_str().
 // The $_POST has already had the raw string converted.
 // The test-php-input.php file sends two values: 'test' and 'siteName'.
+// ALSO goes with example2.php
 
 $data = file_get_contents("php://input");
 
 if($data) {
-  error_log("data: " .print_r($data, true));
+  //error_log("data: " .print_r($data, true));
+  // $data is a query like val=test&val2=test2
   parse_str($data, $ar);
-  error_log("data2: ".print_r($ar, true));
+  //error_log("data2: ".print_r($ar, true));
   if($ar['page'] == 'beacon') {
     echo <<<EOF
 <p>This is beacon: </p>
@@ -19,28 +21,37 @@ EOF;
   }
 
   echo <<<EOF
-<p>This is from the 'php://input':</p>
+<p>This is from the 'php://input':<br>
 Raw: $data<br>
 Parsed:<br>
-{$ar['test']}<br>
-{$ar['siteName']}<br>
+test: {$ar['test']}<br>
+siteName: {$ar['siteName']}<br>
+json: {$ar['json']}<br><br>
 EOF;
 }
+
+//error_log("POST: " . print_r($_POST, true));
 
 if($_POST) {
-  $_site = $_POST['json'];
+  $json = $_POST['json'];
+  $test = $_POST['test'];
+  $siteName = $_POST['siteName'];
+  echo <<<EOF
+<p>This is a test of POST:<br>
+test: $test<br>
+siteName: $siteName<br>
+json: $json<br><br>
+EOF;
 }
-error_log("POST: " .print_r($_site, true));
-echo "_site: $_site<br>\n";
 
-$j = json_decode($_site, true);
+$j = json_decode($json, true);
 
 echo <<<EOF
-<p>This is a test of POST:</p>
-{$j['test']}<br>
-{$j['siteName']}<br>
-json encoded Data -> $_site<br>
+json_decode of j:<br>
 EOF;
+foreach($j as $k=>$v) {
+  echo "$k: $v<br>";
+}
 echo "\n";
 
 

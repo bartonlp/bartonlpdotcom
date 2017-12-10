@@ -40,7 +40,7 @@ $lastmod = date("M j, Y H:i", getlastmod());
 
 return <<<EOF
 <footer>
-<h2><a target="_blank" href='aboutwebsite.php'>About This
+<h2><a target="_blank" href='../../aboutwebsite.php'>About This
    Site</a></h2>
 
 <div id="address">

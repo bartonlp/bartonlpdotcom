@@ -30,19 +30,14 @@ jQuery(document).ready(function($) {
     var string = String.fromCharCode.apply(null, evt.data)
     //var string = new TextDecoder("utf-8").decode(evt.data);
     console.log("Main string: ", string);
-    $("pre").append(string);
+    $("pre").html(string);
   });
 
   // now transfer array buffer
 
   const send = function(txt) {
-    //var uint8_array = new TextEncoder('utf-8').encode(JSON.stringify({sql: txt}));
-    //w1.postMessage(uint8_array, [uint8_array.buffer]);
-    var buf = new ArrayBuffer(txt.length);
-    var bufView = new Uint8Array(buf);
-    for(var i=0, strLen=txt.length; i < strLen; i++) {
-      bufView[i] = txt.charCodeAt(i);
-    }
+    // use a map to create ascii to int.
+    bufView = Uint8Array.from(txt, x => x.charCodeAt());
     console.log("Main bufView: ", bufView);
     w1.postMessage(bufView, [bufView.buffer]);
   }
@@ -94,7 +89,7 @@ That table has the following fields:</p>
 <li><i>lasttime</i> which is an automatic time stamp.</li>
 </ul>
 <p>You can do things like: <i>select * from test</i>, or
-<i>insert into test (name) value ('something")</i> or
+<i>insert into test (name) value ('something')</i> or
 <i>delete from test where id=10</i></p>
 <p>You can add only 20 records and then the earliest records are deleted.</p>
 <form>

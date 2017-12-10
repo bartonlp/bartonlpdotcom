@@ -17,11 +17,7 @@ return <<<EOF
   <link rel="stylesheet" href="https://bartonphillips.net/css/blp.css">
   {$arg['link']}
   <!-- jQuery -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
-  <script>
-var lastId = $this->LAST_ID;
-  </script>
-  <script src="https://bartonphillips.net/js/tracker.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
   <!-- Custom Scripts -->
 {$arg['extra']}
 {$arg['script']}

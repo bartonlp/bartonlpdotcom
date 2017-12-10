@@ -34,7 +34,7 @@ if(isset($_REQUEST['sql'])) {
       $nn = $cnt - 20;
       error_log("nn: $nn");
       if($cnt > 20) {
-        $n = $S->query("delete from test order by lasttime limit $nn");
+        $n = $S->query("delete from test order by id asc limit $nn");
         echo "DONE $n<br>";
         exit();
       }
