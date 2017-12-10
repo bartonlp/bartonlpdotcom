@@ -12,11 +12,11 @@ CREATE TABLE `detect` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 */
 
-$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$_site = require_once(getenv("SITELOADNAME"));
 $S = new $_site->className($_site);
 
 if($S->isBot) {
-  header("location: http://www.bartonphillips.com/weewx/index.php");
+  header("location: https://www.bartonphillips.com/weewx/index.php");
 }
 
 require_once("includes/Mobile_Detect.php");
@@ -63,8 +63,8 @@ class myDetect extends Mobile_Detect {
 
 // </endclass
 
-$ip = $_SERVER['REMOTE_ADDR'];
-$agent = $S->escape($_SERVER['HTTP_USER_AGENT']);
+$ip = $S->ip; //$_SERVER['REMOTE_ADDR'];
+$agent = $S->escape($S->agent); //$_SERVER['HTTP_USER_AGENT']);
 
 $query = "";
 
@@ -127,7 +127,8 @@ if($n) {
 // Is it Desktop or Mobile?
 
 if($desktop) {
-  header("location: http://www.bartonphillips.com/weewx/index.php");
+  header("location: https://www.bartonphillips.com/weewx/index.php");
 } else {
-  header("location: http://www.bartonphillips.com/weewx/smartphone/index.html");
+  header("location: https://www.bartonphillips.com/weewx/smartphone/index.html");
 }
+

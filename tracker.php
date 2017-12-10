@@ -10,7 +10,7 @@
 // bartonphillips/mysitemap.json not weewx/mysitemap.json. That is why the <img ...> has my picture
 // and not blank images.
 
-$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$_site = require_once(getenv("SITELOADNAME"));
 $S = new Database($_site);
 
 // Database does not set $ip or $agent!
@@ -166,9 +166,9 @@ if($_POST['page'] == 'unload') {
 
 // BLP 2016-11-27 -- Here is an example of the banner.i.php:
 // <header>
-//   <a href="http://www.bartonlp.com">
+//   <a href="https://www.bartonlp.com">
 //    <img id='logo' width="90" height="120"
-//       src="http://bartonphillips.net/images/blp-image.png" alt="barton"></a>
+//       src="https://bartonphillips.net/images/blp-image.png" alt="barton"></a>
 //   <a href="http://linuxcounter.net/">
 //     <img id='linuxcounter' width="190" height="110"
 //       src="/tracker.php?page=normal&id=$this->LAST_ID" alt="linux counter image.">
@@ -311,7 +311,7 @@ if($_GET['page'] == 'noscript') {
   } catch(Exception $e) {
     error_log(print_r($e, true));
   }
-  $img = file_get_contents("http://bartonphillips.net/images/blank.png");
+  $img = file_get_contents("https://bartonphillips.net/images/blank.png");
   header("Content-type: image/png");
   echo $img;
   exit();

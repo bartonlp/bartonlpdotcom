@@ -10,7 +10,7 @@ $S = new $_site->className($_site);
 // Special Fonts from google.
 
 $h->link = '<link rel="stylesheet" '.
-           'href="http://fonts.googleapis.com/css?family=Rancho'.
+           'href="https://fonts.googleapis.com/css?family=Rancho'.
            '|Lora:400,700,400italic,700italic'.
            '|Jacques+Francois+Shadow&effect=shadow-multiple">';
 
@@ -135,7 +135,7 @@ $h->banner = "<h1 class='center font-effect-shadow-multiple'>".
              "bartonlp.com</h1>".
              "<h2 class='center weather'>".
              "<a target='_blank' ".
-             "href='http://www.bartonlp.com/toweewx.php'>".
+             "href='https://www.bartonlp.com/toweewx.php'>".
              "My Home Weather Station</a></h2>";
 
 $ref = $_SERVER['HTTP_REFERER'];
@@ -214,16 +214,16 @@ $hereMsg
 </ul>
 <hr>
 <p>This page is dynamically generated using PHP on our expermental server at
-  <a target="_blank" href="http://www.digitalocean.com/">digitalocean.com</a>.
+  <a target="_blank" href="https://www.digitalocean.com/">digitalocean.com</a>.
 </p>
 </section>
 
 <section id="blog">
-<a target="_blank" href="proxy.php?http://myblog.bartonphillips.com">My BLOG with tips and tricks</a>.
+<a target="_blank" href="proxy.php?https://myblog.bartonphillips.com">My BLOG with tips and tricks</a>.
 </section>
 
 <section id="links">
-<h2><a href="http://www.bartonphillips.com">My Home Page (bartonphillips.com)</a></h2>
+<h2><a href="https://www.bartonphillips.com">My Home Page (bartonphillips.com)</a></h2>
 
 <h3>GitHub Projects</h3>
 <div class='mylinks'>
@@ -234,19 +234,19 @@ $hereMsg
 </div>
 <h3>About the Internet</h3>
 <div class='mylinks'>
-  <p><a target="_blank" href="proxy.php?http://www.bartonphillips.com/historyofinternet.php">The History and Timeline of the Internet</a></p>
-  <p><a target="_blank" href="proxy.php?http://www.bartonphillips.com/howtheinternetworks.php">How the Internet Works</a></p>
-  <p><a target="_blank" href="proxy.php?http://www.bartonphillips.com/howtowritehtml.php">Tutorial: How To Write HTML</a></p>
-  <p><a target="_blank" href="proxy.php?http://www.bartonphillips.com/buildawebsite.php">So You Want to Build a Website</a></p>
+  <p><a target="_blank" href="proxy.php?https://www.bartonphillips.com/historyofinternet.php">The History and Timeline of the Internet</a></p>
+  <p><a target="_blank" href="proxy.php?https://www.bartonphillips.com/howtheinternetworks.php">How the Internet Works</a></p>
+  <p><a target="_blank" href="proxy.php?https://www.bartonphillips.com/howtowritehtml.php">Tutorial: How To Write HTML</a></p>
+  <p><a target="_blank" href="proxy.php?https://www.bartonphillips.com/buildawebsite.php">So You Want to Build a Website</a></p>
 </div>
 $adminStuff
 </section>
 <hr>
 <div class='center'>
 <span itemscope itemtype="http://schema.org/Organization">
-  <link itemprop="url" href="http://www.bartonlp.com">
-  <a itemprop="sameAs" href="http://www.facebook.com/bartonlp"><img width="200" src="https://bartonphillips.net/images/facebook.png" alt="follow us on facebook"></a>
-  <a itemprop="sameAs" href="http://www.twitter.com/bartonlp"><img width="200" src="https://bartonphillips.net/images/twitter3.png" alt="follow us on twitter"></a>
+  <link itemprop="url" href="https://www.bartonlp.com">
+  <a itemprop="sameAs" href="https://www.facebook.com/bartonlp"><img width="200" src="https://bartonphillips.net/images/facebook.png" alt="follow us on facebook"></a>
+  <a itemprop="sameAs" href="https://www.twitter.com/bartonlp"><img width="200" src="https://bartonphillips.net/images/twitter3.png" alt="follow us on twitter"></a>
 </span>
 </div>
 $footer

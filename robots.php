@@ -3,7 +3,7 @@
 // This file reads the rotbots.txt file and outputs it and then gets the user agent string and
 // saves it in the bots table.
 
-$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$_site = require_once(getenv("SITELOADNAME"));
 
 $S = new Database($_site);
 
