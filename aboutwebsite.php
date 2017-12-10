@@ -9,7 +9,7 @@
 if(file_exists("vendor/autoload.php")) {
   require_once("vendor/autoload.php");
 }
-$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$_site = require_once(getenv("SITELOADNAME"));
 ErrorClass::setDevelopment(true);
 $S = new $_site->className($_site);
 
@@ -21,6 +21,10 @@ $webdomain = $S->siteDomain;
 if(($n = count(explode(".", $webdomain))) == 2) {
   $webdomain = "www." . $webdomain;
 }
+
+$prefix = $_SERVER['HTTPS'] == "on" ? 'https://' : 'http://';
+
+$webdomain = $prefix . $webdomain;
 
 $copyright = isset($S->copyright) ? $S->copyright : (isset($S->siteName) ? date("Y") . " " . $S->siteName :
              date("Y") . " " . get_class($S));
@@ -90,57 +94,57 @@ $top
 <div id="aboutWebSite">
 <div id="runWith">
   <p>This site's designer is Barton L. Phillips<br/>
-     at <a href="http://www.bartonphillips.com">www.bartonphillips.com</a><br>
+     at <a href="https://www.bartonphillips.com">www.bartonphillips.com</a><br>
      Copyright &copy; $copyright
   </p>
   
 	<p>This site is hosted by
-    <a href="http://www.digitalocean.com">
-		  <img	src="http://bartonphillips.net/images/aboutsite/digitalocean.jpg"
+    <a href="https://www.digitalocean.com">
+		  <img	src="https://bartonphillips.net/images/aboutsite/digitalocean.jpg"
 		    alt="DigitalOcean">
 		</a>
   </p>
   <p>This site is run with Linux, Apache, MySql, and PHP<br>
-    <img src="http://bartonphillips.net/images/aboutsite/linux-powered.gif"
+    <img src="https://bartonphillips.net/images/aboutsite/linux-powered.gif"
       alt="Linux Powered">
   </p>
 	<p>
-    <a href="http://www.apache.org/">
-    <img src="http://bartonphillips.net/images/aboutsite/apache_logo.gif"
+    <a href="https://www.apache.org/">
+    <img src="https://bartonphillips.net/images/aboutsite/apache_logo.gif"
       alt="Apache">
     </a>
   </p>
 	<p>
-    <a href="http://www.mysql.com">
-      <img src="http://bartonphillips.net/images/aboutsite/powered_by_mysql.gif"
+    <a href="https://www.mysql.com">
+      <img src="https://bartonphillips.net/images/aboutsite/powered_by_mysql.gif"
         alt="Powered by MySql">
     </a>
   </p>
 	<p>
-    <a href="http://www.php.net">
-      <img src="http://bartonphillips.net/images/aboutsite/php-small-white.png"
+    <a href="https://www.php.net">
+      <img src="https://bartonphillips.net/images/aboutsite/php-small-white.png"
         alt="PHP Powered">
     </a>
   </p>
   <p>
-    <a href="http://jquery.com/">
-      <img src="http://bartonphillips.net/images/aboutsite/logo_jquery_215x53.gif"
+    <a href="https://jquery.com/">
+      <img src="https://bartonphillips.net/images/aboutsite/logo_jquery_215x53.gif"
         alt="jQuery logo">
     </a>
   </p>
 <!--	<p>
-    <a href="http://www.mozilla.org">
-      <img src="http://bartonphillips.net/images/aboutsite/bestviewedwithmozillabig.gif"
+    <a href="https://www.mozilla.org">
+      <img src="https://bartonphillips.net/images/aboutsite/bestviewedwithmozillabig.gif"
         alt="Best viewed with Mozilla or any other browser">
     </a>
   </p> -->
 	<p>
-    <img src="http://bartonphillips.net/images/aboutsite/msfree.png"
+    <img src="https://bartonphillips.net/images/aboutsite/msfree.png"
       alt="100% Microsoft Free">
   </p>
 	<p>
-    <a href="http://www.netcraft.com/whats?url=$webdomain">
-	    <img src="http://bartonphillips.net/images/aboutsite/powered.gif"
+    <a href="https://toolbar.netcraft.com/site_report?url=$webdomain#history_table">
+	    <img src="https://bartonphillips.net/images/aboutsite/powered.gif"
         alt="Powered By ...?">
     </a>
 	</p>
