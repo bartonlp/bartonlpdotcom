@@ -9,7 +9,7 @@ html(lang='en')
     meta(name="Author" content=args.author)
     meta(name="description" content=args.desc)
     meta(name="keywords" content="Barton Phillips")
-    link(rel="stylesheet" href="http://bartonphillips.net/css/blp.css" title="blp default")
+    link(rel="stylesheet" href="https://bartonphillips.net/css/blp.css" title="blp default")
     link(href="https://fonts.googleapis.com/css?family=Tangerine|Jacques+Francois+Shadow|Lora|Rancho&effect=shadow-multiple" 
       rel="stylesheet")
     // Custom Scripts
@@ -78,9 +78,9 @@ html(lang='en')
 
     block stylesheets
 
-    script(src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js")
     script var lastId = #{args.id};
-    script(src='http://bartonphillips.net/js/tracker.js')
+    script(src='https://bartonphillips.net/js/tracker.js')
 
     script(type='application/ld+json').
       {
@@ -103,12 +103,12 @@ html(lang='en')
   body
     header
       a(href="/")
-        img(id='logo' src="http://bartonphillips.net/images/blp-image.png" width='90' height-'120' alt="Barton's Picture")
+        img(id='logo' src="https://bartonphillips.net/images/blp-image.png" width='90' height-'120' alt="Barton's Picture")
       a(href="http://linuxcounter.net/")
         img(id='linuxcounter' src="/tracker.php?page=normal&id=#{args.id}" alt="linux counter image.")
 
       h1.center.font-effect-shadow-multiple This site uses PHP and PUG
-      h1.center.tangerine bartonlp.org
+      h1.center.tangerine bartonlp.com
       noscript
         p(style='color: red; background-color: #FFE4E1; padding: 10px')
           img(src='/tracker.php?page=noscript&id=#{args.id}', alt='noscript')
@@ -120,9 +120,9 @@ html(lang='en')
 
       div.center
         h2
-          a(target='_blank' href='http://www.bartonlp.com/toweewx.php') My Home Weather Station
+          a(target='_blank' href='https://www.bartonlp.com/toweewx.php') My Home Weather Station
         h3
-          a(target="_blank" href="http://www.bartonphillips.com/aboutweewx.php") About My Weather Station
+          a(target="_blank" href="https://www.bartonphillips.com/aboutweewx.php") About My Weather Station
 
     block content
 
@@ -131,9 +131,9 @@ html(lang='en')
       block footer
 
       |Return to 
-      a.underline(href="http://www.bartonlp.org/") Home Page
+      a.underline(href="https://www.bartonlp.com/") Home Page
 
-      h2.center: a(href="http://www.bartonlp.org/aboutwebsite.php") About This Site
+      h2.center: a(href="https://www.bartonlp.com/aboutwebsite.php") About This Site
 
       #counter
         div #{args.msg}
