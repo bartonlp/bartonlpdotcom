@@ -56,8 +56,9 @@ $this->address<br>
 </address>
 </div>
 {$arg['msg']}
-{$arg['msg1']} 
-$counterWigget
+{$arg['msg1']}
+<!-- we are running footer with noTrack = true; -->
+<!-- $counterWigget -->
 {$arg['msg2']}
 <p>Last Modified: $lastmod</p>
 </footer>

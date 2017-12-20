@@ -13,6 +13,7 @@
  */
 
 class CIDR {
+  public static $DEBUG = 0;
   /**
 	* compare an IPv4 or IPv6 address with a CIDR address or range
 	*
@@ -20,7 +21,7 @@ class CIDR {
 	* @param  string  $subnet a valid IPv6 subnet[/mask]
 	* @return boolean	whether $address is within the ip range made up  of the subnet and mask
 	*/
-  public static function match($ip, $cidr){
+  public static function match($ip, $cidr) {
     // make sure we compare ip addresses as case insensitive
 		$ip = strtolower($ip);
 		$cidr = strtolower($cidr);
@@ -40,7 +41,6 @@ class CIDR {
       $ipVersion = 'v4';
       // shorten ip
 			$ip = preg_replace( '/^(.*\.|.*:)?0+([1-9])/','$1$2',$ip );
-      echo "ip: $ip<br>";
     } elseif(filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
       $ipVersion = 'v6';
 			// shorten ip
@@ -48,6 +48,8 @@ class CIDR {
 		} else {
       return false; // invalid ip
     }
+
+    if(self::$DEBUG) echo "version: $ipVersion, ip: $ip<br>";
 
 		// shorten cidr and subnet
 		if(strpos($subnet, ':') === false)	{
@@ -71,7 +73,7 @@ class CIDR {
 			}
 			
 			$subnet = self::IPv6_compress($subnet);
-			
+
 			if($pos !== false) {
 				$subnet = explode(':', $subnet);
 				$j = sizeof($subnet);
@@ -85,7 +87,9 @@ class CIDR {
 
 		// shortened cidr
 		$cidr = ($mask ? $subnet.'/'.$mask : $subnet);
-		
+
+    if(self::$DEBUG) echo "cidr: $cidr, subnet: $subnet<br>";
+
 		// if $cidr is ipv6, convert $ip to ipv6 for easier comparison
 		if(strpos($subnet,':') !== false && $ipVersion == 'v4') {
 			$v6bits = array('0000','0000','0000','0000','0000','0000',$ip);
@@ -101,6 +105,8 @@ class CIDR {
 			$ipVersion = 'v6';
 		}
 
+    //if(self::$DEBUG) echo "after compress: $ip<br>";
+    
 		if($ip == $cidr) {
 			return true;
 		}
@@ -115,14 +121,15 @@ class CIDR {
 			}
 		}
 
-		 switch($ipVersion) {
-       case 'v4':
-         return self::IPv4Match($ip, $subnet, $mask);
-         break;
-       case 'v6':
-         return self::IPv6Match($ip, $subnet, $mask);
-         break;
-     }
+    switch($ipVersion) {
+      case 'v4':
+        return self::IPv4Match($ip, $subnet, $mask);
+        break;
+      case 'v6':
+        if(self::$DEBUG) echo "before match, ip: $ip, subnet: $subnet<br>";
+        return self::IPv6Match($ip, $subnet, $mask);
+        break;
+    }
   }
 
   /**
@@ -134,11 +141,15 @@ class CIDR {
 	* @return boolean	whether $address is within the ip range made up  of the subnet and mask
 	*/
   private static function IPv6Match($ip, $subnet, $mask) {
+    if(self::$DEBUG) echo "in match, ip: $ip, subnet: $subnet, mask: $mask<br>";
+
     $subnet = inet_pton($subnet);
     $ip = inet_pton($ip);
 
     // thanks to MW on http://stackoverflow.com/questions/7951061/matching-ipv6-address-to-a-cidr-subnet
 		$binMask = str_repeat("f", $mask / 4);
+    if(self::$DEBUG) echo "binMask: $binMask<br>";
+    
     switch($mask % 4) {
       case 0:
         break;
@@ -152,8 +163,12 @@ class CIDR {
         $binMask .= "e";
         break;
     }
+    if(self::$DEBUG) echo "binMask: $binMask<br>";
+    
     $binMask = str_pad($binMask, 32, '0');
     $binMask = pack("H*", $binMask);
+    if(self::$DEBUG) echo "ip & binMask: ". inet_ntop(($ip & $binMask)) .", " .inet_ntop($subnet)."<br>";
+    
     return ($ip & $binMask) == $subnet;
   }
 
@@ -166,8 +181,18 @@ class CIDR {
 	* @return boolean	whether $address is within the ip rage made up  of the subnet and mask
 	*/
   private static function IPv4Match($address, $subnet, $mask) {
-    // credit goes to Sam on http://stackoverflow.com/questions/594112/matching-an-ip-to-a-cidr-mask-in-php5
-    if((ip2long($address) & ~((1 << (32 - $mask)) - 1)) == ip2long($subnet)) {
+    // credit goes to Sam on
+    // http://stackoverflow.com/questions/594112/matching-an-ip-to-a-cidr-mask-in-php5
+    $lsubnet = dechex(ip2long($subnet));
+    $laddress = dechex(ip2long($address));
+
+    $val = (ip2long($address)) & ~((1 << (32 - $mask)) - 1);
+    $lval = dechex($val);
+    if(self::$DEBUG) echo "mask: " . dechex(~((1 << (32 - $mask)) - 1)) . "<br>";
+    if(self::$DEBUG) echo "address: $address, subnet: $subnet, mask: $mask<br>";
+    if(self::$DEBUG) echo "lval: $lval, laddress: $laddress, lsubnet: $lsubnet<br>";
+
+    if($val == ip2long($subnet)) {
       return true;
     }
     return false;
