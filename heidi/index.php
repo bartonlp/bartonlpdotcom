@@ -72,7 +72,11 @@ if(strpos($msg1, 'id="show"') !== false) {
   $h->extra = <<<EOF
   <script src="https://bartonphillips.net/js/random.js"></script>
   <script src="https://bartonphillips.net/js/ximage.js"></script>
-  <script>dobanner("Pictures/Germany2010/*.JPG", "no");</script>
+  <!-- dobanner takes a path and an object. The object has 'size' the number of item to get,
+       'mode' either 'seq' for sequential or 'rand' or nothing for randomize,
+       'recursive' is 'yes' or 'no' or blank to do a glob on all directories under path.
+  -->
+  <script>dobanner("Pictures/Germany2010/*.JPG", {mode: 'rand'});</script>
 EOF;
   $h->css = <<<EOF
 $CSS

@@ -14,7 +14,7 @@ return <<<EOF
 <!-- <li><a target="_blank" href="http://www.bartonphillips.dyndns.org:5080">Rpi2</a></li> -->
 <li><a target="_blank" href="http://www.bartonphillips.dyndns.org:4080">Hp-envy</a></li>
 <li><a target="_blank" href="https://www.applitec.com/glencabin">Glen's Cabin</a></li>
-<li><a target="_blank" href="https://www.bartonlp.com/heidi">Heidi's Page</a></li>
+<li><a target="_blank" href="http://www.bartonlp.com/heidi">Heidi's Page</a></li>
 <li><a target="_blank" href="http://go.myphotochannel.com/?debug=8653">MyPhotochannel</a></li>
 <li><a target="_blank" href="http://www.bartonphillips.org/?debug=8653">MyPhotochannel Inx local</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/il-courtyard">il-courtyard</a></li>
@@ -22,6 +22,7 @@ return <<<EOF
 <li><a target="_blank" href="https://www.bartonphillips.com/stockaddedit.php">Add/Edit Stocks</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stockanal.php">Stock Analysis</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stockreaddata.php">Read Stock Data</a></li>
+<li><a target="_blank" href="https://www.bartonphillips.com/stock.getalpha.php">Read Raw Data</a></li>
 <li><a target="_blank" href="https://www.bartonlp.com/base64.php">Decode Base 64</a></li>
 
 </ul>

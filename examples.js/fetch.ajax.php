@@ -14,8 +14,12 @@ $S = new Database($_site);
 // it will be and then get $sql once we know that
 // the request has sql set (even if it is '').
 
-if(isset($_REQUEST['sql'])) {
-  $sql = $_REQUEST['sql'];
+$data = file_get_contents("PHP://input");
+error_log("data: ". print_r($data, true));
+error_log("post: ". print_r($_POST, true));
+
+if(isset($_POST['sql'])) {
+  $sql = $_POST['sql'];
   
   if(!$sql) {
     echo "ERROR: No sql statment<br>";
@@ -24,15 +28,17 @@ if(isset($_REQUEST['sql'])) {
 
   // We could be passed something is will not work
 
+  error_log("sql: $sql");
+
   try {
     $S->query($sql);
 
     if(preg_match("/insert/i", $sql)) {
       $S->query("select TABLE_ROWS from information_schema.TABLES where TABLE_NAME='test'");
       list($cnt) = $S->fetchrow('num');
-      error_log("worker.ajax.php, cnt: $cnt");
+      error_log("cnt: $cnt");
       $nn = $cnt - 20;
-      error_log("worker.ajax.php, nn: $nn");
+      error_log("nn: $nn");
       if($cnt > 20) {
         $n = $S->query("delete from test order by id asc limit $nn");
         echo "DONE $n<br>";
@@ -51,15 +57,15 @@ if(isset($_REQUEST['sql'])) {
     }
     
     if(!count($rows)) {
-      echo "ERROR: NO DATA<br>";
+      echo json_encode("ERROR: NO DATA");
       exit();
     }
-    error_log("worker.ajax.php, rows:" . print_r($rows, true));
+    error_log("rows:" . print_r($rows, true));
     
     echo json_encode($rows);
     exit();
   } catch(Exception $e) {
-    echo "ERROR: " . $e->getMessage() . "<br>";
+    echo json_encode("ERROR: " . $e->getMessage());
     exit();
   }
 }
