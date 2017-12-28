@@ -317,6 +317,42 @@ if($_GET['page'] == 'noscript') {
   exit();
 }
 
+// This tests if a css file was ever loaded. We look for 'csstest.css' in our .htaccess file and
+// then redirect it to 'tracker.php?csstest'
+
+if(isset($_GET['csstest'])) {
+  $id = $_GET['id'];
+
+  if(!$id) {
+    error_log("tracker: $S->siteName: CSSTEST NO ID, $ip, $agent");
+    exit();
+  }
+
+  error_log("tracker: csstest, $S->siteName, $id, $ip, $agent");
+
+  // For csstest we will set bit 0x4000
+  
+  try {
+    $sql = "select page, agent from $S->masterdb.tracker where id=$id";
+    $S->query($sql);
+    list($page, $orgagent) = $S->fetchrow('num');
+    if($agent != $orgagent) {
+      $sql = "insert into $S->masterdb.tracker (site, ip, page, agent, starttime, refid, isJavaScript, lasttime) ".
+             "values('$S->siteName', '$ip', '$page', '$agent', now(), '$id', 0x6010, now())";
+
+      $S->query($sql);
+    }
+
+    $sql = "update $S->masterdb.tracker set isJavaScript=isJavaScript|0x4010, lasttime=now() where id=$id";
+    $S->query($sql);
+  } catch(Exception $e) {
+    error_log(print_r($e, true));
+  }
+  echo null;
+  exit();
+}
+
+
 // TIMER. This runs while the page is up.
 
 if($_POST['page'] == 'timer') {  

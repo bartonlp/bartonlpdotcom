@@ -23,7 +23,6 @@ return <<<EOF
 <li><a target="_blank" href="https://www.bartonphillips.com/stockanal.php">Stock Analysis</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stockreaddata.php">Read Stock Data</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stock.getalpha.php">Read Raw Data</a></li>
-<li><a target="_blank" href="https://www.bartonlp.com/base64.php">Decode Base 64</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/examples/">bartonphillips.com/examples/</a></li>
 <li><a target="_blank" href="https://www.bartonlp.com/examples.js/">bartonlp.com/examples.js</a></li>
 </ul>
