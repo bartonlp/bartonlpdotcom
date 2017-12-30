@@ -15,8 +15,8 @@ $S = new Database($_site);
 // the request has sql set (even if it is '').
 
 $data = file_get_contents("PHP://input");
-error_log("data: ". print_r($data, true));
-error_log("post: ". print_r($_POST, true));
+//error_log("data: ". print_r($data, true));
+//error_log("post: ". print_r($_POST, true));
 
 if(isset($_POST['sql'])) {
   $sql = $_POST['sql'];
@@ -28,7 +28,7 @@ if(isset($_POST['sql'])) {
 
   // We could be passed something is will not work
 
-  error_log("sql: $sql");
+  //error_log("sql: $sql");
 
   try {
     $S->query($sql);
@@ -36,9 +36,9 @@ if(isset($_POST['sql'])) {
     if(preg_match("/insert/i", $sql)) {
       $S->query("select TABLE_ROWS from information_schema.TABLES where TABLE_NAME='test'");
       list($cnt) = $S->fetchrow('num');
-      error_log("cnt: $cnt");
+      //error_log("cnt: $cnt");
       $nn = $cnt - 20;
-      error_log("nn: $nn");
+      //error_log("nn: $nn");
       if($cnt > 20) {
         $n = $S->query("delete from test order by id asc limit $nn");
         echo "DONE $n<br>";
@@ -60,7 +60,7 @@ if(isset($_POST['sql'])) {
       echo json_encode("ERROR: NO DATA");
       exit();
     }
-    error_log("rows:" . print_r($rows, true));
+    //error_log("rows:" . print_r($rows, true));
     
     echo json_encode($rows);
     exit();

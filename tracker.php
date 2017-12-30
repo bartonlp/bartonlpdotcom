@@ -90,16 +90,18 @@ if($_POST['page'] == 'pagehide') {
   
   list($js) = $S->fetchrow('num');
 
-  // 4127 is 0x101F or 0x1000 timer, 0x10 noscript, 0xf start|load|script|normal
+  // 0x701f is 0x4000: csstest, 0x2000: robots, 0x101F: 0x1000 timer, 0x10 noscript,
+  // 0xf start|load|script|normal
   // So if js is zero after the &~ then we do not have a (32|64|128) beacon,
-  // or (256|512|1024) tracker:beforeunload/unload/pagehide. We should update.
+  // or (256|512) tracker:beforeunload/unload. We should update.
   
-  if(($js & ~(4127)) == 0) {
+  if(($js & ~(0x701f)) == 0) {
     //error_log("tracker: beforeunload,   $S->siteName, $id, $ip, $agent, $js");
     $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timestampdiff(second, starttime, now()), ".
               "isJavaScript=isJavaScript|1024, lasttime=now() where id=$id");
     echo "pagehide OK";
   } else {
+    echo "js: ".dechex($js)."\n";    
     echo "pagehide Not Done";
   }
   exit();
@@ -119,16 +121,18 @@ if($_POST['page'] == 'beforeunload') {
   
   list($js) = $S->fetchrow('num');
 
-  // 4127 is 0x101F or 0x1000 timer, 0x10 noscript, 0xf start|load|script|normal
+  // 0x701f is 0x4000: csstest, 0x2000: robots, 0x101F: 0x1000 timer, 0x10 noscript,
+  // 0xf start|load|script|normal
   // So if js is zero after the &~ then we do not have a (32|64|128) beacon,
   // or (256|512) tracker:beforeunload/unload. We should update.
   
-  if(($js & ~(4127)) == 0) {
+  if(($js & ~(0x701f)) == 0) {
     //error_log("tracker: beforeunload,   $S->siteName, $id, $ip, $agent, $js");
     $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timestampdiff(second, starttime, now()), ".
               "isJavaScript=isJavaScript|256, lasttime=now() where id=$id");
     echo "beforeunload OK";
   } else {
+    echo "js: ".dechex($js)."\n";
     echo "beforeunload Not Done";
   }
   exit();
@@ -148,21 +152,25 @@ if($_POST['page'] == 'unload') {
   
   list($js) = $S->fetchrow('num');
 
-  // 4127 is 0x101F: 0x1000 timer, 0x10 noscript, 0xf start|load|script|normal
+  // 0x701f is 0x4000: csstest, 0x2000: robots, 0x101F: 0x1000 timer, 0x10 noscript,
+  // 0xf start|load|script|normal
   // So if js is zero after the &~ then we do not have a (32|64|128) beacon,
   // or (256|512) tracker:beforeunload/unload. We should update.
   
-  if(($js & ~(4127)) == 0) {
+  if(($js & ~(0x701f)) == 0) {
     //error_log("tracker: unload,   $S->siteName, $id, $ip, $agent, $js");
     $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timestampdiff(second, starttime, now()), ".
               "isJavaScript=isJavaScript|512, lasttime=now() where id=$id");
     echo "Unload OK";
   } else {
+    echo "js: ".dechex($js)."\n";
     echo "Unload Not Done";
   }
   exit();
 }
 // END OF EXIT FUNCTIONS
+
+// START OF IMAGE FUNCTIONS
 
 // BLP 2016-11-27 -- Here is an example of the banner.i.php:
 // <header>
@@ -203,14 +211,17 @@ if($_GET['page'] == 'script') {
 
     list($page, $orgagent) = $S->fetchrow('num');
 
+    $or = 0x4;
+    
     if($agent != $orgagent) {
       $sql = "insert into $S->masterdb.tracker (site, ip, page, agent, starttime, refid, isJavaScript, lasttime) ".
              "values('$S->siteName', '$ip', '$page', '$agent', now(), '$id', 0x2004, now())";
 
       $S->query($sql);
+      $or = 0x2004;
     }
   
-    $sql = "update $S->masterdb.tracker set isJavaScript=isJavaScript|4, lasttime=now() where id=$id";
+    $sql = "update $S->masterdb.tracker set isJavaScript=isJavaScript|$or, lasttime=now() where id=$id";
     $S->query($sql);
   } catch(Exception $e) {
     error_log(print_r($e, true));
@@ -252,14 +263,18 @@ if($_GET['page'] == 'normal') {
     $sql = "select page, agent from $S->masterdb.tracker where id=$id";
     $S->query($sql);
     list($page, $orgagent) = $S->fetchrow('num');
+
+    $or = 0x8;
+    
     if($agent != $orgagent) {
       $sql = "insert into $S->masterdb.tracker (site, ip, page, agent, starttime, refid, isJavaScript, lasttime) ".
              "values('$S->siteName', '$ip', '$page', '$agent', now(), '$id', 0x2008, now())";
 
       $S->query($sql);
+      $or = 0x2008;
     }
 
-    $sql = "update $S->masterdb.tracker set isJavaScript=isJavaScript|8, lasttime=now() where id=$id";
+    $sql = "update $S->masterdb.tracker set isJavaScript=isJavaScript|$or, lasttime=now() where id=$id";
     $S->query($sql);
   } catch(Exception $e) {
     error_log(print_r($e, true));
@@ -299,14 +314,18 @@ if($_GET['page'] == 'noscript') {
     $sql = "select page, agent from $S->masterdb.tracker where id=$id";
     $S->query($sql);
     list($page, $orgagent) = $S->fetchrow('num');
+
+    $or = 0x10;
+    
     if($agent != $orgagent) {
       $sql = "insert into $S->masterdb.tracker (site, ip, page, agent, starttime, refid, isJavaScript, lasttime) ".
              "values('$S->siteName', '$ip', '$page', '$agent', now(), '$id', 0x2010, now())";
 
       $S->query($sql);
+      $or = 0x2010;
     }
 
-    $sql = "update $S->masterdb.tracker set isJavaScript=isJavaScript|0x10, lasttime=now() where id=$id";
+    $sql = "update $S->masterdb.tracker set isJavaScript=isJavaScript|$or, lasttime=now() where id=$id";
     $S->query($sql);
   } catch(Exception $e) {
     error_log(print_r($e, true));
@@ -316,6 +335,9 @@ if($_GET['page'] == 'noscript') {
   echo $img;
   exit();
 }
+// END IMAGE FUNCTIONS
+
+// BLP 2017-12-30 -- NEW
 
 // This tests if a css file was ever loaded. We look for 'csstest.css' in our .htaccess file and
 // then redirect it to 'tracker.php?csstest'
@@ -328,7 +350,7 @@ if(isset($_GET['csstest'])) {
     exit();
   }
 
-  error_log("tracker: csstest, $S->siteName, $id, $ip, $agent");
+  //error_log("tracker: csstest, $S->siteName, $id, $ip, $agent");
 
   // For csstest we will set bit 0x4000
   
@@ -336,14 +358,18 @@ if(isset($_GET['csstest'])) {
     $sql = "select page, agent from $S->masterdb.tracker where id=$id";
     $S->query($sql);
     list($page, $orgagent) = $S->fetchrow('num');
+
+    $or = 0x4000;
+    
     if($agent != $orgagent) {
       $sql = "insert into $S->masterdb.tracker (site, ip, page, agent, starttime, refid, isJavaScript, lasttime) ".
-             "values('$S->siteName', '$ip', '$page', '$agent', now(), '$id', 0x6010, now())";
+             "values('$S->siteName', '$ip', '$page', '$agent', now(), '$id', 0x6000, now())";
 
       $S->query($sql);
+      $or = 0x6000;
     }
 
-    $sql = "update $S->masterdb.tracker set isJavaScript=isJavaScript|0x4010, lasttime=now() where id=$id";
+    $sql = "update $S->masterdb.tracker set isJavaScript=isJavaScript|$or, lasttime=now() where id=$id";
     $S->query($sql);
   } catch(Exception $e) {
     error_log(print_r($e, true));
@@ -351,7 +377,6 @@ if(isset($_GET['csstest'])) {
   echo null;
   exit();
 }
-
 
 // TIMER. This runs while the page is up.
 

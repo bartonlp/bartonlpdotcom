@@ -30,9 +30,9 @@ if(isset($_REQUEST['sql'])) {
     if(preg_match("/insert/i", $sql)) {
       $S->query("select TABLE_ROWS from information_schema.TABLES where TABLE_NAME='test'");
       list($cnt) = $S->fetchrow('num');
-      error_log("worker.ajax.php, cnt: $cnt");
+      //error_log("worker.ajax.php, cnt: $cnt");
       $nn = $cnt - 20;
-      error_log("worker.ajax.php, nn: $nn");
+      //error_log("worker.ajax.php, nn: $nn");
       if($cnt > 20) {
         $n = $S->query("delete from test order by id asc limit $nn");
         echo "DONE $n<br>";
@@ -54,7 +54,7 @@ if(isset($_REQUEST['sql'])) {
       echo "ERROR: NO DATA<br>";
       exit();
     }
-    error_log("worker.ajax.php, rows:" . print_r($rows, true));
+    //error_log("worker.ajax.php, rows:" . print_r($rows, true));
     
     echo json_encode($rows);
     exit();
