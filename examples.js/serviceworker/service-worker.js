@@ -40,6 +40,7 @@ self.addEventListener('install', function(event) {
   var urlsToPrefetch = [
     'pre_fetched.txt',
     'pre_fetched.html',
+    'fetch2.html',                    
     // This is an image that will be used in pre_fetched.html
     'https://www.chromium.org/_/rsrc/1302286216006/config/customLogo.gif'
   ];

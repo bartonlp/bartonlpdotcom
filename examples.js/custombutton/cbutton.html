@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+class PlasticButton extends HTMLButtonElement {
+  constructor() {
+    super();
+
+    this.addEventListener("click", () => {
+      console.log("clicked");
+    });
+  }
+}
+customElements.define("plastic-button", PlasticButton, { extends: "button" });
+</script>
+</head>
+<body>
+<button is="plastic-button">Click Me!</button>
+</body>
+</html>

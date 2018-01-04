@@ -6,10 +6,15 @@ use Pug\Pug;
 
 $pug = new Pug();
 
-if($_POST) {
-  $file = $_POST['filename'];
-  $type = $_POST['type'];
-  
+if($_POST || ($get = $_GET['filename'])) {
+  if($get) {
+    $file = $get;
+    $type = "GitHub";
+  } else {
+    $file = $_POST['filename'];
+    $type = $_POST['type'];
+  }
+
   switch($type) {
     case "GitHub":
       $parser = new \cebe\markdown\GithubMarkdown();
@@ -67,7 +72,7 @@ EOF;
   }
 
   if($parser != "RAW") {
-    $output = $header . $parser->parse($output) . "</body></html>";
+    $output = $header . $parser->parse($output) . "</body>\n</html>";
   }
 } else {
   // Render the start page.
