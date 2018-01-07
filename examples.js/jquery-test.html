@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test jQuery</title>
+<!--  <script src="https://code.jquery.com/jquery-3.2.1.js"
+    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script> -->
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script> 
+  <script src="jquery-migrate-3.0.0.min.js"></script>
+  
+  <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script> -->
+
+  <script>
+    jQuery.migrateMute = false;
+    jQuery.migrateTrace = false;
+    jQuery(document).ready(function($) {
+      $.ajax({
+        url: 'fetch.ajax.php',
+        data: {sql: "select * from test"},
+        type: 'post',
+        //success: function(data) {
+          //console.log("data:", data);
+        //},
+        error: function(err) {
+          console.log("err:", err);
+        }
+      }).success(console.log("test")).complete(console.log("done"));
+    });
+  </script>
+  
+</head>
+<body>
+</body>
+</html>
+

@@ -3,6 +3,7 @@
 // BLP 2016-09-03 -- change ftp password to '7098653?' note without single quotes
 
 $_site = require_once(getenv("SITELOADNAME"));
+ErrorClass::setDevelopment(true);
 
 // Ajax from CRON job /var/www/bartonlp/scrits/update-analysis.sh which is run via all-cron.sh
 
@@ -101,8 +102,9 @@ function maketable($sql, $S) {
   $n = $S->query($sql);
 
   $pat1 = "~https?://|python|java|wget|nutch|perl|libwww|lwp-trivial|curl|php/|urllib|".
-         "gt::www|snoopy|mfc_tear_sample|http::lite|phpcrawl|uri::fetch|zend_http_client|".
-         "http client|pecl::http|blackberry|windows|android|ipad|iphone|darwin|macintosh|x11|linux|bsd|cros|msie~i";
+          "gt::www|snoopy|mfc_tear_sample|http::lite|phpcrawl|uri::fetch|zend_http_client|".
+          "http client|pecl::http|blackberry|windows|android|ipad|iphone|darwin|macintosh|".
+          "x11|linux|bsd|cros|msie~i";
 
   while(list($agent, $count) = $S->fetchrow('num')) {
     if(preg_match_all($pat1, $agent, $m)) {
@@ -146,9 +148,9 @@ function maketable($sql, $S) {
     // Now browsers
 
     $pat2 = "~https?://|python|java|wget|nutch|perl|libwww|lwp-trivial|curl|php/|urllib|".
-           "gt::www|snoopy|mfc_tear_sample|http::lite|phpcrawl|uri::fetch|zend_http_client|".
-           "http client|pecl::http|".
-           "firefox|chrome|safari|trident|msie| edge/|opera|konqueror~i";
+            "gt::www|snoopy|mfc_tear_sample|http::lite|phpcrawl|uri::fetch|zend_http_client|".
+            "http client|pecl::http|".
+            "firefox|chrome|safari|trident|msie| edge/|opera|konqueror~i";
 
     if(preg_match_all($pat2, $agent, $m)) {
       $mm = array_map('strtolower', $m[0]);
@@ -205,34 +207,36 @@ function getAnalysis($S, $site='ALL') {
   $ips = '';
   
   while(list($myip) = $S->fetchrow('num')) {
-    $ips .= "$myip,";
+    $ips .= "'$myip',"; // the ips must be surrounded by '..'
   }
   $ips = rtrim($ips, ',');
-  
+
   $where1 = $for = '';
 
   if($site && $site != 'ALL') {
     $where1 = " and site='$site'";
     $for = " for $site";
   }
-
-  $S->query("select created from $S->masterdb.logagent where ip not in ('$ips')$where1 order by created limit 1");
+  
+  $S->query("select created from $S->masterdb.logagent ".
+            "where ip not in ($ips)$where1 order by created limit 1");
 
   list($startDate) = $S->fetchrow('num');
 
-  $sql = "select agent, count from $S->masterdb.logagent where ip not in('$ips')$where1";
+  $sql = "select agent, count from $S->masterdb.logagent where ip not in($ips)$where1";
   
   list($totals, $counts, $n[0]) = maketable($sql, $S);
   
   $days = 60;
 
   $S->query("select created from $S->masterdb.logagent2 ".
-            "where created >= current_date() - interval $days day and ip not in ('$ips')$where1 order by created limit 1");
+            "where created >= current_date() - interval $days day ".
+            "and ip not in ($ips)$where1 order by created limit 1");
   
   list($sinceDate) = $S->fetchrow('num');
 
   $sql = "select agent, count from $S->masterdb.logagent2 ".
-         "where created >= current_date() - interval $days day and ip not in ('$ips')$where1";
+         "where created >= current_date() - interval $days day and ip not in ($ips)$where1";
 
   list($totals2, $counts2, $n[1]) = maketable($sql, $S);
   

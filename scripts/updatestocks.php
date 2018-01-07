@@ -10,14 +10,20 @@ date_default_timezone_set("America/New_York");
 
 $prefix = "https://api.iextrading.com/1.0";
 
-$sql = "select stock, price, qty from stocks.stocks where status != 'sold'";
+$sql = "select stock, price, qty, status from stocks.stocks where status != 'sold'";
 $S->query($sql);
 
-while(list($stock, $price, $qty) = $S->fetchrow('num')) {
-  $stocks[$stock] = [$price, $qty];
+while(list($stock, $price, $qty, $status) = $S->fetchrow('num')) {
+  $stocks[$status][$stock] = [$price, $qty];
 }
 
-$str = "$prefix/stock/market/batch?symbols=" . implode(',', array_keys($stocks)) . "&types=quote";
+$mutual = $stocks['mutual'];
+$active = $stocks['active'];
+$watch = $stocks['watch'];
+
+$active += $watch;
+
+$str = "$prefix/stock/market/batch?symbols=" . implode(',', array_keys($active)) . "&types=quote";
 
 $h = curl_init();
 curl_setopt($h, CURLOPT_URL, $str);
@@ -28,29 +34,34 @@ curl_setopt($h, CURLOPT_RETURNTRANSFER, true);
 $ret = curl_exec($h);
 $ar = json_decode($ret);
 
-// Now we get the DJI for the day.
-$alp = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=DJI&apikey=$alphakey";
-curl_setopt($h, CURLOPT_URL, $alp);
-$alpha = curl_exec($h);
+$aa = array_keys($mutual);
+$aa[] = 'DJI';
 
-$alpha = json_decode($alpha, true); // decode as an array
+foreach($aa as $k) {
+  $k = preg_replace("/-BLP/", '', $k);
+  $alp = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=$k&apikey=$alphakey";
 
-$name = $alpha["Meta Data"]["2. Symbol"];
-foreach($alpha["Time Series (Daily)"] as $k=>$v) {
-  //vardump($k, $v);
-  $djidate = $k;
-  $djiclose = $v["4. close"]; // The 'close' price is also the 'last' price during the day.
-  break;
+  curl_setopt($h, CURLOPT_URL, $alp);
+  $alpha = curl_exec($h);
+
+  $alpha = json_decode($alpha, true); // decode as an array
+
+  //$name = $alpha["Meta Data"]["2. Symbol"];
+  
+  foreach($alpha["Time Series (Daily)"] as $date=>$v) {
+    $close = $v["4. close"]; // The 'close' price is also the 'last' price during the day.
+    break;
+  }
+
+  $price = round($close, 2);
+
+  $S->query("insert into stocks.pricedata (date, stock, price) values('$date', '$k', '$price') ".
+            "on duplicate key update price='$price'");
 }
-$price = round($djiclose, 2);
-
-$S->query("insert into stocks.pricedata (date, stock, price) values('$djidate', 'DJI', '$price') ".
-          "on duplicate key update price='$price'");
 
 $quotes = '';
 
 foreach($ar as $k=>$v) {
-  //vardump($qt);
   $qt = $v->quote;
   $st = $qt->symbol;
   if($st == "RDS.A") $st = "RDS-A";

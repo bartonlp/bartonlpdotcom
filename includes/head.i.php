@@ -19,8 +19,11 @@ return <<<EOF
   <link rel="stylesheet" href="/csstest.css?id=$this->LAST_ID" title="blp test">
 
   {$arg['link']}
-  <!-- jQuery -->
+  <!-- jQuery 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+
   <script>
 var lastId = $this->LAST_ID;
   </script>

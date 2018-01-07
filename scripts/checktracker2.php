@@ -1,10 +1,11 @@
 #!/usr/bin/php
 <?php
-echo "checktracker.php\n";
+// This script looks at the 'tracker' table and adds any isJavaScript==0 entries to 'bots' and
+// 'bots2'. It looks for the max value of lasttime and then colects 'tracker' entries gt that max
+// value.
+
 $_site = require_once("/var/www/vendor/bartonlp/site-class/includes/siteload.php");
-
 $S = new Database($_site);
-
 $db = $S->masterdb;
 
 foreach($S->myUri as $v) {
@@ -23,8 +24,7 @@ $sql = "select max(lasttime) from $db.bots ".
 $S->query($sql);
 list($last) = $S->fetchrow('num');
 //$last = "2018-01-02";
-$date = date("Y-m-d H:i:s");
-echo "Last:    $last\nCurrent: $date\n";
+//echo "Last: $last\n";
 
 if(empty($last)) {
   exit();
@@ -33,13 +33,13 @@ if(empty($last)) {
 $sql = "select ip, agent, site, lasttime " .
        "from $db.tracker ".
        "where ip not in ($myIps) and isJavaScript = 0 ".
-       "and lasttime > '$last' order by ip";
+       "and lasttime >= '$last' order by ip";
 
 //echo "sql: $sql\n";
 
 if($S->query($sql) == 0) {
-  echo "NO RECORDS FOUND\n";
-  echo "DONE\n";
+  //echo "NO RECORDS FOUND\n";
+  //echo "DONE\n";
   exit();
 }
 
@@ -93,6 +93,5 @@ while(list($ip, $agent, $site, $lasttime) = $S->fetchrow($r, 'num')) {
     $S->query($sql);
   }
 }
-  
-echo "DONE\n";
-
+$date = date("Y-m-d H:i:s");
+echo "DONE, L: $last, C: $date\n";

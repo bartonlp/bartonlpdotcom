@@ -7,7 +7,7 @@ if($_POST) {
   vardump("\$_POST", $_POST);
   if($data = $_POST['data']) {
     $result = base64_decode($data);
-    echo "$result<br>";
+    echo escapeltgt($result). "<br>";
   } elseif($file = $_POST['file']) {
     $data = file_get_contents($file);
     $result = base64_decode($data);
