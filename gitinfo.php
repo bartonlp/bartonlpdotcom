@@ -5,7 +5,7 @@ if($cmd = $_POST['page']) {
   $site = $_POST['site'];
   chdir($site);
   $out = '';
-  error_log("cmd: $cmd, site: $site");
+  //error_log("cmd: $cmd, site: $site");
   exec("git " . $cmd, $out);
   $out = implode("\n", $out);
   $out = preg_replace(array("/</", "/>/"), array("&lt;","&gt;"), $out);

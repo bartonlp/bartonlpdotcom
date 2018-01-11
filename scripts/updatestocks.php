@@ -1,5 +1,6 @@
 #! /usr/bin/php
 <?php
+// do an update via CRON of the pricedata table.
 $_site = require_once("/var/www/vendor/bartonlp/site-class/includes/siteload.php");
 ErrorClass::setDevelopment(true);
 $S = new Database($_site);
@@ -10,18 +11,21 @@ date_default_timezone_set("America/New_York");
 
 $prefix = "https://api.iextrading.com/1.0";
 
-$sql = "select stock, price, qty, status from stocks.stocks where status != 'sold'";
+$sql = "select stock, price, qty, status from stocks.stocks";
 $S->query($sql);
 
 while(list($stock, $price, $qty, $status) = $S->fetchrow('num')) {
+  $stock = ($stock == "RDS-A") ? "RDS.A" : $stock;
+  $stock = preg_replace("/-BLP/", '', $stock);
   $stocks[$status][$stock] = [$price, $qty];
 }
 
 $mutual = $stocks['mutual'];
 $active = $stocks['active'];
 $watch = $stocks['watch'];
+$sold = $stocks['sold']; // We will track sold now
 
-$active += $watch;
+$active += $watch + $sold; // add it to $active, $watch and $sold
 
 $str = "$prefix/stock/market/batch?symbols=" . implode(',', array_keys($active)) . "&types=quote";
 
@@ -32,13 +36,30 @@ curl_setopt($h, CURLOPT_RETURNTRANSFER, true);
 
 // We get the stocks from the array above  
 $ret = curl_exec($h);
-$ar = json_decode($ret);
+$ar = json_decode($ret, true); // Make it an array for starts
 
-$aa = array_keys($mutual);
-$aa[] = 'DJI';
+// Look for items that are not in the returned array from iex. These should go into the array for
+// Alpha.
+
+$odd = [];
+foreach(array_keys($active) as $k) {
+  if(!$ar[$k]) {
+    $odd[] = $k;
+  }
+}
+
+$aa = array_keys($mutual); // Get the mutual funds because they are not in iex
+// Now add the things from $odd that we didn't find in the results from iex
+
+foreach($odd as $v) {
+  $aa[] = $v;
+}
+
+$ar = json_decode($ret); // Now get $ar as an object
+
+// loop thought the $aa array of mutual funds and $odd and do Alpha
 
 foreach($aa as $k) {
-  $k = preg_replace("/-BLP/", '', $k);
   $alp = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=$k&apikey=$alphakey";
 
   curl_setopt($h, CURLOPT_URL, $alp);
@@ -58,6 +79,8 @@ foreach($aa as $k) {
   $S->query("insert into stocks.pricedata (date, stock, price) values('$date', '$k', '$price') ".
             "on duplicate key update price='$price'");
 }
+
+// Now loop through the object from iex
 
 $quotes = '';
 

@@ -21,6 +21,7 @@ return <<<EOF
 <li><a target="_blank" href="https://www.bartonphillips.com/stockquotes.php">Stock Price</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stockaddedit.php">Add/Edit Stocks</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stockanal.php">Stock Analysis</a></li>
+<li><a target="_blank" href="https://www.bartonphillips.com/stockdiv.php">Stock Dividents</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stockreaddata.php">Read Stock Data</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stock.getalpha.php">Read Raw Data</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/examples/">bartonphillips.com/examples/</a></li>
