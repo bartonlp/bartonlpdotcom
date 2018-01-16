@@ -15,6 +15,7 @@ $sql = "select stock, price, qty, status from stocks.stocks";
 $S->query($sql);
 
 while(list($stock, $price, $qty, $status) = $S->fetchrow('num')) {
+  // NOTE Alpha needs RDS-A while iex wants RDS.A
   $stock = ($stock == "RDS-A") ? "RDS.A" : $stock;
   $stock = preg_replace("/-BLP/", '', $stock);
   $stocks[$status][$stock] = [$price, $qty];
@@ -38,22 +39,12 @@ curl_setopt($h, CURLOPT_RETURNTRANSFER, true);
 $ret = curl_exec($h);
 $ar = json_decode($ret, true); // Make it an array for starts
 
-// Look for items that are not in the returned array from iex. These should go into the array for
-// Alpha.
-
-$odd = [];
-foreach(array_keys($active) as $k) {
-  if(!$ar[$k]) {
-    $odd[] = $k;
-  }
-}
+$odd = array_diff(array_keys($active), array_keys($ar));
 
 $aa = array_keys($mutual); // Get the mutual funds because they are not in iex
 // Now add the things from $odd that we didn't find in the results from iex
 
-foreach($odd as $v) {
-  $aa[] = $v;
-}
+$aa = array_merge($odd, $aa);
 
 $ar = json_decode($ret); // Now get $ar as an object
 
@@ -97,25 +88,3 @@ foreach($ar as $k=>$v) {
 }
 
 echo "updatestocks.php DONE\n";
-
-// Table format:
-/*
- CREATE TABLE `pricedata` (
-  `date` date NOT NULL,
-  `stock` varchar(10) NOT NULL,
-  `price` decimal(8,2) DEFAULT NULL,
-  `lasttime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`date`,`stock`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
-
-CREATE TABLE `stocks` (
-  `stock` varchar(10) NOT NULL,
-  `price` decimal(8,2) DEFAULT NULL,
-  `qty` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `lasttime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `status` enum('active','watch','sold') DEFAULT NULL,
-  PRIMARY KEY (`stock`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
-*/
-
