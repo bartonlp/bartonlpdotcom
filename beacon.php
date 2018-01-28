@@ -15,6 +15,18 @@ $id = $data['id'];
 
 if(!$id) {
   error_log("beacon: $S->siteName: NO ID, $ip, $agent");
+  
+  echo <<<EOF
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<h1>Go Away!</h1>
+</body>
+</html>
+EOF;
+
   exit();
 } else {
   $S->query("select isJavaScript from $S->masterdb.tracker where id=$id");
@@ -38,14 +50,3 @@ if(!$id) {
   }
   exit();
 }
-
-echo <<<EOF
-<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
-<h1>Go Away!</h1>
-</body>
-</html>
-EOF;

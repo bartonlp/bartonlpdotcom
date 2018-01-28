@@ -15,4 +15,4 @@ requests from the client programs.
 The *websocket.conf* is an example of how to set up **upstart**. This server actually runs
 **systemd** and I do not have a config file for that yet.
 
-###Contact me: [bartonphillips@gmail.com](mailto:bartonphillips@gmail.com)###
+### Contact me: [bartonphillips@gmail.com](mailto:bartonphillips@gmail.com)

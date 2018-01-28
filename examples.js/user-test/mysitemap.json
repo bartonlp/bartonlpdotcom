@@ -11,10 +11,11 @@
     "footerFile": "./footer.i.php",
     "masterdb": "barton",
     "dbinfo": {
-        "host": "bartonphillips.dyndns.org:4080",
+        "host": "bartonphillips.dyndns.org",
         "user": "test",
         "password": "7098653",
-        "database": "barton",
+        "database": "test",
+        "port": 3300,
         "engine": "mysqli"
     },
     "count": false,
