@@ -1,3 +1,3 @@
 <?php
 $ip = $_SERVER['REMOTE_ADDR'];
-echo $ip;
+echo "Your IP Address is: $ip<br>";

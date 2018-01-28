@@ -30,7 +30,7 @@ json: {$ar['json']}<br><br>
 EOF;
 }
 
-//error_log("POST: " . print_r($_POST, true));
+error_log("POST: " . print_r($_POST, true));
 
 if($_POST) {
   $json = $_POST['json'];

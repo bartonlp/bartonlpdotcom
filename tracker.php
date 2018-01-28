@@ -12,6 +12,7 @@
 
 $_site = require_once(getenv("SITELOADNAME"));
 $S = new Database($_site);
+//error_log("\$S: ". print_r($S, true));
 
 // Database does not set $ip or $agent!
 $ip = $_SERVER['REMOTE_ADDR'];
@@ -374,7 +375,8 @@ if(isset($_GET['csstest'])) {
   } catch(Exception $e) {
     error_log(print_r($e, true));
   }
-  echo null;
+  header("Content-Type: text/css");
+  echo "/* csstest.css */";
   exit();
 }
 

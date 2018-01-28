@@ -16,8 +16,7 @@ return <<<EOF
   <!-- CSS -->
   <link rel="stylesheet" href="https://bartonphillips.net/css/blp.css">
   <!-- css is not css but a link to tracker via .htaccess RewriteRule. -->
-  <link rel="stylesheet" href="/csstest.css?id=$this->LAST_ID" title="blp test">
-
+  <link rel="stylesheet" href="/csstest-{$this->LAST_ID}.css" title="blp test">
   {$arg['link']}
   <!-- jQuery 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>

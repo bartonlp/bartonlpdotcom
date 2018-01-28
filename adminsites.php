@@ -1,4 +1,6 @@
 <?php
+// This is a list of adminstuff. These are the links to all of my administration stuff
+
 return <<<EOF
 <!-- Admin text for all sights -->
 <section id='adminstuff'>
@@ -30,3 +32,4 @@ return <<<EOF
 </ul>
 </section>
 EOF;
+
