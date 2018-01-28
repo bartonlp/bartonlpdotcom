@@ -4,7 +4,8 @@
 if($cmd = $_POST['page']) {
   $ret = '';
   
-  foreach(['/vendor/bartonlp/site-class', '/applitec', '/bartonlp', '/bartonphillips.com', '/bartonphillipsnet', '/bartonphillips.org', '/granbyrotary.org', '/messiah'] as $site) {
+  foreach(['/vendor/bartonlp/site-class', '/applitec', '/bartonlp', '/bartonphillips.com', '/bartonphillipsnet',
+           '/granbyrotary.org', '/messiah'] as $site) {
     chdir("/var/www/$site");
     exec("git $cmd", $out);
     $out = implode("\n", $out);
