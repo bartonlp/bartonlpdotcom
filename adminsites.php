@@ -27,6 +27,7 @@ return <<<EOF
 <li><a target="_blank" href="https://www.bartonphillips.com/stockreaddata.php">Read Stock Data</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stock.getalpha.php">Read Raw Data</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/examples/">bartonphillips.com/examples/</a></li>
+<li><a target="_blank" href="https://www.bartonphillips.com/node-watch/">bartonphillips.com/node-watch/</a></li>
 <li><a target="_blank" href="https://www.bartonlp.com/examples.js/">bartonlp.com/examples.js</a></li>
 <li><a target="_blank" href="http://www.bartonphillips.dyndns.org:4080/examples/">HP-Envy/examples.js</a></li>
 </ul>
