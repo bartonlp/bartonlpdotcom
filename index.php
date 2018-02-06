@@ -1,8 +1,8 @@
 <?php
 // Main page for bartonlp.com
-// BLP 2016-11-12 -- site now uses SITELOAD
+// BLP 2016-11-12 -- site now uses SITELOADNAME
 
-$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$_site = require_once(getenv("SITELOADNAME"));
 //ErrorClass::setNoEmailErrs(true);
 //ErrorClass::setDevelopment(true);
 $S = new $_site->className($_site);
