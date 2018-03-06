@@ -24,4 +24,5 @@ vendor/
 Archive/
 /scripts/checktracker.log
 node_modules/
+websocket.log
 
