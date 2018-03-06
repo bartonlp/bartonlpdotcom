@@ -79,11 +79,11 @@ var now = new Date; // get start date/time
 
 // Make sure we can read and write to the log file
 
-fs.appendFileSync("/var/www/bartonlp/examples.node/websocket.log", "\n" + now + " Websocket Startup\n");
+fs.appendFileSync("/var/www/bartonlp/examples.js/examples.node/websocket.log", "\n" + now + " Websocket Startup\n");
 // 1000=uid barton, 33=uid/gid www-data
-fs.chownSync("/var/www/bartonlp/examples.node/websocket.log", 1000, 33);
+fs.chownSync("/var/www/bartonlp/examples.js/examples.node/websocket.log", 1000, 33);
 // chmod u=rw g=rw o=r (user rw, group rw, other r)
-fs.chmodSync("/var/www/bartonlp/examples.node/websocket.log", 0664);
+fs.chmodSync("/var/www/bartonlp/examples.js/examples.node/websocket.log", 0664);
 
 // Log information to websocket.log, If mode === true then don't add the date
 
