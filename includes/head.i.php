@@ -18,11 +18,8 @@ return <<<EOF
   <!-- css is not css but a link to tracker via .htaccess RewriteRule. -->
   <link rel="stylesheet" href="/csstest-{$this->LAST_ID}.css" title="blp test">
   {$arg['link']}
-  <!-- jQuery 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
-  -->
+  <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
-
   <script>
 var lastId = $this->LAST_ID;
   </script>

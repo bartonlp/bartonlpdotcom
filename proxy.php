@@ -2,7 +2,7 @@
 // This is a proxy for the gitHub and others. It takes the query string and logs both counter2 and
 // tracker info and then redirects to the query string.
 
-$_site = require_once(getenv("SITELOAD")."/siteload.php");
+$_site = require_once(getenv("SITELOADNAME"));
 
 $_site->count = false; // Don't count
 $_site->countMe = false; // Don't countMe

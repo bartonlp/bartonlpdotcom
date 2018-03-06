@@ -1,4 +1,6 @@
 <?php
+// This is used by bartonphillips.net/js/yimage.js to get the images from my RPI
+
 $_site = require_once(getenv("SITELOADNAME"));
 ErrorClass::setDevelopment(true);
 //$S = new $_site->className($_site);

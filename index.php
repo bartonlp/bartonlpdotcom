@@ -1,5 +1,6 @@
 <?php
 // Main page for bartonlp.com
+// BLP 2018-02-10 -- use cookie to get 'adminstuff'
 // BLP 2016-11-12 -- site now uses SITELOADNAME
 
 $_site = require_once(getenv("SITELOADNAME"));
@@ -21,7 +22,6 @@ body {
   background-color: white;
   font-family: 'Lora', serif;
   font-size: 1.5rem;
-
 }
 h1 {
   font-family: Rancho, serif;
@@ -35,14 +35,6 @@ h3 {
 }
 #browser-info {
   border-top: 1px solid gray;
-}
-#blog {
-  width: 50%;
-  background-color: #FCF6CF;
-  text-align: center;
-  padding: 20px;
-  margin: auto;
-  border: 1px solid #696969;
 }
 .hereMsg {
   font-size: 1.2rem;
@@ -146,16 +138,6 @@ You came to this site from <i>$ref</i>.<br>
 EOF;
 }
 
-// BLP 2014-10-24 -- changed blp flag to 7098
-// If it's me add in the admin stuff
-
-if($S->isMe() || ($_GET['blp'] == "7098")) {
-  if($_GET['blp']) {
-    $blplogin = $_GET['blp'];
-  }
-  $adminStuff = require("/var/www/bartonlp/adminsites.php");
-}
-
 // Do we have a cookie? If not offer to register
 
 if(!($hereId = $_COOKIE['SiteId'])) {
@@ -171,14 +153,36 @@ Why not <a href="register.php">register</a>
 EOF;
   }
 } else {
-  $sql = "select name from members where id=$hereId";
+ $sql = "select name from members where id=$hereId";
+  
   if($n = $S->query($sql)) {
     list($memberName) = $S->fetchrow('num');
+    if($memberName == "Barton Phillips") {
+      // BLP 2018-02-10 -- If it is me do the 'adminStuff'
+      $adminStuff = require("/var/www/bartonlp/adminsites.php");
+    }
     $hereMsg =<<<EOF
 <div class="hereMsg">Welcome $memberName</div>
 EOF;
   } else {
-    error_log("$S->siteName: members id ($hereId) not found at line ".__LINE__);
+   error_log("$S->siteName: members id ($hereId) not found at line ".__LINE__);
+  }
+}
+
+// BLP 2014-10-24 -- changed blp flag to 7098
+// If it's me add in the admin stuff
+
+if($S->isMe() || ($_GET['blp'] == "7098")) {
+  if(!$adminStuff) {
+    $blp = $_GET['blp'];
+    
+    error_log("bartonlp.com/index.php: No 'adminStuff'");
+    if($blp) {
+      //echo "$blp<br>";
+      $blplogin = $blp;
+      error_log("bartonlp.com/index.php. Using blp: $S->ip, $S->agent");
+    }
+    $adminStuff = require("/var/www/bartonlp/adminsites.php");
   }
 }
 
@@ -218,9 +222,11 @@ $hereMsg
 </p>
 </section>
 
+<!--
 <section id="blog">
 <a target="_blank" href="proxy.php?https://myblog.bartonphillips.com">My BLOG with tips and tricks</a>.
 </section>
+-->
 
 <section id="links">
 <h2><a href="https://www.bartonphillips.com">My Home Page (bartonphillips.com)</a></h2>

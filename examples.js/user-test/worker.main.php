@@ -6,6 +6,7 @@
 // Load info from mysitemap.json for use by my framework SiteClass.
 // Check SiteClass out at https://github.com/bartonlp/site-class.
 // It has full documentation at that site.
+
 $_site = require_once(getenv("SITELOADNAME"));
 ErrorClass::setDevelopment(true);
 $S = new $_site->className($_site); // $S gives access to my framework.
@@ -63,9 +64,11 @@ $h->css =<<<EOF
 <style>
 input {
   width: 100%;
+  font-size: 1rem;
 }
 button {
   cursor: pointer;
+  font-size: 1rem;
 }
 #files {
   display: none;

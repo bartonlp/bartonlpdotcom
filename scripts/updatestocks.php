@@ -1,5 +1,6 @@
 #! /usr/bin/php
 <?php
+// BLP 2018-02-07 -- Added 'volume' to table.  
 // do an update via CRON of the pricedata table.
 $_site = require_once("/var/www/vendor/bartonlp/site-class/includes/siteload.php");
 ErrorClass::setDevelopment(true);
@@ -62,12 +63,14 @@ foreach($aa as $k) {
   
   foreach($alpha["Time Series (Daily)"] as $date=>$v) {
     $close = $v["4. close"]; // The 'close' price is also the 'last' price during the day.
+    $volume = $v["5. volume"]; 
     break;
   }
 
   $price = round($close, 2);
 
-  $S->query("insert into stocks.pricedata (date, stock, price) values('$date', '$k', '$price') ".
+  $S->query("insert into stocks.pricedata (date, stock, price, volume) ".
+            "values('$date', '$k', '$price', '$volume') ".
             "on duplicate key update price='$price'");
 }
 
@@ -82,8 +85,10 @@ foreach($ar as $k=>$v) {
   
   $date = date("Y-m-d H:i:s", $qt->latestUpdate / 1000);
   $price = $qt->latestPrice; // raw price
+  $volume = $qt->latestVolume; // volume
   
-  $S->query("insert into stocks.pricedata (date, stock, price) values('$date', '$st', '$price') ".
+  $S->query("insert into stocks.pricedata (date, stock, price, volume) ".
+            "values('$date', '$st', '$price', '$volume') ".
             "on duplicate key update price='$price'");
 }
 

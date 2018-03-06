@@ -1,4 +1,4 @@
-// worker.worker.js This is javascript
+// worker.worker.js This is javascript.
 // This is the worker side of worker.main.php and it calls
 // worker.ajax.php for the info from tables.
 
@@ -13,6 +13,7 @@ addEventListener("message", function(evt) {
 
 // SendText() does the usual XMLHttpRequest() stuff to post to
 // worker.ajax.php.
+
 function sendText(txt) {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'worker.ajax.php', true);
@@ -30,17 +31,20 @@ function sendText(txt) {
       
       if(this.responseText.match(/ERROR|DONE/)) {
         var str = this.responseText;
+
         // Make a bufView using Uint8Array.from().
         // This takes the string value and make a uint array of the
         // ascii code values. It uses the new => operator to indicate a
         // function(x) { return x.charCodeAt() }. This is a MAP that
         // converts each value from the string into an code.
+        
         bufView = Uint8Array.from(str, x => x.charCodeAt());
         console.log("Error Worker bufView: ", bufView);
         // Post the Transfer buffer
         postMessage(bufView, [bufView.buffer]);
         return;
       }
+
       // If it isn't the two possible ascii text values then this is a
       // JSON packet so decode it.
       
@@ -60,11 +64,13 @@ function sendText(txt) {
         }
         rows += "\n";
       }
+
       // Now we do the same thing we did above to make the Transfer
       // buffer
+
       bufView = Uint8Array.from(rows, x => x.charCodeAt());
       console.log("Worker bufView: ", bufView);
       postMessage(bufView, [bufView.buffer]);
     }
   };
-}
+};

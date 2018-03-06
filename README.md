@@ -1,25 +1,45 @@
-# bartonlp.com
-www. bartonlp.com at DigitalOcean.com.
-This server is at 45.55.27.116.
-This server also hosts the following sites:  
-www.allnaturalcleaningcompany.com (for Walid B)  
-www.applitec.com  
-www.bartonphillips.com  
-www.bartonphillips.org (which has a copy of go.myphotochannel.com)  
-bartonphillips.net (this is a cookieless site that serves the other sites)  
-www.granbyrotary.org  
-www.mountainmessiah.com  
-www.puppiesnmore.com (for Walid B)
+# www.bartonlp.com
 
-www.bartonlp.com is canonical for www.bartonphillips.com . This site has the tracker.php, beacon.php, analysis.php, adminsites.php, proxy.php, robots.php, sitemap.php and '.eval' version of the former. These file are symlinked to the other sites above.
+*www.bartonlp.com* is canonical for *www.bartonphillips.com*. This site has:
 
-All of the above sites use the SiteClass framework which is at /var/www/vendor/bartonlp/site-class.
+* tracker.php
+* beacon.php,
+* analysis.php
+* adminsites.php
+* proxy.php
+* robots.php
+* sitemap.php 
+* gitinfo.php
+* gitstatus.php
+* register.php
+* and '.eval' version of the former.
 
-The framework is also used by my home computer at http://www.bartonphillips.dyndns.org:4080 , my RPI at http://www.bartonphillips.dyndns.org:8080 , and my other server at DigitalOcean (162.243.156.130 www.bartonlp.org ).
+These file are symlinked to the other sites at 45.55.27.116 on DigitalOcean.com VPS
+(virtual private server).
 
-The http://go.myphotochannel.com (74.208.215.54) site at 1and1.com has the Slideshow and Cpanel apps which are mirrored on my http://www.bartonphillips.org site.
+All of the sites use the SiteClass framework which is at /var/www/vendor/bartonlp/site-class,
+and documentation can be found at https://github.com/bartonlp/site-class.
+
+The framework is also used by my home computer at http://www.bartonphillips.dyndns.org:4080, 
+my RPI at http://www.bartonphillips.dyndns.org:8080, and my other server at DigitalOcean
+(162.243.156.130 www.bartonlp.org).
+
+The http://go.myphotochannel.com (74.208.215.54) site at *1and1.com* has the Slideshow and
+Cpanel apps.
 
 All of the sites are maintained as git repositories and are hosted at http:github.com/bartonlp .
+
+These file are used by https://www.bartonphillips.com and should be in that directory:
+
+* base64.php
+* getAdminsites.php
+* getIP.php
+* getcountryfromip.php
+* showmarkdown.php
+
+**toweewx.php** decides if the request for https://www.bartonphillips.com/weewx
+is from a desktop or a mobile.
+It is used by both https://www.bartonphillips.com and https://www.bartonlp.com.
 
 ## Contact me: [bartonphillips@gmail.com](mailto:bartonphillips@gmail.com)
 

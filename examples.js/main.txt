@@ -1,2 +1,0 @@
-This is the main.txt file that is used by s-worker.js
-And this is somemore text.

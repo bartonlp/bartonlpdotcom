@@ -61,6 +61,9 @@ $h->css =<<<EOF
   overflow: auto;
 /*  border: 1px solid black; */
 }
+#moreInfo {
+  margin-bottom: 2rem;
+}
   </style>
 EOF;
 
@@ -70,6 +73,9 @@ list($top, $footer) = $S->getPageTopBottom($h);
 
 echo <<<EOF
 $top
+<div id="moreInfo">
+<a href="gitinfo.php">More Information</a>
+</div>
 <div>
 <button id='git'>Status</button>
 <div id='results'>

@@ -16,6 +16,7 @@ $counterWigget
 {$arg['msg2']}
 <p>Last Modified: $lastmod</p>
 </footer>
+{$arg['script']}
 </body>
 </html>
 EOF;
