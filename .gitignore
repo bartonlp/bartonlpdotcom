@@ -23,4 +23,5 @@ phpQuery/
 vendor/
 Archive/
 /scripts/checktracker.log
+node_modules/
 
