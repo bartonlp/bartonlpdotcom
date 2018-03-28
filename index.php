@@ -45,6 +45,8 @@ h3 {
   font-family: 'Jacques Francois Shadow', serif;
   margin-top: -2rem;
 }
+/* column-... set the count of columns, gap set the distance between, rule set the stile */
+/* So this is four columns, with a 2rem gap, and a 3px solid back line between */
 .mylinks, #adminstuff ul {
   font-size: 1rem;
   column-count: 4;
@@ -221,12 +223,6 @@ $hereMsg
   <a target="_blank" href="https://www.digitalocean.com/">digitalocean.com</a>.
 </p>
 </section>
-
-<!--
-<section id="blog">
-<a target="_blank" href="proxy.php?https://myblog.bartonphillips.com">My BLOG with tips and tricks</a>.
-</section>
--->
 
 <section id="links">
 <h2><a href="https://www.bartonphillips.com">My Home Page (bartonphillips.com)</a></h2>

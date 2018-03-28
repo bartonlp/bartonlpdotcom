@@ -13,13 +13,14 @@ return <<<EOF
 <li><a target="_blank" href="http://www.bartonphillips.dyndns.org:4080">Hp-envy</a></li>
 <li><a target="_blank" href="https://www.applitec.com/glencabin">Glen's Cabin</a></li>
 <li><a target="_blank" href="http://go.myphotochannel.com/?debug=8653">MyPhotochannel</a></li>
-<li><a target="_blank" href="https://www.bartonphillips.com/stocks/stock-price-update.php">Stock Price Update</a></li>
-<li><a target="_blank" href="https://www.bartonphillips.com/examples/stockquotes/mutual.php">Mutual Funds</a></li>
+<li><a target="_blank" href="https://www.bartonphillips.com/stocks/stock-price-update.php">Stock Quotes</a></li>
+<li><a target="_blank" href="https://www.bartonphillips.com/examples/stockquotes/mutual.php">Mutual Funds Quotes</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stocks/stockaddedit.php">Add/Edit Stocks</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stocks/stockanal.php">Stock Analysis</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stocks/stockdiv.php">Stock Dividents</a></li>
+<li><a target="_blank" href="https://www.bartonphillips.com/stocks/stockvalue.php">Stock Value</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stocks/stock.getalpha.php">Read Raw Data</a></li>
-<li><a target="_blank" href="https://www.bartonphillips.com/examples/">bartonphillips.com/examples/</a></li>
+<li><a target="_blank" href="https://www.bartonphillips.com/examples/">bartonphillips.com/examples</a></li>
 <li><a target="_blank" href="https://www.bartonlp.com/examples.js/">bartonlp.com/examples.js</a></li>
 <li><a target="_blank" href="http://www.bartonphillips.dyndns.org:4080/examples/">HP-Envy/examples.js</a></li>
 </ul>

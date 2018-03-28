@@ -40,12 +40,15 @@ curl_setopt($h, CURLOPT_RETURNTRANSFER, true);
 $ret = curl_exec($h);
 $ar = json_decode($ret, true); // Make it an array for starts
 
+// odd has the DJI and ZENO and could have others that are in $active but not on eix.
+
 $odd = array_diff(array_keys($active), array_keys($ar));
 
 $aa = array_keys($mutual); // Get the mutual funds because they are not in iex
+
 // Now add the things from $odd that we didn't find in the results from iex
 
-$aa = array_merge($odd, $aa);
+$aa = array_merge($odd, $aa); // mutual + odd
 
 $ar = json_decode($ret); // Now get $ar as an object
 
@@ -77,16 +80,20 @@ foreach($aa as $k) {
 // Now loop through the object from iex
 
 $quotes = '';
+$total = '';
+
+vardumpNoEscape("stocks", $stocks['active']);
 
 foreach($ar as $k=>$v) {
   $qt = $v->quote;
   $st = $qt->symbol;
+
   if($st == "RDS.A") $st = "RDS-A";
   
   $date = date("Y-m-d H:i:s", $qt->latestUpdate / 1000);
   $price = $qt->latestPrice; // raw price
   $volume = $qt->latestVolume; // volume
-  
+
   $S->query("insert into stocks.pricedata (date, stock, price, volume) ".
             "values('$date', '$st', '$price', '$volume') ".
             "on duplicate key update price='$price'");
