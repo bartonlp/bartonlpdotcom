@@ -174,17 +174,20 @@ EOF;
 // BLP 2014-10-24 -- changed blp flag to 7098
 // If it's me add in the admin stuff
 
-if($S->isMe() || ($_GET['blp'] == "7098")) {
+if($S->isMe() || ($_GET['blp'] == "8653")) { // BLP 2018-04-25 -- new code
   if(!$adminStuff) {
     $blp = $_GET['blp'];
     
-    error_log("bartonlp.com/index.php: No 'adminStuff'");
     if($blp) {
       //echo "$blp<br>";
       $blplogin = $blp;
       error_log("bartonlp.com/index.php. Using blp: $S->ip, $S->agent");
     }
     $adminStuff = require("/var/www/bartonlp/adminsites.php");
+
+    if(!$adminStuff) {
+      error_log("bartonlp.com/index.php: No 'adminStuff'");
+    }
   }
 }
 

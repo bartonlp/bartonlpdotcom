@@ -1,4 +1,7 @@
 <?php
+// Register yours name and email address
+// This is for index.php
+
 $_site = require_once(getenv("SITELOADNAME"));
 $S = new $_site->className($_site);
 

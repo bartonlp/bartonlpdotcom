@@ -10,7 +10,7 @@ return <<<EOF
 <li><a target="_blank" href="gitstatus.php">GitStatus bartonlp.com</a></li>
 <li><a target="_blank" href="https://www.bartonlp.org/gitstatus.php">GitStatus bartonlp.org</a></li>
 <li><a target="_blank" href="http://www.bartonphillips.dyndns.org:8080">Rpi</a></li>
-<li><a target="_blank" href="http://www.bartonphillips.dyndns.org:4080">Hp-envy</a></li>
+<li><a target="_blank" href="http://www.bartonphillips.dyndns.org:4080/myhomepage">Hp-envy</a></li>
 <li><a target="_blank" href="https://www.applitec.com/glencabin">Glen's Cabin</a></li>
 <li><a target="_blank" href="http://go.myphotochannel.com/?debug=8653">MyPhotochannel</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stocks/stock-price-update.php">Stock Quotes</a></li>
