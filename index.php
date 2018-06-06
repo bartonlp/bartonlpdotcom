@@ -8,12 +8,12 @@ $_site = require_once(getenv("SITELOADNAME"));
 //ErrorClass::setDevelopment(true);
 $S = new $_site->className($_site);
 
-// Special Fonts from google.
+// Special Fonts from google, and rel=conanical
 
-$h->link = '<link rel="stylesheet" '.
-           'href="https://fonts.googleapis.com/css?family=Rancho'.
-           '|Lora:400,700,400italic,700italic'.
-           '|Jacques+Francois+Shadow&effect=shadow-multiple">';
+$h->link =<<<EOF
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rancho|Lora:400,700,400italic,700italic|Jacques+Francois+Shadow&effect=shadow-multiple"/>
+  <link rel="canonical" href="https://www.bartonphillips.com"/>
+EOF;
 
 $h->css = <<<EOF
   <!-- Override some of what is in blp.css to use custome fonts -->

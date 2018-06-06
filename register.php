@@ -70,13 +70,16 @@ if($_POST) {
     echo "Can't set cookie in register.php<br>";
     throw(new Exception("Can't set cookie register.php " . __LINE__));
   }
-  echo <<<EOF
+  header("Location: /");
+  exit();
+/*  echo <<<EOF
 $top
 <h1>Registeration Posted</h1>
 <a href="/">Return to Home Page</a>
 $footer
 EOF;
   exit();
+*/  
 }
 
 // Start Page
