@@ -13,7 +13,7 @@ if($_GET['path']) {
   $size = $_GET['size'];
   $mode = $_GET['mode'];
 
-  $p = file_get_contents("http://www.bartonphillips.dyndns.org:8080/glob.proxy.php".
+  $p = file_get_contents("https://www.bartonlp.com/glob.proxy.php".
                          "?path=$path&recursive=$recursive&size=$size&mode=$mode");
 
   echo $p;
