@@ -4,6 +4,5 @@ $_site = require_once(getenv("SITELOADNAME"));
 
 $list = glob("Pictures/passo2011/*");
 //vardump($list);
-foreach($list as $l) {
-  echo "https://www.bartonlp.com/$l\n";
-}
+echo implode("\n", $list);
+
