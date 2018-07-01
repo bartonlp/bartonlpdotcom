@@ -13,10 +13,18 @@ if($_GET['path']) {
   $size = $_GET['size'];
   $mode = $_GET['mode'];
 
+  $list = glob("$path");
+  if($mode == 'random') {
+    shuffel($list);
+  }
+  //vardump($list);
+  echo implode("\n", $list);
+/*
   $p = file_get_contents("https://www.bartonlp.com/glob.proxy.php".
                          "?path=$path&recursive=$recursive&size=$size&mode=$mode");
 
   echo $p;
+*/
   exit();
 }
 echo "Go Away";

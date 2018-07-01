@@ -5,7 +5,7 @@
     "emailDomain": "bartonlp.com",
     "path": "/var/www/bartonlp",
     "className": "SiteClass",
-    "copyright": "2018 Barton L. Phillips",
+    "copyright": "Barton L. Phillips",
     "author": "Barton L. Phillips, mailto:bartonphillips@gmail.com",
     "address": "Williamson, North Carolina",
     "masterdb": "barton",
@@ -24,11 +24,7 @@
     "ctrmsg": "Counter Reset: Feb. 4, 2017",
     "trackerImg1": "/images/blp-image.png",
     "trackerImg2": "/images/146624.png",
-    "myUri": [
-      "bartonphillips.dyndns.org",
-      "bartonlp.com",
-      "bartonlp.org"
-    ],
+    "myUri": "https://bartonphillips.net/myUri.json",
     "EMAILADDRESS": "bartonphillips@gmail.com",
     "EMAILRETURN": "bartonphillips@gmail.com",
     "EMAILFROM": "webmaster@bartonlp.com"
