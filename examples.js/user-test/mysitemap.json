@@ -15,7 +15,6 @@
         "user": "test",
         "password": "7098653",
         "database": "test",
-        "port": 3300,
         "engine": "mysqli"
     },
     "count": false,

@@ -95,7 +95,8 @@ $top
 <div id="runWith">
   <p>This site's designer is Barton L. Phillips<br/>
      at <a href="https://www.bartonphillips.com">www.bartonphillips.com</a><br>
-     Copyright &copy; $copyright
+     Copyright &copy; $copyright<br>
+     IP Address: $S->ip
   </p>
   
 	<p>This site is hosted by

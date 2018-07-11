@@ -129,6 +129,6 @@ if($n) {
 if($desktop) {
   header("location: https://www.bartonphillips.com/weewx/index.php");
 } else {
-  header("location: https://www.bartonphillips.com/weewx/smartphone/index.html");
+  header("location: https://www.bartonphillips.com/weewx/smartphone/index.php");
 }
 
