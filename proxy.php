@@ -11,8 +11,8 @@ $_site->countMe = false; // Don't countMe
 $S = new $_site->className($_site);
 
 function checkUser($S) {
-  echo "referer: " . $_SERVER['HTTP_REFERER']. "<br>";
-  if(preg_match("~.*barton~", $_SERVER['HTTP_REFERER'])) {
+  //error_log("referer: " . $_SERVER['HTTP_REFERER']);
+  if(preg_match("~.*barton~", $_SERVER['HTTP_REFERER']) === 0) {
     echo "<h1>Go Away</h1>";
     //error_log("Proxy Go Away: ".$_SERVER['REQUEST_URI']);
     exit();
