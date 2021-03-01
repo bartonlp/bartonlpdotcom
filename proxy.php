@@ -1,15 +1,29 @@
 <?php
 // This is a proxy for the gitHub and others. It takes the query string and logs both counter2 and
 // tracker info and then redirects to the query string.
-
+  
 $_site = require_once(getenv("SITELOADNAME"));
-
+ErrorClass::setNoEmailErrs(true);
+ErrorClass::setDevelopment(true);
 $_site->count = false; // Don't count
 $_site->countMe = false; // Don't countMe
 
 $S = new $_site->className($_site);
 
+function checkUser($S) {
+  echo "referer: " . $_SERVER['HTTP_REFERER']. "<br>";
+  if(preg_match("~.*barton~", $_SERVER['HTTP_REFERER'])) {
+    echo "<h1>Go Away</h1>";
+    //error_log("Proxy Go Away: ".$_SERVER['REQUEST_URI']);
+    exit();
+  }
+};
+
+checkUser($S);
+
 $query = $_SERVER['QUERY_STRING'];
+
+$trackersite = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
 // Put info into counter2
 if($S->isBot) {
@@ -25,8 +39,12 @@ if($S->id) {
   $member = 0;
 }
 
+$query = substr($query, 0, 254);
+
+$site = $S->siteName . "Proxy";
+
 $S->query("insert into barton.counter2 (site, date, filename, count, bots, members, lasttime) ".
-          "values('$S->siteName', now(), '$query', $count, $bot, $member, now()) ".
+          "values('$site', now(), '$query', $count, $bot, $member, now()) ".
           "on duplicate key update count=count+$count, bots=bots+$bot, members=members+$member, lasttime=now()");
 
 //$agent = $S->escape($S->agent);
@@ -38,7 +56,7 @@ $S->query("insert into barton.counter2 (site, date, filename, count, bots, membe
 //$S->query("insert into barton.tracker (site, page, ip, agent, refid, isJavaScript, starttime, lasttime) ".
 //          "values('$S->siteName', '$query', '$ip', '$agent', '$refid', $trackerBot, now(), now())");
 
-$S->query("update barton.tracker set page='$query', lasttime=now() where id=$S->LAST_ID");
+$S->query("update barton.tracker set page='$trackersite', lasttime=now() where id=$S->LAST_ID");
 
 //error_log("Query: $query");
 

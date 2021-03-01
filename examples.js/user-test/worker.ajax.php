@@ -2,6 +2,17 @@
 // This is part of the worker group.
 // This is the AJAX server that is called from worker.worker.js
 // The trio is worker.main.php, worker.worker.js and worker.ajax.php
+/*
+CREATE TABLE `test` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(254) DEFAULT NULL,
+  `lasttime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+  ) ENGINE=MyISAM AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
+
+This table is in database "test" on bartonlp.com.
+The database allows only 'select, update, insert and delete' and the code below maintains a max of 20 entries.
+*/
 
 $_site = require_once(getenv("SITELOADNAME"));
 ErrorClass::setDevelopment(true);

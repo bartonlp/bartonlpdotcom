@@ -2,6 +2,7 @@
 // Demonstrates the use of a worker using AJAX calls.
 // This is the main program for worker.main.php it uses
 // worker.worker.js and worker.ajax.php
+// See worker.ajax.php for a description of the 'test' table in the database 'test'.
 
 // Load info from mysitemap.json for use by my framework SiteClass.
 // Check SiteClass out at https://github.com/bartonlp/site-class.

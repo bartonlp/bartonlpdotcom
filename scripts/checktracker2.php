@@ -1,17 +1,41 @@
 #!/usr/bin/php
 <?php
+// BLP 2021-02-26 -- currently not being used in all-cron.sh. Commented out.
 // This script looks at the 'tracker' table and adds any isJavaScript==0 entries to 'bots' and
 // 'bots2'. It looks for the max value of lasttime and then colects 'tracker' entries gt that max
 // value.
 
 $_site = require_once("/var/www/vendor/bartonlp/site-class/includes/siteload.php");
-$S = new Database($_site);
+$S = new Database($_site); // NOTE isSiteClass is NOT defined in Database so this will give a E_NOTICE
+//$S = new $_site->className($_site);
 $db = $S->masterdb;
 
-foreach($S->myUri as $v) {
-  $ips[] = "'" . gethostbyname($v) . "'";
+// NOTE now myUri can be an array of URI's or a single URI.
+// This needs to be fixed!
+// At the present time I have removed this from the crontab!!!!
+
+if(strpos($S->myUri, 'http') == 0) {
+  // Here $this->myUri probably looks like 'https://bartonphillips.net/myUri.json'
+  // When we get that it is an array [myUri] so we want the elements of the array 0..n
+  // Now $this->myUri looks like it would be from mysitemap.json if the array was in that
+  // file.
+
+  $S->myUri = json_decode(file_get_contents($S->myUri), true)['myUri'];
+
+  if(is_array($S->myUri)) {
+    foreach($S->myUri as $v) {
+      $ips[] = gethostbyname($v);
+    }
+  } else {
+    // This is not an array but rather a single ip address
+    $ips[] = gethostbyname($S->myUri); // get my home ip address
+  }
+} else {
+  // This is not a url but rather a string with a single ip address
+  $ips[] = gethostbyname($S->myUri); // get my home ip address
 }
-$myIps = implode(',', $ips);
+
+$myIps = '"' . implode('","', $ips). '"';
 //echo "myIps: $myIps\n";
 
 // Get the current days records
@@ -23,7 +47,6 @@ $sql = "select max(lasttime) from $db.bots ".
 
 $S->query($sql);
 list($last) = $S->fetchrow('num');
-//$last = "2018-01-02";
 //echo "Last: $last\n";
 
 if(empty($last)) {

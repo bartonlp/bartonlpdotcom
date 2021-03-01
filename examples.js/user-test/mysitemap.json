@@ -11,7 +11,7 @@
     "footerFile": "./footer.i.php",
     "masterdb": "barton",
     "dbinfo": {
-        "host": "bartonphillips.dyndns.org",
+        "host": "localhost",
         "user": "test",
         "password": "7098653",
         "database": "test",

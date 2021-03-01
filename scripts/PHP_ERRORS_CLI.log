@@ -1,0 +1,46 @@
+[26-Feb-2021 08:12:09 America/Los_Angeles] PHP Fatal error:  Uncaught <p>&quot;<i>select ip, agent, site, isJavaScript from barton.tracker where ip not in () and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ip</i>&quot;<br>
+error=&quot;<i>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ' at line 1</i>&quot;, errno=&quot;<i>1064</i>&quot;<br>
+cwd=/var/www/bartonlp/scripts<br>
+called from <strong>/var/www/vendor/bartonlp/site-class/includes/database-engines/dbMysqli.class.php</strong><br> on line <strong>117</strong><br>
+Back Trace:<br>
+<b>dbMysqli::query('select ip, agent, site, isJavaScript from barton.tracker where ip not in () and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ip')</b><br> in <b>/var/www/vendor/bartonlp/site-class/includes/database-engines/dbAbstract.class.php</b><br> on line <b>36</b><br>
+<b>dbAbstract::query('select ip, agent, si in /var/www/vendor/bartonlp/site-class/includes/database-engines/dbMysqli.class.php on line 117
+[26-Feb-2021 08:13:44 America/Los_Angeles] PHP Fatal error:  Uncaught Error: Call to undefined function vardump_noescape() in /var/www/bartonlp/scripts/checkbots2.php:8
+Stack trace:
+#0 {main}
+  thrown in /var/www/bartonlp/scripts/checkbots2.php on line 8
+[26-Feb-2021 08:14:52 America/Los_Angeles] PHP Fatal error:  Uncaught <p>&quot;<i>select ip, agent, site, isJavaScript from barton.tracker where ip not in () and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ip</i>&quot;<br>
+error=&quot;<i>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ' at line 1</i>&quot;, errno=&quot;<i>1064</i>&quot;<br>
+cwd=/var/www/bartonlp/scripts<br>
+called from <strong>/var/www/vendor/bartonlp/site-class/includes/database-engines/dbMysqli.class.php</strong><br> on line <strong>117</strong><br>
+Back Trace:<br>
+<b>dbMysqli::query('select ip, agent, site, isJavaScript from barton.tracker where ip not in () and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ip')</b><br> in <b>/var/www/vendor/bartonlp/site-class/includes/database-engines/dbAbstract.class.php</b><br> on line <b>36</b><br>
+<b>dbAbstract::query('select ip, agent, si in /var/www/vendor/bartonlp/site-class/includes/database-engines/dbMysqli.class.php on line 117
+[26-Feb-2021 08:16:01 America/Los_Angeles] PHP Fatal error:  Uncaught <p>&quot;<i>select ip, agent, site, isJavaScript from barton.tracker where ip not in () and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ip</i>&quot;<br>
+error=&quot;<i>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ' at line 1</i>&quot;, errno=&quot;<i>1064</i>&quot;<br>
+cwd=/var/www/bartonlp/scripts<br>
+called from <strong>/var/www/vendor/bartonlp/site-class/includes/database-engines/dbMysqli.class.php</strong><br> on line <strong>117</strong><br>
+Back Trace:<br>
+<b>dbMysqli::query('select ip, agent, site, isJavaScript from barton.tracker where ip not in () and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ip')</b><br> in <b>/var/www/vendor/bartonlp/site-class/includes/database-engines/dbAbstract.class.php</b><br> on line <b>36</b><br>
+<b>dbAbstract::query('select ip, agent, si in /var/www/vendor/bartonlp/site-class/includes/database-engines/dbMysqli.class.php on line 117
+[26-Feb-2021 08:20:24 America/Los_Angeles] PHP Fatal error:  Uncaught <p>&quot;<i>select ip, agent, site, isJavaScript from barton.tracker where ip not in () and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ip</i>&quot;<br>
+error=&quot;<i>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ' at line 1</i>&quot;, errno=&quot;<i>1064</i>&quot;<br>
+cwd=/var/www/bartonlp/scripts<br>
+called from <strong>/var/www/vendor/bartonlp/site-class/includes/database-engines/dbMysqli.class.php</strong><br> on line <strong>117</strong><br>
+Back Trace:<br>
+<b>dbMysqli::query('select ip, agent, site, isJavaScript from barton.tracker where ip not in () and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ip')</b><br> in <b>/var/www/vendor/bartonlp/site-class/includes/database-engines/dbAbstract.class.php</b><br> on line <b>36</b><br>
+<b>dbAbstract::query('select ip, agent, si in /var/www/vendor/bartonlp/site-class/includes/database-engines/dbMysqli.class.php on line 117
+[26-Feb-2021 08:21:58 America/Los_Angeles] PHP Fatal error:  Uncaught <p>&quot;<i>select ip, agent, site, isJavaScript from barton.tracker where ip not in () and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ip</i>&quot;<br>
+error=&quot;<i>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ' at line 1</i>&quot;, errno=&quot;<i>1064</i>&quot;<br>
+cwd=/var/www/bartonlp/scripts<br>
+called from <strong>/var/www/vendor/bartonlp/site-class/includes/database-engines/dbMysqli.class.php</strong><br> on line <strong>117</strong><br>
+Back Trace:<br>
+<b>dbMysqli::query('select ip, agent, site, isJavaScript from barton.tracker where ip not in () and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ip')</b><br> in <b>/var/www/vendor/bartonlp/site-class/includes/database-engines/dbAbstract.class.php</b><br> on line <b>36</b><br>
+<b>dbAbstract::query('select ip, agent, si in /var/www/vendor/bartonlp/site-class/includes/database-engines/dbMysqli.class.php on line 117
+[26-Feb-2021 08:24:18 America/Los_Angeles] PHP Fatal error:  Uncaught <p>&quot;<i>select ip, agent, site, isJavaScript from barton.tracker where ip not in () and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ip</i>&quot;<br>
+error=&quot;<i>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ' at line 1</i>&quot;, errno=&quot;<i>1064</i>&quot;<br>
+cwd=/var/www/bartonlp/scripts<br>
+called from <strong>/var/www/vendor/bartonlp/site-class/includes/database-engines/dbMysqli.class.php</strong><br> on line <strong>117</strong><br>
+Back Trace:<br>
+<b>dbMysqli::query('select ip, agent, site, isJavaScript from barton.tracker where ip not in () and isJavaScript = 0 and lasttime >= current_date() - interval 1 day order by ip')</b><br> in <b>/var/www/vendor/bartonlp/site-class/includes/database-engines/dbAbstract.class.php</b><br> on line <b>36</b><br>
+<b>dbAbstract::query('select ip, agent, si in /var/www/vendor/bartonlp/site-class/includes/database-engines/dbMysqli.class.php on line 117

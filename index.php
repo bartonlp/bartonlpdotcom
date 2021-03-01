@@ -4,7 +4,7 @@
 // BLP 2016-11-12 -- site now uses SITELOADNAME
 
 $_site = require_once(getenv("SITELOADNAME"));
-//ErrorClass::setNoEmailErrs(true);
+ErrorClass::setNoEmailErrs(true);
 //ErrorClass::setDevelopment(true);
 $S = new $_site->className($_site);
 
@@ -126,11 +126,7 @@ EOF;
 $h->title = "Bartonlp.com";
 
 $h->banner = "<h1 class='center font-effect-shadow-multiple'>".
-             "bartonlp.com</h1>".
-             "<h2 class='center weather'>".
-             "<a target='_blank' ".
-             "href='https://www.bartonlp.com/toweewx.php'>".
-             "My Home Weather Station</a></h2>";
+             "bartonlp.com</h1>";
 
 $ref = $_SERVER['HTTP_REFERER'];
 if($ref) {

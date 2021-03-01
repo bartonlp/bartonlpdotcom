@@ -1,9 +1,9 @@
 <?php
-// This is used by bartonphillips.net/js/yimage.js to get the images from my RPI
+// This is used by bartonphillips.net/js/yimage.js to get the images from my
+// www.bartonlp.com/Pictures
 
 $_site = require_once(getenv("SITELOADNAME"));
 ErrorClass::setDevelopment(true);
-//$S = new $_site->className($_site);
 
 //     data: {path: path, recursive: recursive, size: size, mode: mode},
 
@@ -17,14 +17,7 @@ if($_GET['path']) {
   if($mode == 'random') {
     shuffel($list);
   }
-  //vardump($list);
   echo implode("\n", $list);
-/*
-  $p = file_get_contents("https://www.bartonlp.com/glob.proxy.php".
-                         "?path=$path&recursive=$recursive&size=$size&mode=$mode");
-
-  echo $p;
-*/
   exit();
 }
 echo "Go Away";

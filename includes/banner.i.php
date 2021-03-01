@@ -8,7 +8,7 @@ return <<<EOF
   <a href="http://linuxcounter.net/">
     <img id='linuxcounter' src="/tracker.php?page=normal&id=$this->LAST_ID" alt="linux counter image.">
   </a>
-$mainTitle
+<br>$this->mainTitle
 <noscript>
 <p style='color: red; background-color: #FFE4E1; padding: 10px'>
 <img src="/tracker.php?page=noscript&id=$this->LAST_ID" alt="noscript">

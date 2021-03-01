@@ -239,7 +239,7 @@ if($_GET['page'] == 'script') {
   }
   //error_log($img1);
   
-  $imageType = preg_replace("~^.*\.(.*)$~", "$1", $img1);
+  $imageType = preg_replace("~^.*\.(.*)$~", "$1", $img1); // greedy \. so we only see the LAST .
   $img = file_get_contents("$img1");
   header("Content-type: image/$imageType");
   echo $img;

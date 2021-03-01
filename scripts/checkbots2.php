@@ -1,19 +1,22 @@
 #!/usr/bin/php
 <?php
+// BLP 2021-02-26 -- NOT USED currently  
 echo "checktracker.php\n";
 $_site = require_once("/var/www/vendor/bartonlp/site-class/includes/siteload.php");
 
-$S = new Database($_site);
+// BLP 2021-02-26 -- NOTE this was Database() but Database does not include $S->myIp!!!
+$S = new SiteClass($_site); //Database($_site);
+vardumpNoEscape("S", $S);
 
 $db = $S->masterdb;
 
-
-foreach($S->myUri as $v) {
+foreach($S->myIp as $v) {
   $ips[] = "'" . gethostbyname($v) . "'";
 }
 $myIps = implode(',', $ips);
-echo "myIps: $myIps\n";
 
+echo "myIps: $myIps\n";
+exit();
 // Get the current days records
 // the key is id so there is one per session.
 // This is actually yesterday as the CRON job is run at the beginning of the day.

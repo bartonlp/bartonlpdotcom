@@ -335,10 +335,9 @@ table.tablesorter thead tr .header {
 <ul>
 <li>www.bartonphillips.com</li>
 <li>www.bartonlp.com</li>
-<li>www.granbyrotary.org</li>
 <li>www.allnaturalcleaningcompany.com</li>
-<li>www.mountainmessiah.com</li>
-<li>www.applitec.com</li>
+<li>www.bartonlp.org</li>
+<li>www.newbern-nc.info</li>
 </ul>
 
 <div id="siteanalysis">
@@ -346,18 +345,12 @@ table.tablesorter thead tr .header {
     <p>Showing $site</p>
     Get Site: 
     <select name='site'>
-      <option>Applitec</option>
       <option>Allnatural</option>
       <option>Bartonlp</option>
-      <option>BartonlpOrg</option>
       <option>Bartonphillips</option>
       <option>BartonphillipsOrg</option>
-      <option>GranbyRotary</option>
-      <option>Messiah</option>
-      <option>Puppiesnmore</option>
-      <option>Weewx</option>
-      <option>Rpi</option>
-      <option>Rpi2</option>
+      <option>BartonLP</option>
+      <option>Tysonweb</option>
       <option>ALL</option>
     </select>
 

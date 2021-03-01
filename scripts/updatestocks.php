@@ -1,5 +1,8 @@
 #! /usr/bin/php
 <?php
+// BLP 2021-02-26 -- The pricedata table is not used by the stock programs it is purely archival
+// infomation. Also there are no more $odd items.
+// BLP 2020-05-20 -- DJI has no value  
 // BLP 2018-02-07 -- Added 'volume' to table.  
 // do an update via CRON of the pricedata table.
 $_site = require_once("/var/www/vendor/bartonlp/site-class/includes/siteload.php");
@@ -10,7 +13,8 @@ $alphakey = "FLT73FUPI9QZ512V";
 
 date_default_timezone_set("America/New_York");
 
-$prefix = "https://api.iextrading.com/1.0";
+$prefix = "https://cloud.iexapis.com/stable";
+$token = "token=pk_feb2cd9902f24ed692db213b2b413272";
 
 $sql = "select stock, price, qty, status from stocks.stocks";
 $S->query($sql);
@@ -18,7 +22,6 @@ $S->query($sql);
 while(list($stock, $price, $qty, $status) = $S->fetchrow('num')) {
   // NOTE Alpha needs RDS-A while iex wants RDS.A
   $stock = ($stock == "RDS-A") ? "RDS.A" : $stock;
-  $stock = preg_replace("/-BLP/", '', $stock);
   $stocks[$status][$stock] = [$price, $qty];
 }
 
@@ -27,9 +30,11 @@ $active = $stocks['active'];
 $watch = $stocks['watch'];
 $sold = $stocks['sold']; // We will track sold now
 
+
 $active += $watch + $sold; // add it to $active, $watch and $sold
 
-$str = "$prefix/stock/market/batch?symbols=" . implode(',', array_keys($active)) . "&types=quote";
+// Get information from IEX
+$str = "$prefix/stock/market/batch?symbols=" . implode(',', array_keys($active)) . "&types=quote&" . $token . "&filter=symbol,latestPrice,latestUpdate,latestVolume";
 
 $h = curl_init();
 curl_setopt($h, CURLOPT_URL, $str);
@@ -40,19 +45,22 @@ curl_setopt($h, CURLOPT_RETURNTRANSFER, true);
 $ret = curl_exec($h);
 $ar = json_decode($ret, true); // Make it an array for starts
 
-// odd has the DJI and ZENO and could have others that are in $active but not on eix.
+// $ar is IEX data
 
-$odd = array_diff(array_keys($active), array_keys($ar));
+// BLP 2021-02-26 -- There are no more ODD items.
+// odd has the DJI and ZENO and could have others that are in $active but not on eix.
+//$odd = array_diff(array_keys($active), array_keys($ar));
 
 $aa = array_keys($mutual); // Get the mutual funds because they are not in iex
 
 // Now add the things from $odd that we didn't find in the results from iex
 
-$aa = array_merge($odd, $aa); // mutual + odd
+// BLP 2021-02-26 -- no more odd items
+//$aa = array_merge($odd, $aa); // mutual + odd
 
 $ar = json_decode($ret); // Now get $ar as an object
 
-// loop thought the $aa array of mutual funds and $odd and do Alpha
+// loop thought the $aa array of mutual funds and do Alpha
 
 foreach($aa as $k) {
   $alp = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=$k&apikey=$alphakey";
@@ -63,7 +71,7 @@ foreach($aa as $k) {
   $alpha = json_decode($alpha, true); // decode as an array
 
   //$name = $alpha["Meta Data"]["2. Symbol"];
-  
+
   foreach($alpha["Time Series (Daily)"] as $date=>$v) {
     $close = $v["4. close"]; // The 'close' price is also the 'last' price during the day.
     $volume = $v["5. volume"]; 
@@ -82,21 +90,18 @@ foreach($aa as $k) {
 $quotes = '';
 $total = '';
 
-vardumpNoEscape("stocks", $stocks['active']);
-
-foreach($ar as $k=>$v) {
+foreach($ar as $v) {
   $qt = $v->quote;
   $st = $qt->symbol;
 
   if($st == "RDS.A") $st = "RDS-A";
   
   $date = date("Y-m-d H:i:s", $qt->latestUpdate / 1000);
+  
   $price = $qt->latestPrice; // raw price
-  $volume = $qt->latestVolume; // volume
+  $volume = ($qt->latestVolume == null ? 0 : $qt->latestVolume); // volume
 
   $S->query("insert into stocks.pricedata (date, stock, price, volume) ".
             "values('$date', '$st', '$price', '$volume') ".
             "on duplicate key update price='$price'");
 }
-
-echo "updatestocks.php DONE\n";

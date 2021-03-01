@@ -1,6 +1,8 @@
 // worker.worker.js This is javascript.
 // This is the worker side of worker.main.php and it calls
 // worker.ajax.php for the info from tables.
+// See worker.ajax.php for description of the 'test' table in database
+// 'test'.
 
 // Add an event listener for 'message'. The data is in evt.data and we
 // make it into a string and then pass the string to sendText()
