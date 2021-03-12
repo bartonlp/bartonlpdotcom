@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-// BLP 2021-02-26 -- currently not being used in all-cron.sh. Commented out.
+// BLP 2021-03-10 -- We are using this in all-cron.sh now.
 // This script looks at the 'tracker' table and adds any isJavaScript==0 entries to 'bots' and
 // 'bots2'. It looks for the max value of lasttime and then colects 'tracker' entries gt that max
 // value.
@@ -75,7 +75,7 @@ while(list($ip, $agent, $site, $lasttime) = $S->fetchrow($r, 'num')) {
 
   // Now look in the bots table to see if there is a record.
 
-  $sql = "select ip, robots, who from $db.bots where ip='$ip' and agent='$agent'";
+  $sql = "select ip, robots, site from $db.bots where ip='$ip' and agent='$agent'";
 
   // Is there a record?
 
@@ -88,10 +88,10 @@ while(list($ip, $agent, $site, $lasttime) = $S->fetchrow($r, 'num')) {
     
     $who = strpos($who, $site) === false ? "$site, $who" : $who;
 
-    $sql = "update $db.bots set who='$who', count=count+1, robots=robots|0x100, lasttime=now() ".
+    $sql = "update $db.bots set site='$who', count=count+1, robots=robots|0x100, lasttime=now() ".
            "where ip='$ip' and agent='$agent'";
 
-    echo "Update, ip: $ip, robots: ".dechex($robots).", who: $who, orig: $orig\n";
+    echo "Update, ip: $ip, robots: ".dechex($robots).", site: $who, orig: $orig\n";
     //echo "$sql\n";
     $S->query($sql);
 
@@ -103,7 +103,7 @@ while(list($ip, $agent, $site, $lasttime) = $S->fetchrow($r, 'num')) {
   } else {
     // There is NO bots entrie
     
-    $sql = "insert into $db.bots (ip, agent, count, robots, who, creation_time, lasttime) ".
+    $sql = "insert into $db.bots (ip, agent, count, robots, site, creation_time, lasttime) ".
            "values('$ip', '$agent', 1, 0x100, '$site', now(), now())";
 
     echo "Insert, ip: $ip, who: $site\n";

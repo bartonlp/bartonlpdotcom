@@ -11,7 +11,7 @@ $S = new Database($_site);
 
 $db = $S->masterdb;
 
-$ar = ['tracker', 'bots2', 'daycounts', 'logagent2', 'counter2'];
+$ar = ['tracker', 'bots2', 'daycounts', 'counter2'];
 
 foreach($ar as $v) {
   //echo "delete from $v\n";

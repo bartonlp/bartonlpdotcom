@@ -43,6 +43,11 @@ if($_POST) {
   $name = $S->escape($_POST['name']);
   $email = $S->escape($_POST['email']);
 
+  /* BLP 2021-03-09 -- members is a table in the dbinfo structure in mysitemap.json.
+     The masterdb has the main database which is usually 'barton'.
+     For bartonphillips.com the dbinfo->database has the 'bartonphillips' database.
+  */
+
   try {
     $sql = "insert into members (name, email, ip, agent, created, lasttime) ".
            "values('$name', '$email', '$ip', '$agent', now(), now())";
@@ -74,14 +79,6 @@ if($_POST) {
   }
   header("Location: /");
   exit();
-/*  echo <<<EOF
-$top
-<h1>Registeration Posted</h1>
-<a href="/">Return to Home Page</a>
-$footer
-EOF;
-  exit();
-*/  
 }
 
 // Start Page

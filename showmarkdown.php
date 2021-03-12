@@ -1,5 +1,7 @@
 <?php
 $_site = require_once(getenv("SITELOADNAME"));
+ErrorClass::setDevelopment(true);
+ErrorClass::setNoEmailErrs(true);
 $S = new $_site->className($_site);
 
 use Pug\Pug;
@@ -64,10 +66,12 @@ EOF;
 <body>
 EOF;
 
+  //echo "$file<br>";
   $output = file_get_contents($file);
-  
+  //echo "$output";
+
   if(empty($output)) {
-    echo "<h1 style='text-align: center; font-size: 2rem;'>File Not Fount</h1>";
+    echo "<h1 style='text-align: center; font-size: 2rem;'>File Not Found<br>$file</h1>";
     exit();
   }
 

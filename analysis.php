@@ -4,13 +4,13 @@
 
 $_site = require_once(getenv("SITELOADNAME"));
 ErrorClass::setDevelopment(true);
+ErrorClass::setNoEmailErrs(true);
 
 // Ajax from CRON job /var/www/bartonlp/scrits/update-analysis.sh which is run via all-cron.sh
 
 if($thisSite = $_GET['siteupdate']) {
   $S = new $_site->className($_site);
   getAnalysis($S, $thisSite);
-  echo "Analysis for $thisSite Done";
   exit();
 }
 
@@ -91,7 +91,7 @@ EOF;
   exit();
 }
 
-return getAnalysis($S);
+return getAnalysis($S, $S->siteName);
 
 // Helper function to make the tables
 
@@ -229,13 +229,13 @@ function getAnalysis($S, $site='ALL') {
   
   $days = 60;
 
-  $S->query("select created from $S->masterdb.logagent2 ".
+  $S->query("select created from $S->masterdb.logagent ".
             "where created >= current_date() - interval $days day ".
             "and ip not in ($ips)$where1 order by created limit 1");
   
   list($sinceDate) = $S->fetchrow('num');
 
-  $sql = "select agent, count from $S->masterdb.logagent2 ".
+  $sql = "select agent, count from $S->masterdb.logagent ".
          "where created >= current_date() - interval $days day and ip not in ($ips)$where1";
 
   list($totals2, $counts2, $n[1]) = maketable($sql, $S);
@@ -285,6 +285,28 @@ EOF;
   $browser[0] .= "</tbody></table>";
   $browser[1] .= "</tbody></table>"; 
 
+  vardump("site", $site);
+  if($site != 'Tysonweb') {
+    $form = <<<EOF
+<div id="siteanalysis">
+  <form method="post" action="analysis.php">
+    <p>Showing $site</p>
+    Get Site: 
+    <select name='site'>
+      <option>Allnatural</option>
+      <option>Bartonlp</option>
+      <option>Bartonphillips</option>
+      <option>BartonOrg</option>
+      <option>Tysonweb</option>
+      <option>ALL</option>
+    </select>
+
+    <button id="mysite" type="submit">Submit</button>
+  </form>
+</div>
+EOF;
+  }
+  
   $creationDate = date("Y-m-d H:i:s T");
 
   // Make this function into a string so we can use it in the echo within {}
@@ -331,32 +353,7 @@ table.tablesorter thead tr .header {
 <h2 id="analysis-info">Analysis Information$for</h2>
 <p class="h-update">Last updated $creationDate.</p>
 
-<p>The following websites are used to accumulate data</p>
-<ul>
-<li>www.bartonphillips.com</li>
-<li>www.bartonlp.com</li>
-<li>www.allnaturalcleaningcompany.com</li>
-<li>www.bartonlp.org</li>
-<li>www.newbern-nc.info</li>
-</ul>
-
-<div id="siteanalysis">
-  <form method="post" action="analysis.php">
-    <p>Showing $site</p>
-    Get Site: 
-    <select name='site'>
-      <option>Allnatural</option>
-      <option>Bartonlp</option>
-      <option>Bartonphillips</option>
-      <option>BartonphillipsOrg</option>
-      <option>BartonLP</option>
-      <option>Tysonweb</option>
-      <option>ALL</option>
-    </select>
-
-    <button id="mysite" type="submit">Submit</button>
-  </form>
-</div>
+$form
 
 <p>These tables show the number and percentage of Operating Systems and Browsers.<br>
 The Totals show the number of Records and Counts for the entire table and the last N days.<br>
@@ -422,47 +419,9 @@ $browser[1]
 </table>
 EOF;
 
-  if($_SERVER['SERVER_NAME'] == 'www.bartonlp.com') {
-    // On bartonlp.com just do a regular file_put_contents
-    if(file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
-      error_log("analysis: file_put_contents FAILED on $site-analysis.i.txt");
-    }
-  } else {
-    // On bartonlp.org do the ssh_file_put_contents. This requires
-    // 'sudo apt-get install libssh2-1 php-ssh2'
-    // or on RPI 'sudo apt-get install libssh2-php'
-    if(ssh_file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
-      error_log("analysis: ssh_file_put_contents FAILED on $site-analysis.i.txt");
-    }
+  // On bartonlp.com just do a regular file_put_contents
+  if(file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
+    error_log("analysis: file_put_contents FAILED on $site-analysis.i.txt");
   }
   return $analysis;
-}
-
-// do file_put_contents() via ssh2. Requires 'sudo apt-get install libssh2-1 php-ssh2'
-
-function ssh_file_put_contents($remote_file, $data) {
-  // ssh login
-  $user_name = "barton"; 
-  $user_pass = "7098653?"; // BLP 2016-09-03 -- New Password
-
-  if(!($connection = ssh2_connect('bartonphillips.net', 2220))) {
-    error_log("ssh2_connect failed");
-    return false;
-  }
-  
-  if(ssh2_auth_password($connection, $user_name, $user_pass) === false) {
-    error_log("ssh2_auth_password failed");
-    return false;
-  }
-
-  // Create temporary file
-  $t = stream_get_meta_data($_f = tmpfile())['uri'];
-  file_put_contents($t, $data);
-
-  if(ssh2_scp_send($connection, $t, $remote_file, 0644) === false) {
-    error_log("ssh2_scp_send failed");
-    return false;
-  }
-  
-  return true;
 }

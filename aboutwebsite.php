@@ -2,13 +2,10 @@
 // All sites that have an "About Web Site" link should have a symlink
 // to /var/www/html/aboutwebsite.php and should have a modified MySitemap.php and/or mysitemap.json that has
 // these items in the $_site array: 1) 'copyright', 2 'className' 3 'siteName' etc.
-// The className is the name of the class for the site. For example: /var/www/granbyrotary uses
-// the file /var/www/granbyrotary/includes/GranbyRotary.clas.php which has GranbyRotary as the class.
-// Therefore 'className' should be 'GranbyRotary' which is then instantiated by
-// $S = new $_site->className($_site); which becomes '$S = new GranbyRotary($_site);
-if(file_exists("vendor/autoload.php")) {
-  require_once("vendor/autoload.php");
-}
+// The className is the name of the class for the site. Most sites just use 'SiteClass' but some
+// will have a seperate xxxClass in their 'includes' directory in which case 'className' should be
+// set to 'includes/xxxClass.php'. 'xxxClass' should be derived from 'SiteClass'.
+  
 $_site = require_once(getenv("SITELOADNAME"));
 ErrorClass::setDevelopment(true);
 $S = new $_site->className($_site);

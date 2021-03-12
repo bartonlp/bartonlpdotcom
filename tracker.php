@@ -290,7 +290,6 @@ if($_GET['page'] == 'normal') {
       $img2 = "https://bartonphillips.net" . $S->trackerImg2;
     }
   }
-  //error_log($img2);
   
   $imageType = preg_replace("~.*\.(.*)$~", "$1", $img2);
   $img = file_get_contents("$img2");

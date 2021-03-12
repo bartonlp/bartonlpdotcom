@@ -1,10 +1,11 @@
 <?php
-//$AutoLoadDEBUG = 1;
 $_site = require_once(getenv("SITELOADNAME"));
+ErrorClass::setDevelopment(true);
+ErrorClass::setNoEmailErrs(true);
 $S = new $_site->className($_site);
 
 if($_POST) {
-  vardump("\$_POST", $_POST);
+  vardump("POST", $_POST);
   if($data = $_POST['data']) {
     $result = base64_decode($data);
     echo escapeltgt($result). "<br>";

@@ -36,11 +36,11 @@ if($ok == 1) {
   try {
     //error_log("robots: $S->siteName, $ip, $agent");
 
-    $S->query("insert into $S->masterdb.bots (ip, agent, count, robots, who, creation_time, lasttime) ".
+    $S->query("insert into $S->masterdb.bots (ip, agent, count, robots, site, creation_time, lasttime) ".
                "values('$ip', '$agent', 1, 1, '$S->siteName', now(), now())");
   }  catch(Exception $e) {
     if($e->getCode() == 1062) { // duplicate key
-      $S->query("select who from $S->masterdb.bots where ip='$ip'");
+      $S->query("select site from $S->masterdb.bots where ip='$ip'");
 
       list($who) = $S->fetchrow('num');
 
@@ -50,7 +50,7 @@ if($ok == 1) {
       if(strpos($who, $S->siteName) === false) {
         $who .= ", $S->siteName";
       }
-      $S->query("update $S->masterdb.bots set robots=robots | 2, who='$who', count=count+1, lasttime=now() ".
+      $S->query("update $S->masterdb.bots set robots=robots | 2, site='$who', count=count+1, lasttime=now() ".
                  "where ip='$ip'");
     } else {
       error_log("robots: ".print_r($e, true));

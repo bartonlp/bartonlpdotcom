@@ -1,4 +1,5 @@
 <?php
+// BLP 2021-03-10 -- I don't think this is used anywhere!
 // This is used by bartonphillips.net/js/yimage.js to get the images from my
 // www.bartonlp.com/Pictures
 

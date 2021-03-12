@@ -1,0 +1,4 @@
+This is not where bartonlp.com goes. 
+It goes to /var/www/html. See the /etc/apache2/sites-enabled/bartonlp.conf et all.
+This directory is only for local access not internet.
+There is NO mysitemap.json here.

@@ -11,6 +11,7 @@ return <<<EOF
 <li><a target="_blank" href="https://www.bartonlp.org/gitstatus.php">GitStatus bartonlp.org</a></li>
 <li><a target="_blank" href="http://www.bartonphillips.dyndns.org">Rpi</a></li>
 <li><a target="_blank" href="http://www.bartonphillips.dyndns.org:8080">Hp-envy</a></li>
+<li><a target="_blank" href="https://www.newbern-nc.info/webstats.php">Tysonweb Webstats</a></li>
 <li><a target="_blank" href="https://www.applitec.com/glencabin">Glen's Cabin</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stocks/stock-price-update.php">Stock Quotes</a></li>
 <li><a target="_blank" href="https://www.bartonphillips.com/stocks/mutualiex.php">Mutual Funds Quotes</a></li>

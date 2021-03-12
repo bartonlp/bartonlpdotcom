@@ -1,9 +1,14 @@
 #!/usr/bin/php
 <?php
 $path = getcwd();
+//error_log("path: $path");
 
 $file = file_get_contents($path ."/sitemap-new.txt");
+//error_log("file: $file");
+
 $files = json_decode($file);
+
+//error_log("files: " . print_r($files, true));
 
 $sitemap = <<<EOF
 <?xml version="1.0" encoding="UTF-8"?>
