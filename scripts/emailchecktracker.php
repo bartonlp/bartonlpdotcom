@@ -1,5 +1,6 @@
 #!/usr/bin/php
 <?php
+// BLP 2021-03-22 -- Curently NOT USED  
 // This runs as a cron job and emails checktracker.log to me and then removes the content
 
 $_site = require_once("/var/www/vendor/bartonlp/site-class/includes/siteload.php");

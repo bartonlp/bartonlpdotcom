@@ -292,6 +292,7 @@ if($_GET['page'] == 'normal') {
   }
   
   $imageType = preg_replace("~.*\.(.*)$~", "$1", $img2);
+  
   $img = file_get_contents("$img2");
   header("Content-type: image/$imageType");
   echo $img;

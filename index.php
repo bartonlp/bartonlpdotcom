@@ -1,5 +1,6 @@
 <?php
-// Main page for bartonlp.com
+// Main page for bartonlp
+// BLP 2021-03-20 -- Changed the heading to reflect that we got here via bartonlp.org
 // BLP 2018-02-10 -- use cookie to get 'adminstuff'
 // BLP 2016-11-12 -- site now uses SITELOADNAME
 
@@ -7,6 +8,11 @@ $_site = require_once(getenv("SITELOADNAME"));
 ErrorClass::setNoEmailErrs(true);
 //ErrorClass::setDevelopment(true);
 $S = new $_site->className($_site);
+
+// BLP 2021-03-20 -- Because this is in the bartonlp directory it still gets its 'mysitemap.json' from bartonlp.org
+// So I will change the mainTitle to 'Home of bartonlp.com'
+
+$S->mainTitle = "<h1>This is 'bartonlp' via bartonlp.org</h1>";
 
 // Special Fonts from google, and rel=conanical
 

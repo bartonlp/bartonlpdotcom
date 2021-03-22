@@ -12,9 +12,10 @@ $ip = $_SERVER['REMOTE_ADDR'];
 $data = file_get_contents('php://input');
 $data = json_decode($data, true);
 $id = $data['id'];
+$w = $data['which'];
 
 if(!$id) {
-  error_log("beacon: $S->siteName: NO ID, $ip, $agent");
+  error_log("beacon: $S->siteName: NO ID, which: $w, ip: $ip, agent: $agent");
   
   echo <<<EOF
 <!DOCTYPE html>
@@ -43,10 +44,6 @@ EOF;
     $beacon = $data['which'] * 32; // 0x20, 0x40 or 0x80
     $S->query("update $S->masterdb.tracker set endtime=now(), difftime=timediff(now(),starttime), ".
               "isJavaScript=isJavaScript|$beacon, lasttime=now() where id=$id");
-
-    //error_log("beacon: which={$data['which']}, new JavaScript=" . dechex($js | $beacon));
-  } else {
-    //error_log("beacon: which={$data['which']}, Not Done");
   }
   exit();
 }

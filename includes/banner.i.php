@@ -1,5 +1,7 @@
 <?php
-
+// BLP 2021-03-20 -- the main title is set in the 'www/bartonlp/index.php' because mysitemap.json is from
+// 'www/html' which is the real home of bartonlp.org.
+  
 return <<<EOF
 <header>
   <a href="https://www.bartonlp.com">
@@ -8,7 +10,7 @@ return <<<EOF
   <a href="http://linuxcounter.net/">
     <img id='linuxcounter' src="/tracker.php?page=normal&id=$this->LAST_ID" alt="linux counter image.">
   </a>
-<br>$this->mainTitle
+$this->mainTitle
 <noscript>
 <p style='color: red; background-color: #FFE4E1; padding: 10px'>
 <img src="/tracker.php?page=noscript&id=$this->LAST_ID" alt="noscript">

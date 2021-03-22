@@ -10,14 +10,27 @@ $_site = require_once(getenv("SITELOADNAME"));
 ErrorClass::setDevelopment(true);
 $S = new $_site->className($_site);
 
+if($S->siteName == "Tysonweb") {
+  // Add a link to a private password protected location
+  $tyson = <<<EOF
+<p>
+  <a href = "admin/webst.php">Web Statistics For The Tyson Group</a>
+</p>
+EOF;
+}
+
 // check for subdomain. This doesn't need to be rigorous as we will Never have a multiple
 // subdomain like en.test.domain.com. At most we might have www. or mpc.
 
 $webdomain = $S->siteDomain;
 
+// split it up into an array and then if the count is two that means there was no 'www' so add it.
+
 if(($n = count(explode(".", $webdomain))) == 2) {
   $webdomain = "www." . $webdomain;
 }
+
+// is this https or not?
 
 $prefix = $_SERVER['HTTPS'] == "on" ? 'https://' : 'http://';
 
@@ -130,12 +143,6 @@ $top
         alt="jQuery logo">
     </a>
   </p>
-<!--	<p>
-    <a href="https://www.mozilla.org">
-      <img src="https://bartonphillips.net/images/aboutsite/bestviewedwithmozillabig.gif"
-        alt="Best viewed with Mozilla or any other browser">
-    </a>
-  </p> -->
 	<p>
     <img src="https://bartonphillips.net/images/aboutsite/msfree.png"
       alt="100% Microsoft Free">
@@ -147,6 +154,7 @@ $top
     </a>
 	</p>
 </div>
+$tyson
 </div>
 $footer
 EOF;

@@ -12,17 +12,13 @@
 *.SVG
 *.eot
 *.EOT
-/other
-/images
-heidi/
-webstats.i.txt
-sitemap.xml
-Sitemap.xml
-domparser/
+other/
+images/
+Pictures/
 phpQuery/
 vendor/
+rotary/
 Archive/
+Sitemap.xml
 /scripts/checktracker.log
-node_modules/
-websocket.log
 

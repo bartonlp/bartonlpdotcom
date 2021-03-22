@@ -4,7 +4,6 @@
 
 $_site = require_once(getenv("SITELOADNAME"));
 ErrorClass::setDevelopment(true);
-ErrorClass::setNoEmailErrs(true);
 
 // Ajax from CRON job /var/www/bartonlp/scrits/update-analysis.sh which is run via all-cron.sh
 
@@ -38,11 +37,11 @@ if(isset($_POST['submit']) || !$S) {
 <!--[if gt IE 8]><!-->
   <link rel="stylesheet" href="https://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
 <!--<![endif]-->
-  <link rel="stylesheet" href="https://bartonphillips.net/css/tablesorter.css">
+  <link rel="stylesheet" href="https://bartonphillips.net/css/newtblsort.css">
 EOF;
 
   $h->extra = <<<EOF
-  <script src="https://bartonphillips.net/js/tablesorter/jquery.tablesorter.js"></script>
+  <script src="https://bartonphillips.net/tablesorter-master/dist/js/jquery.tablesorter.min.js"></script>
   <script>
 jQuery(document).ready(function($) {
   $.tablesorter.addParser({
@@ -72,6 +71,9 @@ body {
 button {
   font-size: 1rem;
   border-radius: .5rem;
+}
+.scrolling {
+  overflow-x: auto;
 }
   </style>
 EOF;
@@ -217,15 +219,24 @@ function getAnalysis($S, $site='ALL') {
     $where1 = " and site='$site'";
     $for = " for $site";
   }
+
+  // get startDate. Limit 1 will get the OLDEST date
   
   $S->query("select created from $S->masterdb.logagent ".
             "where ip not in ($ips)$where1 order by created limit 1");
 
   list($startDate) = $S->fetchrow('num');
 
+  // Now select agent and count from logagent where it is not Me and the site if not ALL
+  // This gets all of the records since the last time the table was truncated. Now it is truncated
+  // in cleanuptables.php which is run from cron. See crontab -l and
+  // /var/www/bartonlp/scripts/celanuptables.php for details.
+  
   $sql = "select agent, count from $S->masterdb.logagent where ip not in($ips)$where1";
   
   list($totals, $counts, $n[0]) = maketable($sql, $S);
+
+  // Now we get only 60 days worth of data.
   
   $days = 60;
 
@@ -243,6 +254,8 @@ function getAnalysis($S, $site='ALL') {
   $os = [];
   $browser = [];
 
+  // Make the tables.
+  
   for($i=1; $i<3; ++$i) {
     foreach(array('os','browser') as $v) {
       $V = ucwords($v);
@@ -313,43 +326,6 @@ EOF;
   $number_format = 'number_format';
 
   $analysis = <<<EOF
-<style>
-.pure-table-striped tr:nth-child(2n-1) td {
-  background-color: inherit;
-}
-.pure-table-striped tbody {
-  background-color: #e0e0e0;
-}
-.pure-table-striped tbody tr:nth-child(2n+2) td {
-  background-color: pink;
-}
-.pure-table thead {
-  background-color: yellow;
-}
-#os1, #os2, #browser1, #browser2 {
-  font-size: 1rem;
-}
-#os1 td:nth-child(2), #browser1 td:nth-child(2),
-#os2 td:nth-child(2), #browser2 td:nth-child(2),
-#os1 td:nth-child(3), #browser1 td:nth-child(3),
-#os2 td:nth-child(3), #browser2 td:nth-child(3),
-#os1 td:nth-child(4), #browser1 td:nth-child(4),
-#os2 td:nth-child(4), #browser2 td:nth-child(4) {
-  text-align: right;
-}
-.AlignTop {
-  vertical-align: top;
-}
-.pure-table thead {
-  vertical-align: middle;
-}
-.HeaderRow th {
-  padding: 20px 10px;
-}
-table.tablesorter thead tr .header {
- background-size: 1.5rem;
-}
-</style>
 <h2 id="analysis-info">Analysis Information$for</h2>
 <p class="h-update">Last updated $creationDate.</p>
 
@@ -360,7 +336,8 @@ The Totals show the number of Records and Counts for the entire table and the la
 The OS and Browser totals should be the same. <br>
 The two sets of tables give you an idea
 of how the market is trending.</p>
-
+<p>These table are created from the 'logagent' table.</p>
+<div class="scrolling">
 <table id="CompareTbl">
 <thead>
   <tr>
@@ -417,9 +394,10 @@ $browser[1]
   </tr>
 </tbody>
 </table>
+</div>
 EOF;
 
-  // On bartonlp.com just do a regular file_put_contents
+  // Update the analysis.i.txt file
   if(file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
     error_log("analysis: file_put_contents FAILED on $site-analysis.i.txt");
   }

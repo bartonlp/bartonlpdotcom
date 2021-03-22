@@ -2,8 +2,7 @@
 <?php
 // BLP 2021-03-10 -- We are using this in all-cron.sh now.
 // This script looks at the 'tracker' table and adds any isJavaScript==0 entries to 'bots' and
-// 'bots2'. It looks for the max value of lasttime and then colects 'tracker' entries gt that max
-// value.
+// 'bots2'. It looks for the max value of lasttime and then collects 'tracker' entries gt that max value.
 
 $_site = require_once("/var/www/vendor/bartonlp/site-class/includes/siteload.php");
 $S = new Database($_site); // NOTE isSiteClass is NOT defined in Database so this will give a E_NOTICE
