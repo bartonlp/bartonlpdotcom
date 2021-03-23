@@ -43,7 +43,7 @@ foreach($files as $input_file) {
   $newwidth = 600;
   $newheight = $height * 600/$width;
 
-  error_log("width: $width, height: $height, neww: $newwidth, newh: $newheight");
+  //error_log("width: $width, height: $height, neww: $newwidth, newh: $newheight");
 
   $thumb = imagecreatetruecolor($newwidth, $newheight);
   imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);

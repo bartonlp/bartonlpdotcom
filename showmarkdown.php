@@ -22,9 +22,9 @@ if($_POST || ($get = $_GET['filename'])) {
     case "GitHub":
       $parser = new \cebe\markdown\GithubMarkdown();
       $github =<<<EOF
-  <link rel="stylesheet" href="http://bartonphillips.net/css/theme.css">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
-  <script src="http://bartonphillips.net/js/syntaxhighlighter.js"></script>
+  <link rel="stylesheet" href="https://bartonphillips.net/css/theme.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://bartonphillips.net/js/syntaxhighlighter.js"></script>
   <script>
 jQuery(document).ready(function($) {
   var code = $("code[class|='language'");
