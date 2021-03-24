@@ -7,7 +7,7 @@
 
 #echo "update-analysis.sh Start"
 
-for x in Allnatural Bartonlp Bartonphillips BartonlpOrg Tysonweb ALL
+for x in Allnatural Bartonphillips BartonlpOrg Tysonweb ALL
 do
 #echo "$x";
 wget -qO- https://www.bartonlp.org/analysis.php?siteupdate=$x >/dev/null

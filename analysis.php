@@ -1,4 +1,10 @@
 <?php
+// This program is run from crontab via all-cron.sh in www/bartonlp/scripts.
+// BLP 2021-03-24 -- removed links to yahoo pure stuff. Added webstats.css which has the pure
+// stuff we need. Removed extranious divs also.
+// NOTE: this file is not usually called directly by anything other than a cron. All of the
+// info in webstats.php comes from https:bartonphillips.net/analysis/ where we have the
+// $site-analysis.i.txt files that this program creates.
 // BLP 2017-11-01 -- all-cron.sh runs update-analysis.sh
 // BLP 2016-09-03 -- change ftp password to '7098653?' note without single quotes
 
@@ -28,15 +34,10 @@ if(isset($_POST['submit']) || !$S) {
   $S = new $_site->className($_site);
 
   $h->title = "Analysis";
-  
+
+  // BLP 2021-03-24 -- remove yahoo stuff added westats.css
   $h->link = <<<EOF
-  <link rel="stylesheet" href="https://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-<!--[if lte IE 8]>
-  <link rel="stylesheet" href="https://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
-<![endif]-->
-<!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="https://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
-<!--<![endif]-->
+  <link rel="stylesheet" href="https://bartonphillips.net/css/webstats.css">
   <link rel="stylesheet" href="https://bartonphillips.net/css/newtblsort.css">
 EOF;
 
@@ -298,16 +299,15 @@ EOF;
   $browser[0] .= "</tbody></table>";
   $browser[1] .= "</tbody></table>"; 
 
-  vardump("site", $site);
   if($site != 'Tysonweb') {
     $form = <<<EOF
+<!-- If not Tysonweb give the options to view different sites -->
 <div id="siteanalysis">
   <form method="post" action="analysis.php">
     <p>Showing $site</p>
     Get Site: 
     <select name='site'>
       <option>Allnatural</option>
-      <option>Bartonlp</option>
       <option>Bartonphillips</option>
       <option>BartonOrg</option>
       <option>Tysonweb</option>
@@ -325,12 +325,12 @@ EOF;
   // Make this function into a string so we can use it in the echo within {}
   $number_format = 'number_format';
 
+  // BLP 2021-03-24 -- removed extranious divs where pure stuff was.
+  
   $analysis = <<<EOF
 <h2 id="analysis-info">Analysis Information$for</h2>
 <p class="h-update">Last updated $creationDate.</p>
-
 $form
-
 <p>These tables show the number and percentage of Operating Systems and Browsers.<br>
 The Totals show the number of Records and Counts for the entire table and the last N days.<br>
 The OS and Browser totals should be the same. <br>
@@ -358,38 +358,22 @@ of how the market is trending.</p>
   <tr class="HeaderRow"><th>OS All</th><th>OS Last $days Days</th></tr>
   <tr>
     <td class="AlignTop">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-2">
 $os[0]
-        </div>
-      </div>
     </td>
 
     <td class="AlignTop">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-2">
 $os[1]
-        </div>
-      </div>
     </td>
   </tr>
   <!-- Browser rows -->
   <tr class="HeaderRow"><th>Browser All</th><th>Browser Last $days Days</th></tr>
   <tr>
     <td class="AlignTop">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-2">
 $browser[0]
-        </div>
-      </div>
     </td>
 
     <td class="AlignTop">
-      <div class="pure-g">
-        <div class="pure-u-1 pure-u-md-1-2">
 $browser[1]
-        </div>
-      </div>
     </td>
   </tr>
 </tbody>
@@ -397,6 +381,7 @@ $browser[1]
 </div>
 EOF;
 
+  error_log("analysis.php: UPDATE analisys.i.txt for $site");
   // Update the analysis.i.txt file
   if(file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
     error_log("analysis: file_put_contents FAILED on $site-analysis.i.txt");
