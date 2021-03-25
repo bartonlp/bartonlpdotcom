@@ -5,18 +5,17 @@ ErrorClass::setNoEmailErrs(true);
 $S = new $_site->className($_site);
 
 if($_POST) {
-  vardump("POST", $_POST);
+  //vardump("POST", $_POST);
   if($data = $_POST['data']) {
     $result = base64_decode($data);
-    echo escapeltgt($result). "<br>";
+    echo "<h1 style='text-align: center'>" . escapeltgt($result). "</h1>";
   } elseif($file = $_POST['file']) {
     $data = file_get_contents($file);
     $result = base64_decode($data);
     $result = escapeltgt($result);
-    echo "$result<br>\n";
+    echo "<h1 style='text-align: center'>$result</h1>\n";
   } elseif($image = $_POST['image']) {
     echo "<img src='$image'>";
-    exit();
   } else {
     echo "Nothing to do<br>\n";
   }
