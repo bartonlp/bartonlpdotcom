@@ -3,7 +3,7 @@
 $_site = require_once(getenv("SITELOADNAME"));
 ErrorClass::setDevelopment(true);  
 
-$sites = ['/vendor/bartonlp/site-class', '/applitec', '/bartonlp', '/bartonphillips.com', '/bartonphillipsnet'];
+$sites = ['/vendor/bartonlp/site-class', 'allnaturalcleaningcompany', '/applitec', '/bartonlp', '/bartonphillips.com', '/bartonphillipsnet'];
 
 if($site = $_POST['readme']) {
   error_log("readme: $site");
@@ -125,6 +125,7 @@ $h->css =<<<EOF
   height: 500px;
   overflow: auto;
   border: 1px solid black;
+  padding: 5px;
 }
 .frame {
   width: 100%;
