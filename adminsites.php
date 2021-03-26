@@ -1,5 +1,6 @@
 <?php
 // This is a list of adminstuff. These are the links to all of my administration stuff
+// BLP 2021-03-26 -- added $GIT to GitStatus.
 
 return <<<EOF
 <!-- Admin text for all sights -->
