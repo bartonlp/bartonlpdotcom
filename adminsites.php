@@ -8,7 +8,7 @@ return <<<EOF
 <h2>Admin</h2>
 <ul>
 <li><a href="https://www.bartonphillips.com/webstats.php?blp=$blp">Web Stats</a></li>
-<li><a href="gitstatus.php">GitStatus$GIT</a></li>
+<li><a href="gitstatus.php">GitStatus$GIT[0]$GIT[1]</a></li>
 <li><a href="http://www.bartonphillips.dyndns.org">Rpi</a></li>
 <li><a href="http://www.bartonphillips.dyndns.org:8080">Hp-envy</a></li>
 <li><a href="https://www.newbern-nc.info/webstats.php">Tysonweb Webstats</a></li>
