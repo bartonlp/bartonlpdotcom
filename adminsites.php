@@ -21,6 +21,7 @@ return <<<EOF
 <li><a href="https://www.bartonphillips.com/stocks/stock.getalpha.php">Read Raw Data</a></li>
 <li><a href="https://www.bartonphillips.com/examples/">bartonphillips.com/examples</a></li>
 <li><a href="https://www.bartonphillips.com/bartonlp/examples.js/">bartonlp/examples.js</a></li>
+<li><a href="https://www.bartonphillips.com/test_examples/">examples just for testing</a></li>
 </ul>
 </section>
 EOF;
