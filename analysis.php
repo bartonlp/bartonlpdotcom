@@ -381,7 +381,7 @@ $browser[1]
 </div>
 EOF;
 
-  error_log("analysis.php: UPDATE analisys.i.txt for $site");
+  //error_log("analysis.php: UPDATE analisys.i.txt for $site");
   // Update the analysis.i.txt file
   if(file_put_contents("/var/www/bartonphillipsnet/analysis/$site-analysis.i.txt", $analysis) === false) {
     error_log("analysis: file_put_contents FAILED on $site-analysis.i.txt");
