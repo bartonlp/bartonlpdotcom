@@ -16,7 +16,8 @@ function checkUser($S) {
   $query = preg_replace("~blp=ingrid&~", '', $query, -1, $c);
   if(!$c) {
     echo "<h1>YOU HAVE BEEN TRACKED</h1><h2>Go Away</h2>";
-    error_log("PROXY-GO_AWAY: " . $_SERVER['HTTP_REFERER'] . ", siteName: $S->siteName" . ", query: $query");
+    $ref = ($_SERVER['HTTP_REFERER'] ?? "NO REFERED");
+    error_log("PROXY-GO_AWAY: $ref, siteName: $S->siteName" . ", query: $query");
     exit();
   } else {
     error_log("proxy_me: $query");
