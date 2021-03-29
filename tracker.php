@@ -208,7 +208,7 @@ if($_GET['page'] == 'script') {
 
   try {
     $sql = "select page, agent from $S->masterdb.tracker where id=$id";
-    $n = $S->query($sql);
+    $S->query($sql);
 
     list($page, $orgagent) = $S->fetchrow('num');
 

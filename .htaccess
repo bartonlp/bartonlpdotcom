@@ -48,7 +48,6 @@ AddType application/x-font-ttf .ttf
 AddDefaultCharset UTF-8
 
 RewriteEngine on
-RewriteRule ^download\.pdf$ downloadpdf.php [L]
 # BLP 2014-09-14 -- track robots that look at robots.txt
 RewriteRule ^robots\.txt$ robots.php [L,NC]
 RewriteRule ^Sitemap\.xml$ sitemap.php [L,NC]
@@ -57,8 +56,11 @@ RewriteCond %{HTTP_USER_AGENT} "baiduspider" [NC]
 RewriteRule (.*) - [F,L]
 
 # rewrite the address of csstest.css to tracker.php?csstest
-#RewriteRule ^csstest\.css(.*)(.*)$ tracker.php?$2&csstest [L,QSA]
 RewriteRule ^csstest-(.*)\.css$ tracker.php?id=$1&csstest [L,QSA]
+
+RewriteRule ^(\.git|apache-conf|vendor|other|script)/.*$ - [F,L]
+RewriteRule ^(\.gitignore|mysitemap\.json|sitemap-new\.txt)$  - [F,L]
+
 # Do compression of the followin types
 
 AddOutputFilterByType DEFLATE \
