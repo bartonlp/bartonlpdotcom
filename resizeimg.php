@@ -1,60 +1,64 @@
 #!/usr/bin/php
 <?php
-// File and new size
-require_once("/var/www/vendor/autoload.php");
-  
-chdir('rotary');
+// This is used for Rotary. When I take photos on my iPhone they are way to big.
+// This will take the big images and create 600px wide images.
+// We use the directory 'rotary' for the big images and the resized images. The big images are all
+// jpeg images and the new resized images are all png.
 
-$files = glob("*");
+// Get the autoloader
+
+require_once("/var/www/vendor/autoload.php");
+
+// Change to the 'rotary' directory.
+
+chdir('/var/www/bartonlp/rotary');
+
+// Grab all the jpeg files.
+
+$files = glob("*.jpg");
+
+// New width is 600px
 
 $imgwidth = 600;
 
+// Loop through all of the jpegs
+
 foreach($files as $filename) {
+  // get the width and height of the big images
+  
   [$width, $height] = getimagesize($filename);
 
+  // create a newheight based on the 600px width
+  
   $newheight = ($imgwidth * $width)/$height;
 
   //echo "$filename: $width, $height, NEW: $imgwidth, $newheight\n";
-  // Load
+
+  // create a blank resourse of the right size
+  
   $thumb = imagecreatetruecolor($imgwidth, $newheight);
 
-  //$w = imagesx($thumb);
-  //$h = imagesy($thumb);
-
-  //echo "w: $w, h: $h\n";
-  
+  // Get the file extension of the big file
   $x = pathinfo($filename);
   $ext = $x['extension'];
-  $thumbfile =  $x['filename'] . '.png';
-  //echo "base: $thumbfile, ext: $ext\n";
-  
-  switch($ext) {
-    case 'png':
-      $source = imagecreatefrompng($filename);
-      //$mime = 'image/png';
-      //$func = 'png';
-      break;
-    case 'jpg':
-      $source = imagecreatefromjpeg($filename);
-      //$mime = 'image/jpg';
-      //$func = 'jpeg';
-      break;
-    case 'gif':
-      $source = imagecreatefromgif($filename);
-      //$mime = 'image/gif';
-      //$func = 'gif';
-      break;
-    default:
-      throw(new Exception("Not an image file"));
-  }
+  $thumbfile =  pathinfo($filename)['filename'] . '.png';
 
-  // Resize
+  // Get the original jpeg as a resource
+  
+  $source = imagecreatefromjpeg($filename);
+  
+  // Rotate the original image. NOT sure why I have to do this?
 
   $source = imagerotate($source, 270, 0);
+
+  // NOW use the height and width to create a new resourse with newwidth and newheight. NOTE the
+  // swap! Again not sure why.
+  
   imagecopyresized($thumb, $source, 0, 0, 0, 0, $imgwidth, $newheight, $height, $width);
-  // Output
+
+  // Output the resource as a png
 
   imagepng($thumb, "$thumbfile");
-  imagejpeg($source, "test.jpg");
 }
+
 echo "Done\n";

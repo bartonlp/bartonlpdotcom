@@ -1,4 +1,6 @@
 <?php
-// BLP 2021-03-24 --  redirect this to bartonphillips.com
 
-header("location: https://www.bartonphillips.com");
+echo <<<EOF
+<h1>This is not the home of <b>bartonlp.com</b></h1>
+EOF;
+
