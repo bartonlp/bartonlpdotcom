@@ -20,7 +20,7 @@ function checkUser($S) {
     error_log("PROXY-GO_AWAY: $ref, siteName: $S->siteName" . ", query: $query");
     exit();
   } else {
-    error_log("proxy_me: $query");
+    error_log("proxyOK_$S->ip - $query");
   }
   return $query;
 };

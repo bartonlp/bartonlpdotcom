@@ -106,16 +106,16 @@ $top
   <p>This site's designer is Barton L. Phillips<br/>
      at <a href="https://www.bartonphillips.com">www.bartonphillips.com</a><br>
      Copyright &copy; $copyright<br>
-     IP Address: $S->ip
+     Your IP Address: $S->ip
   </p>
   
-	<p>This site is hosted by
+	<p>This site is hosted at
     <a href="https://www.digitalocean.com">
 		  <img	src="https://bartonphillips.net/images/aboutsite/digitalocean.jpg"
 		    alt="DigitalOcean">
 		</a>
   </p>
-  <p>This site is run with Linux, Apache, MySql, and PHP<br>
+  <p>This site is run with Linux, Apache, MySql, PHP and jQurey<br>
     <img src="https://bartonphillips.net/images/aboutsite/linux-powered.gif"
       alt="Linux Powered">
   </p>
