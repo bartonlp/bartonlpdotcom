@@ -199,6 +199,8 @@ if($_POST['page'] == 'unload') {
 if($_GET['page'] == 'script') {
   $id = $_GET['id'];
 
+  //error_log("script: $id");
+  
   if(!$id) {
     error_log("tracker: $S->siteName: SCRIPT NO ID, $ip, $agent");
     exit();
@@ -252,13 +254,17 @@ if($_GET['page'] == 'script') {
 
 if($_GET['page'] == 'normal') {
   $id = $_GET['id'];
-  
+
   if(!$id) {
     error_log("tracker: $S->siteName: NORMAL NO ID, $ip, $agent");
     exit();
   }
 
-  //error_log("tracker: normal, $S->siteName, $id, $ip, $agent");
+  // BLP 2021-04-18 -- try to see who is doing this
+  if($id == '$this->LAST_ID') {
+    error_log("tracker: $S->siteName: NORMAL $id, $ip, $agent");
+    exit();
+  }
 
   try {
     $sql = "select page, agent from $S->masterdb.tracker where id=$id";
