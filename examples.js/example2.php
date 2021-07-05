@@ -7,8 +7,11 @@ $S = new $_site->className($_site);
 // http_build_query($query_data, ...) takes an object or array. $_site is an array.
 
 $t->test = "test from example2";
-$t->siteName = "bartonlp.com";
-$t->json = json_encode($_site);
+$t->siteName = "bartonphillips.com";
+
+$json = [test1=>"test one", test2=>"test two"];
+
+$t->json = json_encode($json);
 
 $options = ['http' => [
                        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
@@ -23,7 +26,7 @@ $options = ['http' => [
                 // [content] => test=test+from+example2&siteName=bartonlp.com
 
 $context  = stream_context_create($options);
-$retvalue = file_get_contents("https://www.bartonlp.com/examples.js/example1.php", false, $context);
+$retvalue = file_get_contents("https://www.bartonphillips.com/bartonlp/examples.js/example1.php", false, $context);
 
 echo <<<EOF
 $top

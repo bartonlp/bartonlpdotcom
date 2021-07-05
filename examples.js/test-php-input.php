@@ -7,9 +7,11 @@ echo <<<EOF
 <script>
 jQuery(document).ready(function($) {
   $('#button').click(function() {
+    let json = { test1: "test one", test2: "test two" };
+  
     $.ajax({
       url: 'example1.php',
-      data: {page: 'beacon', test: 'This is beacon speaking!'},
+      data: {page: 'beacon', test: 'This is beacon speaking!', json: json},
       type: 'post',
       success: function(data) {
         $('#info').html(data);

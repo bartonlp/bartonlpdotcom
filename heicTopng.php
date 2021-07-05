@@ -20,13 +20,11 @@ $apiInstance = new Swagger\Client\Api\ConvertImageApi(
   $config
 );
 
-// I could do this in a loop using glob() but for now just one file.
-
 $input_file = "rotary/*.heic"; // Change file name
 $format1 = 'HEIC';
 $format2 = 'PNG';
 
-$files = glob("rotary/IMG_03*.heic");
+$files = glob($input_file);
 foreach($files as $input_file) {
   try {
     $result = $apiInstance->convertImageImageFormatConvert($format1, $format2, $input_file);
@@ -50,7 +48,8 @@ foreach($files as $input_file) {
 
   // NOTE: the file to write to must have group 'www-data' and group write permision.
 
-  imagepng($thumb, "$input_file.png");
+  $str = preg_replace("~.heic~", "", $input_file);
+  imagepng($thumb, "$str.png");
 }
 echo "DONE<br>";
 

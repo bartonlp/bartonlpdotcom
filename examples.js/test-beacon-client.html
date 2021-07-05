@@ -8,15 +8,15 @@ and Firefox 31+ -->
 <body>
 <h1>Test Beacon</h1>
 <p>When you leave this page a beacon should be sent to test-beacon.php.</p>
-<a href="http://www.bartonlp.com">HOME</a>
+<a href="https://www.bartonphillips.com">HOME</a>
 <script>
   var d = new Date;
   (function() {
     if(navigator.sendBeacon) {
       function logData() {
         navigator.sendBeacon(
-                             'http://www.bartonlp.com/test-beacon-server.php',
-                             'Beacon: '+d+ ' from test.html');
+                             'https://www.bartonphillips.com/bartonlp/examples.js/test-beacon-server.php',
+                             'Beacon: '+d+ ' from test-beacon-client.html');
       }
       window.addEventListener('pagehide', logData, false);
     } else {

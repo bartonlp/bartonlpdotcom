@@ -6,5 +6,5 @@
 
 $request_body = file_get_contents('php://input');
 
-file_put_contents("/tmp/debugblp.txt", "got beacon:\n$request_body\n",
+file_put_contents("debugblp.txt", "got beacon:\n$request_body\n",
                   FILE_APPEND);

@@ -8,14 +8,18 @@
 $data = file_get_contents("php://input");
 
 if($data) {
-  //error_log("data: " .print_r($data, true));
+  error_log("data: " .print_r($data, true));
   // $data is a query like val=test&val2=test2
   parse_str($data, $ar);
-  //error_log("data2: ".print_r($ar, true));
+  error_log("data2: ".print_r($ar, true));
   if($ar['page'] == 'beacon') {
+    foreach($ar['json'] as $k=>$v) {
+      $str .= "$k: $v<br>";
+    }
     echo <<<EOF
 <p>This is beacon: </p>
 {$ar['test']}<br>
+$str<br>
 EOF;
 //    exit();
   }
@@ -26,7 +30,7 @@ Raw: $data<br>
 Parsed:<br>
 test: {$ar['test']}<br>
 siteName: {$ar['siteName']}<br>
-json: {$ar['json']}<br><br>
+json: $str<br><br>
 EOF;
 }
 
@@ -36,11 +40,14 @@ if($_POST) {
   $json = $_POST['json'];
   $test = $_POST['test'];
   $siteName = $_POST['siteName'];
+  foreach($json as $k=>$v) {
+    $str2 .= "$k: $v<br>";
+  }
   echo <<<EOF
 <p>This is a test of POST:<br>
 test: $test<br>
 siteName: $siteName<br>
-json: $json<br><br>
+json: $str2<br><br>
 EOF;
 }
 
@@ -53,7 +60,3 @@ foreach($j as $k=>$v) {
   echo "$k: $v<br>";
 }
 echo "\n";
-
-
-
-
